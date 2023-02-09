@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-const loginController = require("../controllers/loginController")
-
 /* GET home page. */
-router.get('/', loginController.index);
+router.get('/', function(req,res,next){
+    res.send("Bienvenido a Capytall!!")
+});
 
 module.exports = router;
