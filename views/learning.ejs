@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="register"><button>Registro</button></a>
     <table>
         <thead>
             <tr>
@@ -18,13 +19,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>Editar | Borrar</td>
-            </tr>
+            <% for( let i = 0; i < users.length; i++ ) { %>
+                <tr>
+                    <td><%= users[i].id %></td>
+                    <td><%= users[i].name %></td>
+                    <td><%= users[i].mail %></td>
+                    <td><%= users[i].password %></td>
+                    <td>Editar | Borrar</td>
+                </tr>
+            <% } %>
         </tbody>
     </table>
 </body>
