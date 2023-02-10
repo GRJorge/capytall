@@ -3,6 +3,6 @@ var router = express.Router()
 var userController = require('../controllers/userController')
 
 router.get('/',userController.index)
-router.get('/register',userController.register)
+router.get('/signUp',userController.register)
 
 module.exports = router 
