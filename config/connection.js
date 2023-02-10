@@ -9,7 +9,7 @@ var con = mysql.createConnection({
 con.connect(
     (err)=>{
         if(!err){
-            console.log('Conexion correcta')
+            console.log('Conexion correcta\nEntra a http://localhost:3000')
         }else{
             console.log('Error de conexion')
         }
