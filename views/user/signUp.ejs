@@ -25,15 +25,23 @@
             <div><h1>Registrarse</h1></div>
             <div class="marginBottom">
                 <label for="name"><i class="fi fi-ss-user"></i></label>
-                <input type="text" class="textForegroundAlphaSecondary" name="name" id="name" placeholder="Nombre de usuario">
+                <input type="text" class="textForegroundAlphaSecondary" name="name" id="name" placeholder="Nombre" required>
+            </div>
+            <div class="marginVertical">
+                <label for="lastname"><i class="fi fi-ss-user"></i></label>
+                <input type="text" class="textForegroundAlphaSecondary" name="lastname" id="lastname" placeholder="Apellido(s)" required>
             </div>
             <div class="marginVertical">
                 <label for="email"><i class="fi fi-ss-envelope"></i></label>
-                <input type="email" class="textForegroundAlphaSecondary" name="email" id="email" placeholder="Correo">
+                <input type="email" class="textForegroundAlphaSecondary" name="email" id="email" placeholder="Correo" required>
             </div>
             <div class="marginVertical">
                 <label for="password"><i class="fi fi-ss-lock"></i></label>
-                <input type="password" class="textForegroundAlphaSecondary" name="password" id="password" placeholder="Contraseña">
+                <input type="password" class="textForegroundAlphaSecondary" name="password" id="password" placeholder="Contraseña" required>
+            </div>
+            <div class="marginVertical">
+                <label for="confirmPassword"><i class="fi fi-ss-arrows-repeat"></i></label>
+                <input type="password" class="textForegroundAlphaSecondary" name="confirmPassword" id="confirmPassword" placeholder="Confirma tu contraseña" required>
             </div>
             <div class="marginVertical">
                 <input type="submit" class="btnSecondary" value="Crear cuenta">

@@ -12,7 +12,6 @@ module.exports = {
     },
     insert:function(req,res){
         userModel.set(con,req.body,function(err){
-            console.log(err.code)
             res.redirect('/user')
         })
     } 

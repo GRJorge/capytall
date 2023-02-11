@@ -15,25 +15,29 @@ body{
     --background: #373740;
     --primary: #8C3FA6;
     --secondary: #82F25C;
+    --alert: #F25C76;
 }
 .shadow{
     box-shadow: 0px 0px 6px #000;
 }
 /* INPUTS */
 .textForegroundAlphaPrimary,
-.textForegroundAlphaSecondary{
+.textForegroundAlphaSecondary,
+.textForegroundAlphaError{
     background-color: rgba(233, 233, 236, 0.1);
     color: var(--foreground);
     border: solid 2px rgba(0, 0, 0, 0);
     border-radius: 4px;
     padding: 8px;
+    outline: none;
+}
+.textForegroundAlphaError{
+    border: solid 2px var(--alert);
 }
 .textForegroundAlphaPrimary:focus{
-    outline: none;
     border: solid 2px var(--primary);
 }
 .textForegroundAlphaSecondary:focus{
-    outline: none;
     border: solid 2px var(--secondary);
 }
 /* BOTONES */
