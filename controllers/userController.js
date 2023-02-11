@@ -11,6 +11,9 @@ module.exports = {
         res.render('user/signUp')
     },
     insert:function(req,res){
-        res.send(req.body)
+        userModel.set(con,req.body,function(err){
+            console.log(err.code)
+            res.redirect('/user')
+        })
     } 
 }
