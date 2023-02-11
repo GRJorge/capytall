@@ -9,5 +9,8 @@ module.exports = {
     },
     register:function(req,res){
         res.render('user/signUp')
-    }
+    },
+    insert:function(req,res){
+        res.send(req.body)
+    } 
 }

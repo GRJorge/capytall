@@ -5,4 +5,6 @@ var userController = require('../controllers/userController')
 router.get('/',userController.index)
 router.get('/signUp',userController.register)
 
+router.post('/',userController.insert)
+
 module.exports = router 
