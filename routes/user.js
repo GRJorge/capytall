@@ -4,6 +4,7 @@ var userController = require('../controllers/userController')
 
 router.get('/',userController.index)
 router.get('/signUp',userController.signUp)
+router.get('/signIn',userController.signIn)
 
 router.post('/',userController.insert)
 
