@@ -9,19 +9,13 @@
     <title>Registrarse</title>
 </head>
 <body>
-    <% if(classEmail == "default"){ %>
-        <% classEmail = "textForegroundAlphaSecondary" %>
-    <% } if(placeholderEmail == "default"){%>
-        <% placeholderEmail = "Correo electrónico" %>
-    <% } if(classPassword == "default"){ %>
-        <% classPassword = "textForegroundAlphaSecondary" %>
-    <% } if(placeholderPassword == "default"){%>
-        <% placeholderPassword = "Contraseña" %>
-    <% } if(classConfirmPassword == "default"){ %>
-        <% classConfirmPassword = "textForegroundAlphaSecondary" %>
-    <% } if(placeholderConfirmPassword == "default"){%>
-        <% placeholderConfirmPassword = "Confirma tu contraseña" %>
-    <% } %>
+    <% classDefault = "textForegroundAlphaSecondary" %>
+    <% if(classEmail == "default"){classEmail = "textForegroundAlphaSecondary"} %>
+    <% if(placeholderEmail == "default"){placeholderEmail = "Correo electrónico"} %>
+    <% if(classPassword == "default"){classPassword = "textForegroundAlphaSecondary"} %>
+    <% if(placeholderPassword == "default"){placeholderPassword = "Contraseña"} %>
+    <% if(classConfirmPassword == "default"){classConfirmPassword = "textForegroundAlphaSecondary"} %>
+    <% if(placeholderConfirmPassword == "default"){placeholderConfirmPassword = "Confirma tu contraseña"} %>
     
     <div class="page shadow">
         <div class="loginBox">
