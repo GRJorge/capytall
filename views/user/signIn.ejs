@@ -9,18 +9,24 @@
     <title>Iniciar sesión</title>
 </head>
 <body>
+    <% classDefault = "textForegroundAlphaPrimary" %>
+    <% if(classEmail == "default"){classEmail = classDefault}%>
+    <% if(placeholderEmail == "default"){placeholderEmail = "Correo"}%>
+    <% if(classPassword == "default"){classPassword = classDefault}%>
+    <% if(placeholderPassword == "default"){placeholderPassword = "Contraseña"}%>
+
     <div class="page shadow">
-        <form class="loginBox" action="" method="post">
+        <form class="loginBox" method="post" action="/user/signIn">
             <div>
                 <h1>Iniciar sesión</h1>
             </div>  
             <div class="marginBottom">
                 <label class="labelEmail" for="email"><i class="fi fi-ss-envelope"></i></label>
-                <input type="email" class="textForegroundAlphaPrimary" name="Correo" placeholder="Correo" id="email">
+                <input type="email" class="<%= classEmail %>" placeholder="<%= placeholderEmail %>" name="email" id="email" required>
             </div>
             <div class="marginVertical">
                 <label for="password"><i class="fi fi-ss-lock"></i></label>
-                <input type="password" class="textForegroundAlphaPrimary" name="contrasena" placeholder="Contraseña" id="password">
+                <input type="password" class="<%= classPassword %>" placeholder="<%= placeholderPassword %>" name="password" id="password" required>
             </div>
             <div class="submitBox">
                 <div class="checkBoxPrimary marginBottom">
@@ -39,7 +45,7 @@
                 <p>Ingresa tu información personal y disfruta todas las novedades que tenemos para tí.</p>
             </div>
             <div class="marginBottom">
-                <a href="/res/pages/signUp.html"><button class="btnSecondary">Registrarse <i class="fi fi-ss-caret-right"></i></button></a>
+                <a href="signUp"><button class="btnSecondary">Registrarse <i class="fi fi-ss-caret-right"></i></button></a>
             </div>
         </div>
     </div>
