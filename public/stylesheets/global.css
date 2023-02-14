@@ -33,6 +33,7 @@ body{
 }
 .textForegroundAlphaError{
     border: solid 2px var(--alert);
+    color: var(--alert);
 }
 .textForegroundAlphaPrimary:focus{
     border: solid 2px var(--primary);

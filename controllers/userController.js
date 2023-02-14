@@ -7,12 +7,22 @@ module.exports = {
             res.render('user/tableUser',{users:data})
         })
     },
-    register:function(req,res){
-        res.render('user/signUp')
+    signUp:function(req,res){
+        res.render('user/signUp', {classEmail:"default",placeholderEmail:"default",classPassword:"default",placeholderPassword:"default",classConfirmPassword:"default",placeholderConfirmPassword:"default"})
     },
     insert:function(req,res){
-        userModel.set(con,req.body,function(err){
-            res.redirect('/user')
-        })
-    } 
+        if(req.body.password.length < 6){
+            res.render('user/signUp', {classEmail:"default",placeholderEmail:"default",classPassword:"textForegroundAlphaError",placeholderPassword:"Minimo 6 caracteres",classConfirmPassword:"default",placeholderConfirmPassword:"default"})
+        }else if(req.body.password != req.body.confirmPassword){
+            res.render('user/signUp', {classEmail:"default",placeholderEmail:"default",classPassword:"default",placeholderPassword:"default",classConfirmPassword:"textForegroundAlphaError",placeholderConfirmPassword:"La contraseña no coincide"})
+        }else{
+            userModel.set(con,req.body,function(err){
+                if(!err){
+                    res.redirect('/user')
+                }else{
+                    res.render('user/signUp', {classEmail:"textForegroundAlphaError",placeholderEmail:"Correo ya registrado",classPassword:"default",placeholderPassword:"default",classConfirmPassword:"default",placeholderConfirmPassword:"default"})
+                }
+            })
+        }
+    }
 }
