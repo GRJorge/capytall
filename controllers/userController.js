@@ -22,7 +22,7 @@ module.exports = {
         }else{
             userModel.set(con,req.body,function(err){
                 if(!err){
-                    res.redirect('/user')
+                    res.redirect('/user/signIn')
                 }else{
                     res.render('user/signUp', {classEmail:classError,placeholderEmail:"Correo ya registrado",classPassword:"default",placeholderPassword:"default",classConfirmPassword:"default",placeholderConfirmPassword:"default"})
                 }
