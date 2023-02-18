@@ -37,13 +37,21 @@ module.exports = {
         }
         if(!global.isEmail(body.email)){
             errors.push("Ingresa un correo valido")
+        }else{
+            userModel.searchByEmail(con,body.email,function(err,data){
+                if(data.length == 1){
+                    errors.push("Correo en uso")
+                }
+            })
         }
-        if(global.isMin(body.password.length,6)){
+        if(global.isMin(body.password.length,1)){
+            errors.push("Ingresa una contraseña")
+        }else if(global.isMin(body.password.length,6)){
             errors.push("La contraseña debe contener minimo seis caracteres")
         }else if(global.notSpace(body.password)){
             errors.push("La contraseña no debe contener espacios")
         }
-        if(global.isMin(body.confirmPassword,0)){
+        if(global.isMin(body.confirmPassword,1)){
             errors.push("Confima la contraseña")
         }else if(!global.equals(body.confirmPassword,body.password)){
             errors.push("Las contraseñas no coinciden")
