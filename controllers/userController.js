@@ -37,12 +37,6 @@ module.exports = {
         }
         if(!global.isEmail(body.email)){
             errors.push("Ingresa un correo valido")
-        }else{
-            userModel.searchByEmail(con,body.email,function(err,data){
-                if(data.length == 1){
-                    errors.push("Correo en uso")
-                }
-            })
         }
         if(global.isMin(body.password.length,1)){
             errors.push("Ingresa una contraseña")
@@ -58,7 +52,14 @@ module.exports = {
         }
 
         if(errors.length == 0){
-            res.redirect('/user')
+            userModel.searchByEmail(con,body.email,function(err,data){
+                if(data.length == 1){
+                    errors.push("Correo ya registrado")
+                    res.render('user/signUp',{errors: errors,values: values})
+                }else{
+
+                }
+            })
         }else{
             res.render('user/signUp',{errors: errors,values: values})
         }
