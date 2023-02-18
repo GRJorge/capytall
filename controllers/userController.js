@@ -55,6 +55,7 @@ module.exports = {
             userModel.searchByEmail(con,body.email,function(err,data){
                 if(data.length == 1){
                     errors.push("Correo ya registrado")
+                    values[2] = ""
                     res.render('user/signUp',{errors: errors,values: values})
                 }else{
                     userModel.set(con,req.body,function(){
