@@ -1,6 +1,5 @@
 const con = require('../config/connection')
 const userModel = require('../model/userModel')
-const classError = "textForegroundAlphaError"
 
 const global = require('../public/javascripts/global')
 
@@ -14,7 +13,7 @@ module.exports = {
         res.render('user/signUp',{errors: [],values: []})
     },
     signIn:function(req,res){
-        res.render('user/signIn',{classEmail:"default",placeholderEmail:"default",classPassword:"default",placeholderPassword:"default"})
+        res.render('user/signIn',{errors: [], emailValue: null})
     },
     insert:function(req,res){
         const body = req.body
@@ -26,12 +25,12 @@ module.exports = {
         values.push(body.email)
 
         if(global.isBlank(body.name)){
-            errors.push('Ingresa nombre')
+            errors.push('Ingresa tu nombre')
         }else if(global.isMin(body.name.length,3)){
             errors.push('El nombre debe contener minimo tres caracteres')
         }
         if(global.isBlank(body.lastname)){
-            errors.push('Ingresa apellido(s)')
+            errors.push('Ingresa tu apellido')
         }else if(global.isMin(body.lastname.length,3)){
             errors.push('El apellido debe contener minimo tres caracteres')
         }
@@ -48,7 +47,7 @@ module.exports = {
         if(global.isMin(body.confirmPassword,1)){
             errors.push("Confima la contraseña")
         }else if(!global.equals(body.confirmPassword,body.password)){
-            errors.push("Las contraseñas no coinciden")
+            errors.push("La contraseña no coinciden")
         }
 
         if(errors.length == 0){
@@ -59,7 +58,7 @@ module.exports = {
                     res.render('user/signUp',{errors: errors,values: values})
                 }else{
                     userModel.set(con,req.body,function(){
-                        res.redirect('/user')
+                        res.render('user/signIn',{errors: [], emailValue: body.email})
                     })
                 }
             })
@@ -67,20 +66,36 @@ module.exports = {
             res.render('user/signUp',{errors: errors,values: values})
         }
     },
-    checkUser:function(req,res){
-        userModel.searchByEmail(con,req.body.email,function(err,data){
-            if(data.length == 1){
-                userModel.searchByEmailAndPass(con,req.body,function(err,data){
-                    if(data.length == 1){
-                        //AQUI VA EL LOGIN
-                        res.redirect('/user')
-                    }else{
-                        res.render('user/signIn',{classEmail:"default",placeholderEmail:"default",classPassword:classError,placeholderPassword:"Contraseña incorrecta"})
-                    }
-                })
-            }else{
-                res.render('user/signIn',{classEmail:classError,placeholderEmail:"Correo no registrado",classPassword:"default",placeholderPassword:"default"})
-            }
-        })
+    initUser:function(req,res){
+        const body = req.body
+        var errors = []
+
+        if(!global.isEmail(body.email)){
+            errors.push("Ingresa un correo valido")
+        }
+        if(global.isMin(body.password.length,1)){
+            errors.push("Ingresa tu contraseña")
+        }
+
+        if(errors.length == 0){
+            userModel.searchByEmail(con,body.email,function(err,data){
+                if(data.length == 1){
+                    userModel.searchByEmailAndPass(con,req.body,function(err,data){
+                        if(data.length == 1){
+                            //Aqui va el login
+                            res.redirect('/user')
+                        }else{
+                            errors.push("Contraseña incorrecta")
+                            res.render('user/signIn',{errors: errors, emailValue: body.email})
+                        }
+                    })
+                }else{
+                    errors.push("Este correo no ha sido registrado")
+                    res.render('user/signIn',{errors: errors, emailValue: body.email})
+                }
+            })
+        }else{
+            res.render('user/signIn',{errors: errors, emailValue: body.email})
+        }
     }
 }
