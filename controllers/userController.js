@@ -1,6 +1,8 @@
-var con = require('../config/connection')
-var userModel = require('../model/userModel')
-var classError = "textForegroundAlphaError"
+const con = require('../config/connection')
+const userModel = require('../model/userModel')
+const classError = "textForegroundAlphaError"
+
+const global = require('../public/javascripts/global')
 
 module.exports = {
     index:function(req,res){
@@ -9,24 +11,43 @@ module.exports = {
         })
     },
     signUp:function(req,res){
-        res.render('user/signUp',{classEmail:"default",placeholderEmail:"default",classPassword:"default",placeholderPassword:"default",classConfirmPassword:"default",placeholderConfirmPassword:"default"})
+        res.render('user/signUp',{errors: []})
     },
     signIn:function(req,res){
         res.render('user/signIn',{classEmail:"default",placeholderEmail:"default",classPassword:"default",placeholderPassword:"default"})
     },
     insert:function(req,res){
-        if(req.body.password.length < 6){
-            res.render('user/signUp', {classEmail:"default",placeholderEmail:"default",classPassword:classError,placeholderPassword:"Minimo 6 caracteres",classConfirmPassword:"default",placeholderConfirmPassword:"default"})
-        }else if(req.body.password != req.body.confirmPassword){
-            res.render('user/signUp', {classEmail:"default",placeholderEmail:"default",classPassword:"default",placeholderPassword:"default",classConfirmPassword:classError,placeholderConfirmPassword:"La contraseña no coincide"})
+        const body = req.body
+        var errors = []
+
+        if(global.isBlank(body.name)){
+            errors.push('Ingresa nombre')
+        }else if(global.isMin(body.name.length,3)){
+            errors.push('El nombre debe contener minimo tres caracteres')
+        }
+        if(global.isBlank(body.lastname)){
+            errors.push('Ingresa apellido(s)')
+        }else if(global.isMin(body.lastname.length,3)){
+            errors.push('El apellido debe contener minimo tres caracteres')
+        }
+        if(!global.isEmail(body.email)){
+            errors.push("Ingresa un correo valido")
+        }
+        if(global.isMin(body.password.length,6)){
+            errors.push("La contraseña debe contener minimo seis caracteres")
+        }else if(global.notSpace(body.password)){
+            errors.push("La contraseña no debe contener espacios")
+        }
+        if(global.isMin(body.confirmPassword,0)){
+            errors.push("Confima la contraseña")
+        }else if(!global.equals(body.confirmPassword,body.password)){
+            errors.push("Las contraseñas no coinciden")
+        }
+
+        if(errors.length == 0){
+            res.redirect('/user')
         }else{
-            userModel.set(con,req.body,function(err){
-                if(!err){
-                    res.redirect('/user/signIn')
-                }else{
-                    res.render('user/signUp', {classEmail:classError,placeholderEmail:"Correo ya registrado",classPassword:"default",placeholderPassword:"default",classConfirmPassword:"default",placeholderConfirmPassword:"default"})
-                }
-            })
+            res.render('user/signUp',{errors: errors})
         }
     },
     checkUser:function(req,res){

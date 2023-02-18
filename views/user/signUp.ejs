@@ -9,14 +9,6 @@
     <title>Registrarse</title>
 </head>
 <body>
-    <% classDefault = "textForegroundAlphaSecondary" %>
-    <% if(classEmail == "default"){classEmail = "textForegroundAlphaSecondary"} %>
-    <% if(placeholderEmail == "default"){placeholderEmail = "Correo electrónico"} %>
-    <% if(classPassword == "default"){classPassword = "textForegroundAlphaSecondary"} %>
-    <% if(placeholderPassword == "default"){placeholderPassword = "Contraseña"} %>
-    <% if(classConfirmPassword == "default"){classConfirmPassword = "textForegroundAlphaSecondary"} %>
-    <% if(placeholderConfirmPassword == "default"){placeholderConfirmPassword = "Confirma tu contraseña"} %>
-    
     <div class="page shadow">
         <div class="loginBox">
             <div><h2>¡Bienvenido!</h2></div>
@@ -33,28 +25,33 @@
             <div><h1>Registrarse</h1></div>
             <div class="marginBottom">
                 <label for="name"><i class="fi fi-ss-user"></i></label>
-                <input type="text" class="textForegroundAlphaSecondary" name="name" id="name" placeholder="Nombre" required>
+                <input type="text" class="textForegroundAlphaSecondary" name="name" id="name" placeholder="Nombre">
             </div>
             <div class="marginVertical">
                 <label for="lastname"><i class="fi fi-ss-user"></i></label>
-                <input type="text" class="textForegroundAlphaSecondary" name="lastname" id="lastname" placeholder="Apellido(s)" required>
+                <input type="text" class="textForegroundAlphaSecondary" name="lastname" id="lastname" placeholder="Apellido(s)">
             </div>
             <div class="marginVertical">
                 <label for="email"><i class="fi fi-ss-envelope"></i></label>
-                <input type="email" class="<%= classEmail %>" name="email" id="email" placeholder="<%= placeholderEmail %>" required>
+                <input type="email" class="textForegroundAlphaSecondary" name="email" id="email" placeholder="Correo">
             </div>
             <div class="marginVertical">
                 <label for="password"><i class="fi fi-ss-lock"></i></label>
-                <input type="password" class="<%= classPassword %>" name="password" id="password" placeholder="<%= placeholderPassword %>" required>
+                <input type="password" class="textForegroundAlphaSecondary" name="password" id="password" placeholder="Constraseña">
             </div>
             <div class="marginVertical">
                 <label for="confirmPassword"><i class="fi fi-ss-arrows-repeat"></i></label>
-                <input type="password" class="<%= classConfirmPassword %>" name="confirmPassword" id="confirmPassword" placeholder="<%= placeholderConfirmPassword %>" required>
+                <input type="password" class="textForegroundAlphaSecondary" name="confirmPassword" id="confirmPassword" placeholder="Confirmar contraseña">
             </div>
             <div class="marginVertical">
                 <input type="submit" class="btnSecondary" value="Crear cuenta">
             </div>
         </form>
     </div>
+    <% if(errors.length == 0){ %>
+        <div class="">
+
+        </div>
+    <% } %>
 </body>
 </html>
