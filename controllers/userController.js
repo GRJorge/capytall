@@ -11,7 +11,7 @@ module.exports = {
         })
     },
     signUp:function(req,res){
-        res.render('user/signUp',{errors: []})
+        res.render('user/signUp',{errors: [],values: []})
     },
     signIn:function(req,res){
         res.render('user/signIn',{classEmail:"default",placeholderEmail:"default",classPassword:"default",placeholderPassword:"default"})
@@ -19,6 +19,11 @@ module.exports = {
     insert:function(req,res){
         const body = req.body
         var errors = []
+        var values = []
+
+        values.push(body.name)
+        values.push(body.lastname)
+        values.push(body.email)
 
         if(global.isBlank(body.name)){
             errors.push('Ingresa nombre')
@@ -47,7 +52,7 @@ module.exports = {
         if(errors.length == 0){
             res.redirect('/user')
         }else{
-            res.render('user/signUp',{errors: errors})
+            res.render('user/signUp',{errors: errors,values: values})
         }
     },
     checkUser:function(req,res){
