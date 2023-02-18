@@ -57,7 +57,9 @@ module.exports = {
                     errors.push("Correo ya registrado")
                     res.render('user/signUp',{errors: errors,values: values})
                 }else{
-
+                    userModel.set(con,req.body,function(){
+                        res.redirect('/user')
+                    })
                 }
             })
         }else{
