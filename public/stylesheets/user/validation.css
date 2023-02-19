@@ -1,0 +1,44 @@
+@import url("../global.css");
+
+.box{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.validationBox{
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    margin: 16px;
+}
+.hello{
+    background-image: linear-gradient(45deg, var(--primary) 30%, var(--secondary));
+    border-radius: 4px 4px 0 0;
+    padding: 16px;
+}
+.hello h1{
+    font-size: 24px;
+}
+.code{
+    padding: 16px;
+}
+.code span{
+    color: var(--secondary);
+}
+.textForegroundAlphaSecondary{
+    font-size: 26px;
+    text-align: center;
+    width: 40%;
+}
+@media screen and (max-width:400px) {
+    .hello h1{
+        font-size: 22px;
+    }
+    .textForegroundAlphaSecondary{
+        font-size: 20px;
+        width: 60%;
+    }
+}
