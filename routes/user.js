@@ -6,7 +6,7 @@ router.get('/',userController.index)
 router.get('/signUp',userController.signUp)
 router.get('/signIn',userController.signIn)
 
-router.post('/signUp',userController.insert)
+router.post('/validation',userController.validateRegister)
 router.post('/signIn',userController.initUser)
 
 module.exports = router 

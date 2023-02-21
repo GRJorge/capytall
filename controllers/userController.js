@@ -15,7 +15,7 @@ module.exports = {
     signIn:function(req,res){
         res.render('user/signIn',{errors: [], emailValue: null})
     },
-    insert:function(req,res){
+    validateRegister:function(req,res){
         const body = req.body
         var errors = []
         var values = []
@@ -57,9 +57,11 @@ module.exports = {
                     values[2] = ""
                     res.render('user/signUp',{errors: errors,values: values})
                 }else{
-                    userModel.set(con,req.body,function(){
+                    
+                    res.render('user/validation',{name: body.name, lastname: body.lastname, email: body.email, password: body.password})
+                    /*userModel.set(con,req.body,function(){
                         res.render('user/signIn',{errors: [], emailValue: body.email})
-                    })
+                    })*/
                 }
             })
         }else{
@@ -97,5 +99,5 @@ module.exports = {
         }else{
             res.render('user/signIn',{errors: errors, emailValue: body.email})
         }
-    }
+    },
 }
