@@ -1,5 +1,6 @@
 const con = require('../config/connection')
 const userModel = require('../model/userModel')
+const {sendMail} = require('../config/mailer')
 
 const global = require('../public/javascripts/global')
 
@@ -57,11 +58,22 @@ module.exports = {
                     values[2] = ""
                     res.render('user/signUp',{errors: errors,values: values})
                 }else{
-                    
+
+                    let randomCode = Math.floor(100000 + Math.random() * 900000)
+
+                    sendMail(msj = {
+                        from: '"Codigo de verificacion :)" <capytallweb@gmail.com>', // sender address
+                        to: body.email, // list of receivers
+                        subject: "Confirma tu correo electronico ✔", // Subject line
+                        html: `
+                            <h1>Hola ${body.name}</h1>
+                            <p>Estas a un solo paso!</p>
+                            </br>
+                            <p>Ingresa el siguiente codigo en la pagina de verificacion</p>
+                            <b>${randomCode}</b>
+                        `, // plain text body
+                    })
                     res.render('user/validation',{name: body.name, lastname: body.lastname, email: body.email, password: body.password})
-                    /*userModel.set(con,req.body,function(){
-                        res.render('user/signIn',{errors: [], emailValue: body.email})
-                    })*/
                 }
             })
         }else{

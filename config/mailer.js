@@ -1,15 +1,17 @@
 const nodemailer = require('nodemailer')
 
-export const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: 'capytallweb@gmail.com',
-      pass: 'jrqwixbabvvncwar'
-    },
-});
+module.exports = {
+  sendMail:async (msj) => {
+    const config = {
+      host: "smtp.gmail.com",
+      port: 587,
+      auth: {
+        user: 'capytallweb@gmail.com',
+        pass: 'jrqwixbabvvncwar',
+      }
+    }
 
-transporter.verify().then(() => {
-    console.log("Listo para enviar correos")
-})
+    const transport = nodemailer.createTransport(config)
+    const info = await transport.sendMail(msj)
+  }
+}
