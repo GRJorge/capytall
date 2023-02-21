@@ -18,8 +18,8 @@ module.exports = {
     },
     validateRegister:function(req,res){
         const body = req.body
-        var errors = []
-        var values = []
+        let errors = []
+        let values = []
 
         values.push(body.name)
         values.push(body.lastname)
@@ -61,19 +61,21 @@ module.exports = {
 
                     let randomCode = Math.floor(100000 + Math.random() * 900000)
 
-                    sendMail(msj = {
+                    /*sendMail(msj = {
                         from: '"Codigo de verificacion :)" <capytallweb@gmail.com>', // sender address
                         to: body.email, // list of receivers
                         subject: "Confirma tu correo electronico ✔", // Subject line
                         html: `
                             <h1>Hola ${body.name}</h1>
                             <p>Estas a un solo paso!</p>
-                            </br>
                             <p>Ingresa el siguiente codigo en la pagina de verificacion</p>
                             <b>${randomCode}</b>
                         `, // plain text body
-                    })
-                    res.render('user/validation',{name: body.name, lastname: body.lastname, email: body.email, password: body.password})
+                    })*/
+
+                    console.log(randomCode)
+
+                    res.render('user/validation',{data: req.body, code: randomCode})
                 }
             })
         }else{
@@ -112,4 +114,23 @@ module.exports = {
             res.render('user/signIn',{errors: errors, emailValue: body.email})
         }
     },
+    register:function(req,res){
+        let errors = 0
+        let code = req.body.code
+        let params = req.params
+
+        if(global.isBlank(code)){
+            errors += 1
+        }else if(global.isMin(code.length,6)){
+            errors += 1
+        }else if(!global.equals(code,req.params.code)){
+            console.log("codigo erroneo")
+        }
+
+        if(errors.length == 0){
+            console.log("Sin errores")
+        }else{
+            return
+        }
+    }
 }

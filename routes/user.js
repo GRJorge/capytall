@@ -8,5 +8,6 @@ router.get('/signIn',userController.signIn)
 
 router.post('/validation',userController.validateRegister)
 router.post('/signIn',userController.initUser)
+router.post('/register/:name,:lastname,:email,:password,:code',userController.register)
 
 module.exports = router 

@@ -12,12 +12,12 @@
     <div class="box">
         <div class="validationBox shadow">
             <div class="hello">
-                <h1>¡Hola <%= name %> <%= lastname %>!</h1>
+                <h1>¡Hola <%= data.name %> <%= data.lastname %>!</h1>
             </div>
             <div class="code">
-                <p>Te hemos enviado un correo a <span><%= email %></span> con un codigo de verificación.</p>
+                <p>Te hemos enviado un correo a <span><%= data.email %></span> con un codigo de verificación.</p>
                 <p>Porfavor ingresalo a continuación:</p>
-                <form method="post" action="/">
+                <form method="post" action="/user/register/<%= data.name %>,<%= data.lastname %>,<%= data.email %>,<%= data.password %>,<%= code %>">
                     <input class="textForegroundAlphaSecondary marginBottom" type="text" name="code" id="code" placeholder="XXXXXX">
                     <br>
                     <input class="btnPrimary marginTop" type="submit" value="Verificar">
