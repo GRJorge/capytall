@@ -10,4 +10,6 @@ router.post('/validation',userController.validateRegister)
 router.post('/signIn',userController.initUser)
 router.post('/register/:name,:lastname,:email,:password,:code',userController.register)
 
+router.get('/incorrectCode',userController.incorrectCode)
+
 module.exports = router 

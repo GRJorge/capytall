@@ -124,7 +124,7 @@ module.exports = {
         }else if(global.isMin(code.length,6)){
             errors += 1
         }else if(!global.equals(code,req.params.code)){
-            console.log("codigo erroneo")
+            res.redirect('/user/incorrectCode')
         }
 
         if(errors.length == 0){
@@ -132,5 +132,8 @@ module.exports = {
         }else{
             return
         }
+    },
+    incorrectCode:function(req,res){
+        res.render('user/incorrectCode')
     }
 }
