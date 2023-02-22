@@ -104,22 +104,13 @@ module.exports = {
         }
     },
     register:function(req,res){
-        let errors = 0
         let code = req.body.code
         let params = req.params
 
-        if(global.isBlank(code)){
-            errors += 1
-        }else if(global.isMin(code.length,6)){
-            errors += 1
-        }else if(!global.equals(code,req.params.code)){
+        if(!global.equals(code,req.params.code)){
             res.redirect('/user/incorrectCode')
-        }
-
-        if(errors.length == 0){
-            console.log("Sin errores")
         }else{
-            return
+            console.log('los codigos coinciden')
         }
     },
     incorrectCode:function(req,res){
