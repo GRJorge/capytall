@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Codigo de verificación</title>
+</head>
+<body>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: Roboto;
+        }
+        .page{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            text-align: center;
+        }
+        .title{
+            width: 100%;
+            background-color: #8C3FA6;
+        }
+        .title h1{
+            font-size: 22px;
+        }
+        .page p{
+            margin-top: 32px;
+        }
+        .page span{
+            font-size: 18px;
+            margin: 16px 0;
+            background-color: #82F25C;
+            color: #373740;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+    </style>
+    <div class="page">
+        <div class="title">
+            <h1>¡Bienvenido a Capytall <%= name %> <%= lastname %>!</h1>
+        </div>
+        <p>Ya solo queda agregar el siguiente codigo a la pagina de verificación y tu cuenta quedara lista:</p>
+        <span><b><%= code %></b></span>
+    </div>
+</body>
+</html>

@@ -58,20 +58,9 @@ module.exports = {
                     values[2] = ""
                     res.render('user/signUp',{errors: errors,values: values})
                 }else{
+                    let randomCode = Math.floor(100000 + Math.random() * 900000) //NUMERO ALEATORIO DE 6 DIGITOS
 
-                    let randomCode = Math.floor(100000 + Math.random() * 900000)
-
-                    /*sendMail(msj = {
-                        from: '"Codigo de verificacion :)" <capytallweb@gmail.com>', // sender address
-                        to: body.email, // list of receivers
-                        subject: "Confirma tu correo electronico ✔", // Subject line
-                        html: `
-                            <h1>Hola ${body.name}</h1>
-                            <p>Estas a un solo paso!</p>
-                            <p>Ingresa el siguiente codigo en la pagina de verificacion</p>
-                            <b>${randomCode}</b>
-                        `, // plain text body
-                    })*/
+                    sendMail("./views/user/templates/verificationCode.ejs",{name: body.name, lastname: body.lastname, code: randomCode},body.email,"Codigo de verificación")
 
                     console.log(randomCode)
 
