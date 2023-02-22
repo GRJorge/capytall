@@ -110,7 +110,13 @@ module.exports = {
         if(!global.equals(code,req.params.code)){
             res.redirect('/user/incorrectCode')
         }else{
-            console.log('los codigos coinciden')
+            userModel.set(con,req.params,function(err){
+                if(err){
+                    console.log(err)
+                }else{
+                    res.redirect('/user/signIn')
+                }
+            })
         }
     },
     incorrectCode:function(req,res){
