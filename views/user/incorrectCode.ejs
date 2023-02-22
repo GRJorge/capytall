@@ -10,14 +10,18 @@
 </head>
 <body>
     <div class="box">
-        <h1>Codigo incorrecto</h1>
-        <p>Por seguridad vuelve a intentarlo</p>
-        <form method="get" action="/user/signUp">
-            <input type="submit" value="Registrarse">
-        </form>
-        <form method="get" action="/user/signIn">
-            <input type="submit" value="Iniciar sesión">
-        </form>
+        <div class="page shadow">
+            <h1>Codigo incorrecto</h1>
+            <p>Por seguridad vuelve a intentarlo</p>
+            <div class="marginTop">
+                <form method="get" action="/user/signUp">
+                    <input class="btnPrimary marginRight" type="submit" value="Registrarse">
+                </form>
+                <form method="get" action="/user/signIn">
+                    <input class="btnSecondary marginLeft" type="submit" value="Iniciar sesión">
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>
