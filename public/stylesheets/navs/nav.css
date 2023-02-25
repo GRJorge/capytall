@@ -1,0 +1,74 @@
+@import url('../global.css');
+
+.bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background-color: var(--primary);
+}
+.bar a{
+    text-decoration: none;
+    color: var(--foreground);
+}
+.logo{
+    width: 10%;
+}
+.logo img{
+    position: relative;
+    top: 2px;
+    height: 38px;
+}
+.config{
+    display: flex;
+    justify-content: flex-end;
+    width: 10%;
+}
+.config span{
+    font-size: 22px;
+    margin-top: 10px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.config .responsive{
+    display: none;
+    font-size: 28px;
+    margin-left: 8px;
+    margin-top: 6px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:450px) {
+    .sections{
+        display: none;
+        position: fixed;
+        top: 72px;
+        left: -8px;
+        width: calc(100% + 10px);
+    }
+    .sections div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto;
+        justify-content: center;
+        background-color: var(--primary);
+        width: 60%;
+        padding: 8px 0;
+        border-radius: 4px;
+    }
+    .sections a{
+        margin: 4px 0;
+        width: 50%;
+        text-align: center;
+    }
+    .config .responsive{
+        display: block;
+    }
+}
+@media screen and (max-width: 300px) {
+    .sections div{
+        width: 80%;
+    }
+}

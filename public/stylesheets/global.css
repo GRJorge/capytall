@@ -1,5 +1,6 @@
 /* ICONOS */
-@import url('https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css');
+@import url('https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css');
 /* FUENTES */
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
@@ -43,7 +44,8 @@ body{
 }
 /* BOTONES */
 .btnPrimary,
-.btnSecondary{
+.btnSecondary,
+.btnForegroundAlphaBackground{
     cursor: pointer;
     border: none;
     border-radius: 4px;
@@ -63,6 +65,14 @@ body{
 }
 .btnSecondary:hover{
     background-color: var(--primary);
+    color: var(--foreground);
+}
+.btnForegroundAlphaBackground{
+    background-color: rgba(233, 233, 236, 0.1);
+    color: var(--foreground);
+}
+.btnForegroundAlphaBackground:hover{
+    background-color: rgba(55,55,64, 0.2);
     color: var(--foreground);
 }
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public//stylesheets/navs/nav.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <nav class="bar">
+        <div class="logo">
+            <a href="home/index"><img src="/public/images/isoLight.png" alt="Capytall Logo"></a>
+        </div>
+        <div class="sections" id="sections">
+            <div>
+                <a class="btnForegroundAlphaBackground" href="">Ingresos</a>
+                <a class="btnForegroundAlphaBackground" href="">Retiros</a>
+                <a class="btnForegroundAlphaBackground" href="">Categorias</a>
+            </div>
+        </div>
+        <div class="config">
+            <span id="userMenu"><i class="fi fi-sr-sort-down"></i></span>
+            <span id="responsive" class="responsive"><i class="fi fi-br-menu-burger"></i></span>
+        </div>
+    </nav>
+    <script>
+        const responsiveBtn = document.getElementById("responsive")
+        let responsiveActive = false
+
+        responsiveBtn.addEventListener("click",function(){
+            if(responsiveActive){
+                document.getElementById("sections").style.display = "none"
+                responsiveActive = false
+            }else{
+                document.getElementById("sections").style.display = "block"
+                responsiveActive = true
+            }
+            
+        })
+    </script>
+</body>
+</html>
