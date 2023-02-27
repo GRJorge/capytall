@@ -8,10 +8,6 @@
     padding: 8px;
     background-color: var(--primary);
 }
-.bar a{
-    text-decoration: none;
-    color: var(--foreground);
-}
 .logo{
     width: 10%;
 }
@@ -38,12 +34,43 @@
     margin-top: 6px;
     cursor: pointer;
 }
+.userMenu{
+    display: none;
+    position: absolute;
+    width: 100%;
+    justify-content: flex-end;
 
+}
+.userMenu div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    background-color: var(--primary);
+    border-radius: 4px;
+    margin: 16px 12px;
+    padding: 8px 0;
+    text-align: center;
+}
+.userMenu div a{
+    margin: 4px 0;
+    width: 50%;
+}
+@media screen and (min-width:1100px) {
+    .userMenu div{
+        width: 14%;
+    }
+}
+@media screen and (max-width:800px) {
+    .userMenu div{
+        width: 20%;
+    }
+}
 @media screen and (max-width:450px) {
     .sections{
         display: none;
-        position: fixed;
-        top: 72px;
+        position: absolute;
+        top: 74px;
         left: -8px;
         width: calc(100% + 10px);
     }
@@ -54,7 +81,7 @@
         margin: auto;
         justify-content: center;
         background-color: var(--primary);
-        width: 60%;
+        width: 80%;
         padding: 8px 0;
         border-radius: 4px;
     }
@@ -65,6 +92,9 @@
     }
     .config .responsive{
         display: block;
+    }
+    .userMenu div{
+        width: 50%;
     }
 }
 @media screen and (max-width: 300px) {

@@ -21,23 +21,65 @@
             </div>
         </div>
         <div class="config">
-            <span id="userMenu"><i class="fi fi-sr-sort-down"></i></span>
+            <span id="userMenuBtn"><i class="fi fi-sr-sort-down"></i></span>
             <span id="responsive" class="responsive"><i class="fi fi-br-menu-burger"></i></span>
         </div>
     </nav>
+    <div class="userMenu" id="userMenu">
+        <div>
+            <a href="" class="btnForegroundAlphaBackground">Perfil</a>
+            <a href="" class="btnForegroundAlphaBackground">Opciones</a>
+            <a href="" class="btnForegroundAlphaBackground">Cerrar sesión</a>
+        </div>
+    </div>
+
+    <h1>Hola</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
+
     <script>
         const responsiveBtn = document.getElementById("responsive")
+        const userMenuBtn = document.getElementById("userMenuBtn")
+
+        const sections = document.getElementById("sections")
+        const userMenu = document.getElementById("userMenu")
+
         let responsiveActive = false
+        let userMenuActive = false
 
         responsiveBtn.addEventListener("click",function(){
             if(responsiveActive){
-                document.getElementById("sections").style.display = "none"
+                sections.style.display = "none"
                 responsiveActive = false
             }else{
-                document.getElementById("sections").style.display = "block"
+                sections.style.display = "block"
+                userMenu.style.display = "none"
                 responsiveActive = true
+                userMenuActive = false
             }
-            
+        })
+
+        userMenuBtn.addEventListener("click",function(){
+            if(userMenuActive){
+                userMenu.style.display = "none"
+                userMenuActive = false
+            }else{
+                userMenu.style.display = "flex"
+                userMenuActive = true
+                if(sections.getAttribute("style").indexOf("top:") == -1){
+                    sections.style.display = "none"
+                    responsiveActive = false
+                }
+            }
         })
     </script>
 </body>
