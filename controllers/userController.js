@@ -87,8 +87,7 @@ module.exports = {
                 if(data.length == 1){
                     userModel.searchByEmailAndPass(con,req.body,function(err,data){
                         if(data.length == 1){
-                            //Aqui va el login
-                            res.redirect('/user')
+                            res.redirect('/home')
                         }else{
                             errors.push("Contraseña incorrecta")
                             res.render('user/signIn',{errors: errors, emailValue: body.email})
