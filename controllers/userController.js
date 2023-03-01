@@ -5,18 +5,16 @@ const {sendMail} = require('../config/mailer')
 const global = require('../public/javascripts/global')
 
 module.exports = {
-    index:function(req,res){
-        userModel.get(con,function(err,data){
-            res.render('user/tableUser',{users:data})
-        })
-    },
     signUp:function(req,res){
+        global.test = 0
         res.render('user/signUp',{errors: [],values: []})
     },
     signIn:function(req,res){
+        global.test = 0
         res.render('user/signIn',{errors: [], emailValue: null})
     },
     validateRegister:function(req,res){
+        global.test = 0
         const body = req.body
         let errors = []
         let values = []
@@ -87,6 +85,7 @@ module.exports = {
                 if(data.length == 1){
                     userModel.searchByEmailAndPass(con,req.body,function(err,data){
                         if(data.length == 1){
+                            global.test = data[0].id
                             res.redirect('/home')
                         }else{
                             errors.push("Contraseña incorrecta")
@@ -112,9 +111,8 @@ module.exports = {
             userModel.set(con,req.params,function(err){
                 if(err){
                     console.log(err)
-                }else{
-                    res.redirect('/user/signIn')
                 }
+                res.redirect('/user')
             })
         }
     },

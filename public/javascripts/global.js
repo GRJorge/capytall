@@ -15,3 +15,6 @@ module.exports = {
         return str1 == str2
     }
 }
+
+let test = 0
+module.exports.test = test

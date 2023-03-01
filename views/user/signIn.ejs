@@ -11,16 +11,16 @@
 <body>
     <div class="box">
         <div class="page shadow">
-            <form class="loginBox" method="post" action="/user/signIn">
+            <form class="loginBox" method="post" action="/user">
                 <div>
                     <h1>Iniciar sesión</h1>
                 </div>  
                 <div class="marginBottom">
-                    <label class="labelEmail" for="email"><i class="fi fi-ss-envelope"></i></label>
+                    <label class="labelEmail" for="email"><i class="fi fi-sr-envelope"></i></label>
                     <input type="email" class="textForegroundAlphaPrimary" placeholder="Correo" name="email" id="email" value="<%= emailValue %>">
                 </div>
                 <div class="marginVertical">
-                    <label for="password"><i class="fi fi-ss-lock"></i></label>
+                    <label for="password"><i class="fi fi-sr-lock"></i></label>
                     <input type="password" class="textForegroundAlphaPrimary" placeholder="Contraseña" name="password" id="password">
                 </div>
                 <div class="submitBox">
@@ -36,7 +36,7 @@
                     <p>Ingresa tu información personal y disfruta todas las novedades que tenemos para tí.</p>
                 </div>
                 <div class="marginBottom">
-                    <a href="signUp"><button class="btnSecondary">Registrarse <i class="fi fi-ss-caret-right"></i></button></a>
+                    <a href="user/signUp"><button class="btnSecondary">Registrarse <i class="fi fi-sr-caret-right"></i></button></a>
                 </div>
             </div>
         </div>

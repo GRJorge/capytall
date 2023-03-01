@@ -18,30 +18,30 @@
                     <p>¿Ya tienes una cuenta? Mantente conectado con nosotros</p>
                 </div>
                 <div class="marginBottom">
-                    <a href="signIn"><button class="btnPrimary">Iniciar sesión</button></a>
+                    <a href="/user"><button class="btnPrimary">Iniciar sesión</button></a>
                 </div>
             </div>
     
             <form class="signUpBox" method="post" action="/user/validation">
                 <div><h1>Registrarse</h1></div>
                 <div class="marginBottom">
-                    <label for="name"><i class="fi fi-ss-user"></i></label>
+                    <label for="name"><i class="fi fi-sr-user"></i></label>
                     <input type="text" class="textForegroundAlphaSecondary" name="name" id="name" placeholder="Nombre" value="<%= values[0] %>">
                 </div>
                 <div class="marginVertical">
-                    <label for="lastname"><i class="fi fi-ss-user"></i></label>
+                    <label for="lastname"><i class="fi fi-sr-user"></i></label>
                     <input type="text" class="textForegroundAlphaSecondary" name="lastname" id="lastname" placeholder="Apellido(s)" value="<%= values[1] %>">
                 </div>
                 <div class="marginVertical">
-                    <label for="email"><i class="fi fi-ss-envelope"></i></label>
+                    <label for="email"><i class="fi fi-sr-envelope"></i></label>
                     <input type="email" class="textForegroundAlphaSecondary" name="email" id="email" placeholder="Correo" value="<%= values[2] %>">
                 </div>
                 <div class="marginVertical">
-                    <label for="password"><i class="fi fi-ss-lock"></i></label>
+                    <label for="password"><i class="fi fi-sr-lock"></i></label>
                     <input type="password" class="textForegroundAlphaSecondary" name="password" id="password" placeholder="Constraseña">
                 </div>
                 <div class="marginVertical">
-                    <label for="confirmPassword"><i class="fi fi-ss-arrows-repeat"></i></label>
+                    <label for="confirmPassword"><i class="fi fi-sr-arrows-repeat"></i></label>
                     <input type="password" class="textForegroundAlphaSecondary" name="confirmPassword" id="confirmPassword" placeholder="Confirmar contraseña">
                 </div>
                 <div class="marginVertical">
