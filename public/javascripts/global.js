@@ -16,5 +16,5 @@ module.exports = {
     }
 }
 
-let test = 0
-module.exports.test = test
+let userId = 0
+module.exports.userId = userId
