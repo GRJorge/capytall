@@ -1,86 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public//stylesheets/navs/nav.css">
-
-    <title>Document</title>
-</head>
-<body>
-    <nav class="bar">
-        <div class="logo">
-            <a href="home/index"><img src="/public/images/isoLight.png" alt="Capytall Logo"></a>
-        </div>
-        <div class="sections" id="sections">
-            <div>
-                <a class="btnForegroundAlphaBackground" href="">Ingresos</a>
-                <a class="btnForegroundAlphaBackground" href="">Retiros</a>
-                <a class="btnForegroundAlphaBackground" href="">Categorias</a>
-            </div>
-        </div>
-        <div class="config">
-            <span id="userMenuBtn"><i class="fi fi-sr-sort-down"></i></span>
-            <span id="responsive" class="responsive"><i class="fi fi-br-menu-burger"></i></span>
-        </div>
-    </nav>
-    <div class="userMenu" id="userMenu">
+<nav class="bar">
+    <div class="logo">
+        <a href="home/index"><img src="/public/images/isoLight.png" alt="Capytall Logo"></a>
+    </div>
+    <div class="sections" id="sections">
         <div>
-            <a href="" class="btnForegroundAlphaBackground">Perfil</a>
-            <a href="" class="btnForegroundAlphaBackground">Opciones</a>
-            <a href="" class="btnForegroundAlphaBackground">Cerrar sesión</a>
+            <a class="btnForegroundAlphaBackground" href="">Ingresos</a>
+            <a class="btnForegroundAlphaBackground" href="">Retiros</a>
+            <a class="btnForegroundAlphaBackground" href="">Categorias</a>
         </div>
     </div>
+    <div class="config">
+        <span id="userMenuBtn"><i class="fi fi-sr-sort-down"></i></span>
+        <span id="responsive" class="responsive"><i class="fi fi-br-menu-burger"></i></span>
+    </div>
+</nav>
+<div class="userMenu" id="userMenu">
+    <div>
+        <a href="" class="btnForegroundAlphaBackground">Perfil</a>
+        <a href="" class="btnForegroundAlphaBackground">Opciones</a>
+        <a href="" class="btnForegroundAlphaBackground">Cerrar sesión</a>
+    </div>
+</div>
 
-    <h1>Hola</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sunt voluptas nobis velit ab, quis officiis et est? Maxime numquam porro, magnam quo itaque quam voluptatem dolorum ut laboriosam perferendis.</p>
+<script>
+    const responsiveBtn = document.getElementById("responsive")
+    const userMenuBtn = document.getElementById("userMenuBtn")
 
-    <script>
-        const responsiveBtn = document.getElementById("responsive")
-        const userMenuBtn = document.getElementById("userMenuBtn")
+    const sections = document.getElementById("sections")
+    const userMenu = document.getElementById("userMenu")
 
-        const sections = document.getElementById("sections")
-        const userMenu = document.getElementById("userMenu")
+    let responsiveActive = false
+    let userMenuActive = false
 
-        let responsiveActive = false
-        let userMenuActive = false
+    responsiveBtn.addEventListener("click",function(){
+        if(responsiveActive){
+            sections.style.display = "none"
+            responsiveActive = false
+        }else{
+            sections.style.display = "block"
+            userMenu.style.display = "none"
+            responsiveActive = true
+            userMenuActive = false
+        }
+    })
 
-        responsiveBtn.addEventListener("click",function(){
-            if(responsiveActive){
+    userMenuBtn.addEventListener("click",function(){
+        if(userMenuActive){
+            userMenu.style.display = "none"
+            userMenuActive = false
+        }else{
+            userMenu.style.display = "flex"
+            userMenuActive = true
+            if(sections.getAttribute("style").indexOf("top:") == -1){
                 sections.style.display = "none"
                 responsiveActive = false
-            }else{
-                sections.style.display = "block"
-                userMenu.style.display = "none"
-                responsiveActive = true
-                userMenuActive = false
             }
-        })
-
-        userMenuBtn.addEventListener("click",function(){
-            if(userMenuActive){
-                userMenu.style.display = "none"
-                userMenuActive = false
-            }else{
-                userMenu.style.display = "flex"
-                userMenuActive = true
-                if(sections.getAttribute("style").indexOf("top:") == -1){
-                    sections.style.display = "none"
-                    responsiveActive = false
-                }
-            }
-        })
-    </script>
-</body>
-</html>
+        }
+    })
+</script>
