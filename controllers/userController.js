@@ -3,7 +3,7 @@ const userModel = require('../model/userModel')
 const {sendMail} = require('../config/mailer')
 
 const global = require('../public/javascripts/global')
-
+test
 module.exports = {
     index:function(req,res){
         userModel.get(con,function(err,data){
