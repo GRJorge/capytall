@@ -45,6 +45,7 @@ body{
 /* BOTONES */
 .btnPrimary,
 .btnSecondary,
+.btnAlert,
 .btnForegroundAlphaBackground{
     cursor: pointer;
     border: none;
@@ -65,6 +66,14 @@ body{
     color: var(--background);
 }
 .btnSecondary:hover{
+    background-color: var(--primary);
+    color: var(--foreground);
+}
+.btnAlert{
+    background-color: var(--alert);
+    color: var(--background);
+}
+.btnAlert:hover{
     background-color: var(--primary);
     color: var(--foreground);
 }
@@ -115,7 +124,7 @@ body{
 .checkBoxSecondary input:checked{
     background-color: var(--primary);
 }
-
+/* TABLAS */
 .tableSecondary{
     border: solid 1px var(--secondary);
     border-radius: 4px;
@@ -128,9 +137,10 @@ body{
 .tableSecondary thead{
     background-color: var(--secondary);
     color: var(--background);
+    text-align: left;
 }
 .tableSecondary td,th{
-    padding: 8px;
+    padding: 10px;
 }
 .tableSecondary td{
     border-bottom: solid 1px var(--foreground);
@@ -138,7 +148,18 @@ body{
 .tableSecondary tbody tr:last-child td{
     border-bottom: none;
 }
-
+.tableSecondary td:last-child{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tableSecondary .trActions{
+    display: none;
+    column-gap: 8px;
+}
+.tableSecondary tr:hover .trActions{
+    display: flex;
+}
 /* MARGIN */
 .marginTop{
     margin-top: 8px;
