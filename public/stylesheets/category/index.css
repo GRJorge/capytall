@@ -1,0 +1,19 @@
+.box{
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin: auto;
+}
+.title{
+	text-align: center;
+}
+.add{
+	display: flex;
+	align-items: flex-end;
+	justify-content: end;
+	width: 100%;
+}
+a i{
+	position: relative;
+	top: 2px;
+}

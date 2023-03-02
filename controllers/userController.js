@@ -6,15 +6,15 @@ const global = require('../public/javascripts/global')
 
 module.exports = {
     signUp:function(req,res){
-        global.test = 0
+        global.userId = 0
         res.render('user/signUp',{errors: [],values: []})
     },
     signIn:function(req,res){
-        global.test = 0
+        global.userId = 0
         res.render('user/signIn',{errors: [], emailValue: null})
     },
     validateRegister:function(req,res){
-        global.test = 0
+        global.userId = 0
         const body = req.body
         let errors = []
         let values = []
@@ -85,7 +85,7 @@ module.exports = {
                 if(data.length == 1){
                     userModel.searchByEmailAndPass(con,req.body,function(err,data){
                         if(data.length == 1){
-                            global.test = data[0].id
+                            global.userId = data[0].id
                             res.redirect('/home')
                         }else{
                             errors.push("Contraseña incorrecta")
