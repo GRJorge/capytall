@@ -115,6 +115,30 @@ body{
 .checkBoxSecondary input:checked{
     background-color: var(--primary);
 }
+
+.tableSecondary{
+    border: solid 1px var(--secondary);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.tableSecondary table{
+    border-collapse: collapse;
+    width: 100%;
+}
+.tableSecondary thead{
+    background-color: var(--secondary);
+    color: var(--background);
+}
+.tableSecondary td,th{
+    padding: 8px;
+}
+.tableSecondary td{
+    border-bottom: solid 1px var(--foreground);
+}
+.tableSecondary tbody tr:last-child td{
+    border-bottom: none;
+}
+
 /* MARGIN */
 .marginTop{
     margin-top: 8px;
