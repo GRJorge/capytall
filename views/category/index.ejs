@@ -28,16 +28,24 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Lorem impsun no se que mas 1</td>
-						<td>
-							Lorem, ipsum dolor sit amet consectetur adipisicing, elit.
-							<div class="trActions">
-								<button href="" class="btnAlert"><i class="fi fi-sr-trash"></i></button>
-								<button href="" class="btnPrimary"><i class="fi fi-sr-pencil"></i></button>
-							</div>
-						</td>
-					</tr>
+					<% if (data.length != 0) { %>
+						<% for (let i = 0; i < data.length; i++) { %>
+							<tr>
+								<td><%= data[i].name %></td>
+								<td>
+									<%= data[i].description %>
+									<div class="trActions">
+										<button href="" class="btnAlert"><i class="fi fi-sr-trash"></i></button>
+										<button href="" class="btnPrimary"><i class="fi fi-sr-pencil"></i></button>
+									</div>
+								</td>
+							</tr>
+						<% } -%>
+					<% } else { %>
+						<tr>
+							<td>No hay datos</td>
+						</tr>
+					<% } %>
 				</tbody>
 			</table>	
 		</div>

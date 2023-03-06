@@ -1,10 +1,17 @@
 const con = require('../config/connection')
+const categoryModel = require('../model/categoryModel')
 
 const global = require('../public/javascripts/global')
 
 module.exports = {
 	index:function(req,res){
-		res.render('category/index',{addVisible: "none", errors: [], values: []})
+		if(global.userId != 0){
+			categoryModel.getVisible(con,function(err, data){
+				res.render('category/index',{data: data,addVisible: "none", errors: [], values: []})
+			})
+		}else{
+			res.redirect('/user')
+		}
 	},
 	insert:function(req,res){
 		let errors = []
@@ -15,14 +22,22 @@ module.exports = {
 
 		if(global.isBlank(req.body.name)){
 			errors.push("Ingresa un nombre")
-		}else if(!global.isMin(req.body.name, 2)){
+		}else if(global.isMin(req.body.name, 2)){
 			errors.push("El nombre debe contener minimo tres caracteres")
 		}
 
 		if(errors.length == 0){
-			res.redirect('/category')
+			categoryModel.insert(con,req.body,function(err){
+				if(!err){
+					res.redirect('/category')
+				}else{
+					console.log(err)
+				}
+			})
 		}else{
-			res.render('category/index',{addVisible: "flex", errors: errors, values: values})
+			categoryModel.getVisible(con,function(err, data){
+				res.render('category/index',{data: data, addVisible: "flex", errors: errors, values: values})
+			})
 		}
 	}
 }
