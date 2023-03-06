@@ -3,9 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="stylesheets/navs/nav.css">
 	<link rel="stylesheet" href="stylesheets/category/index.css">
-
+	<link rel="stylesheet" href="stylesheets/navs/nav.css">
+	
 	<title>Categorias</title>
 </head>
 <body>
@@ -43,46 +43,41 @@
 		</div>
 	</div>
 	
-	<div class="modalAdd shadow" id="addBox">
-			<div>
-				<h2>Agregar nueva categoria:</h2>	
-			</div>
-			<form action="">
-				<div>
-					<input type="text" id="name" name="name" placeholder="Nombre" class="textForegroundAlphaPrimary">
-				</div>
-				<div class="marginVertical">
-					<textarea name="description" id="description" cols="40" rows="10" placeholder="Descripción" class="textForegroundAlphaPrimary"></textarea>
-				</div>
-				<div class="buttons">
-					<span class="btnAlert marginRight" id="cancelAdd">Cancelar</span>
-					<input type="submit" value="Guardar" class="btnSecondary">
-				</div>
-			</form>
-			<div class="errorBox">
-				<span class="alert">Error 1</span>
-			</div>
+	<div class="modalAdd shadow" id="addBox" style="display: <%= addVisible %>;">
+		<div>
+			<h2>Agregar nueva categoria:</h2>	
 		</div>
+		<form method="post" action="/category">
+			<div>
+				<input type="text" id="name" name="name" placeholder="Nombre" class="textForegroundAlphaPrimary" value="<%= values[0] %>">
+			</div>
+			<div class="marginVertical">
+				<textarea name="description" id="description" cols="40" rows="10" placeholder="Descripción" class="textForegroundAlphaPrimary"><%= values[1] %></textarea>
+			</div>
+			<div class="buttons">
+				<span class="btnAlert marginRight" id="cancelAdd">Cancelar</span>
+				<input type="submit" value="Guardar" class="btnSecondary">
+			</div>
+		</form>
+		<% if(errors.length != 0){ %>
+			<div class="errorBox">
+				<% for (let i = 0; i < errors.length; i++) { %>
+					<span class="alert"><%= errors[i] %></span>
+				<% } %>
+			</div>
+		<% } %>
+	</div>
 
 	<script>
 		const addBtn = document.getElementById("addBtn")
 		const addBox = document.getElementById("addBox")
 
-		let addBoxVisible = false
-
 		addBtn.addEventListener("click",function(){
-			if(!addBoxVisible){
-				addBox.style.display = "flex"
-				addBoxVisible = true
-			}else{
-				addBox.style.display = "none"
-				addBoxVisible = false
-			}
+			addBox.style.display = "flex"
 		})
 
 		document.getElementById("cancelAdd").addEventListener("click",function(){
 			addBox.style.display = "none"
-			addBoxVisible = false
 		})
 	</script>
 </body>
