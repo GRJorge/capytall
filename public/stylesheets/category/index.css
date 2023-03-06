@@ -4,8 +4,13 @@
 	width: 80%;
 	margin: auto;
 }
-.title{
+h1, h2{
 	text-align: center;
+	font-size: 24px;
+}
+hr{
+	width: calc(100% - 4px);
+	color: var(--foreground);
 }
 .add{
 	display: flex;
@@ -13,7 +18,45 @@
 	justify-content: end;
 	width: 100%;
 }
-a i{
+button i{
 	position: relative;
 	top: 2px;
+}
+.addBox{
+	width: 100%;
+	height: 100%;
+	display: none;
+	justify-content: flex-end;
+}
+.modalAdd{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: fixed;
+	padding: 0 32px 16px 32px;
+	margin-bottom: 16px;
+	margin-right: 16px;
+	background-color: var(--background);
+	border-radius: 4px;
+}
+.modalAdd div{
+	display: flex;
+	flex-direction: row;
+}
+.modalAdd textarea{
+	font-family: "Roboto";
+	font-size: 13px;
+}
+.buttons{
+	float: right;
+}
+@media screen and (max-width: 700px){
+	.box{
+		width: 90%;
+	}
+	.modalAdd{
+		width: 90%;
+		left: 5%;
+		right: 5%;
+	}
 }

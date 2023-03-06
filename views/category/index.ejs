@@ -11,12 +11,13 @@
 <body>
 	<%- include('../navs/nav.ejs') %>
 	<div class="box">
-		<div class="title">
+		<div>
 			<h1>Categorias:</h1>	
 		</div>
+		<hr>
 		<div class="add">
-			<a href="" class="btnSecondary"><i class="fi fi-br-search"></i></a>
-			<a href="" class="btnPrimary marginLeft"><i class="fi fi-br-plus"></i></a>	
+			<button class="btnSecondary"><i class="fi fi-br-search"></i></button>
+			<button class="btnPrimary marginLeft" id="addBtn"><i class="fi fi-br-plus"></i></button>	
 		</div>
 		<div class="tableSecondary marginTop">
 			<table>
@@ -30,26 +31,57 @@
 					<tr>
 						<td>Lorem impsun no se que mas 1</td>
 						<td>
-							Lorem, ipsum dolor sit amet consectetur adipisicing, elit. Deserunt beatae sapiente eligendi explicabo, aut tempore in ex quam asperiores blanditiis rem molestiae assu, praesentium a vero debitis laborum voluptate delectus!
+							Lorem, ipsum dolor sit amet consectetur adipisicing, elit.
 							<div class="trActions">
-								<a href="" class="btnAlert"><i class="fi fi-sr-trash"></i></a>
-								<a href="" class="btnPrimary"><i class="fi fi-sr-pencil"></i></a>
+								<button href="" class="btnAlert"><i class="fi fi-sr-trash"></i></button>
+								<button href="" class="btnPrimary"><i class="fi fi-sr-pencil"></i></button>
 							</div>
 						</td>
 					</tr>
-						<tr>
-							<td>Lorem impsun no se que mas 1</td>
-							<td>
-								Lorem impsun no se que mas 2
-								<div class="trActions">
-									<a href="" class="btnAlert"><i class="fi fi-sr-trash"></i></a>
-									<a href="" class="btnPrimary"><i class="fi fi-sr-pencil"></i></a>
-								</div>
-							</td>
-						</tr>
 				</tbody>
 			</table>	
 		</div>
 	</div>
+	<div class="addBox" id="addBox">
+		<div class="modalAdd shadow">
+			<div>
+				<h2>Agregar nueva categoria:</h2>	
+			</div>
+			<form action="">
+				<div>
+					<input type="text" id="name" name="name" placeholder="Nombre" class="textForegroundAlphaPrimary">
+				</div>
+				<div class="marginVertical">
+					<textarea name="description" id="description" cols="40" rows="10" placeholder="Descripción" class="textForegroundAlphaPrimary"></textarea>
+				</div>
+				<div class="buttons">
+					<span class="btnAlert marginRight" id="cancelAdd">Cancelar</span>
+					<input type="submit" value="Guardar" class="btnSecondary">
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		const addBtn = document.getElementById("addBtn")
+		const addBox = document.getElementById("addBox")
+
+		let addBoxVisible = false
+
+		addBtn.addEventListener("click",function(){
+			if(!addBoxVisible){
+				addBox.style.display = "flex"
+				addBoxVisible = true
+			}else{
+				addBox.style.display = "none"
+				addBoxVisible = false
+			}
+		})
+
+		document.getElementById("cancelAdd").addEventListener("click",function(){
+			addBox.style.display = "none"
+			addBoxVisible = false
+		})
+	</script>
 </body>
 </html>
