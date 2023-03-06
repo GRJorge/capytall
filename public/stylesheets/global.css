@@ -162,6 +162,16 @@ body{
 .tableSecondary tr:hover .trActions{
     display: flex;
 }
+/* ALERTAS */
+.alert{
+    background-color: var(--alert);
+    color: var(--background);
+    margin: 4px 0;
+    padding: 2px 0;
+    border-radius: 4px;
+    width: 100%;
+    text-align: center;
+}
 /* MARGIN */
 .marginTop{
     margin-top: 8px;

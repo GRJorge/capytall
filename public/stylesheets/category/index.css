@@ -22,33 +22,29 @@ button i{
 	position: relative;
 	top: 2px;
 }
-.addBox{
-	width: 100%;
-	height: 100%;
-	display: none;
-	justify-content: flex-end;
-}
 .modalAdd{
-	display: flex;
+	display: none;
 	flex-direction: column;
 	align-items: center;
 	position: fixed;
 	padding: 0 32px 16px 32px;
-	margin-bottom: 16px;
-	margin-right: 16px;
+	right: 16px;
+	bottom: 16px;
 	background-color: var(--background);
 	border-radius: 4px;
-}
-.modalAdd div{
-	display: flex;
-	flex-direction: row;
 }
 .modalAdd textarea{
 	font-family: "Roboto";
 	font-size: 13px;
 }
-.buttons{
+.modalAdd .buttons{
 	float: right;
+}
+.modalAdd .errorBox{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin-top: 8px;
 }
 @media screen and (max-width: 700px){
 	.box{
