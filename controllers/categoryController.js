@@ -7,7 +7,7 @@ module.exports = {
 	index:function(req,res){ //CARGA DE RUTA
 		if(global.userId != 0){
 			categoryModel.getVisible(con,function(err, data){
-				res.render('category/index',{data: data,addVisible: "none", errors: [], values: []})
+				res.render('category/index',{titleModalAdd:"",titleBtnSubmit:"",data: data,addVisible: "none", errors: [], values: []})
 			})
 		}else{
 			res.redirect('/user')
@@ -22,7 +22,7 @@ module.exports = {
 
 		if(global.isBlank(req.body.name)){
 			errors.push("Ingresa un nombre")
-		}else if(global.isMin(req.body.name, 2)){
+		}else if(global.isMin(req.body.name.length, 3)){
 			errors.push("El nombre debe contener minimo tres caracteres")
 		}
 
@@ -33,13 +33,13 @@ module.exports = {
 				}else{
 					errors.push('Ya existe una categoria con ese nombre')
 					categoryModel.getVisible(con,function(err, data){
-						res.render('category/index',{data: data, addVisible: "flex", errors: errors, values: values})
+						res.render('category/index',{titleModalAdd:"Agregar nueva categoria:",titleBtnSubmit:"Guardar",data: data, addVisible: "flex", errors: errors, values: values})
 					})
 				}
 			})
 		}else{
 			categoryModel.getVisible(con,function(err, data){
-				res.render('category/index',{data: data, addVisible: "flex", errors: errors, values: values})
+				res.render('category/index',{titleModalAdd:"Agregar nueva categoria:",titleBtnSubmit:"Guardar",data: data, addVisible: "flex", errors: errors, values: values})
 			})
 		}
 	},/* ELIMINACION DE REGISTROS (CAMBIO DE VISIBILIDAD) */
