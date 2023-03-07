@@ -31,7 +31,10 @@ module.exports = {
 				if(!err){
 					res.redirect('/category')
 				}else{
-					console.log(err)
+					errors.push('Ya existe una categoria con ese nombre')
+					categoryModel.getVisible(con,function(err, data){
+						res.render('category/index',{data: data, addVisible: "flex", errors: errors, values: values})
+					})
 				}
 			})
 		}else{
