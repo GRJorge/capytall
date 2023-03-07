@@ -9,15 +9,13 @@
 	<title>Categorias</title>
 </head>
 <body>
-	<% let deleteId %>
-	<% let deleteName %>
-
 	<%- include('../navs/nav.ejs') %>
 	<div class="box">
 		<div>
 			<h1>Categorias:</h1>	
 		</div>
 		<hr>
+		<!-- BOTON PARA AGREGAR NUEVO -->
 		<div class="add">
 			<button class="btnSecondary"><i class="fi fi-br-search"></i></button>
 			<button class="btnPrimary marginLeft" id="addBtn"><i class="fi fi-br-plus"></i></button>	
@@ -37,8 +35,9 @@
 								<td><%= data[i].name %></td>
 								<td>
 									<%= data[i].description %>
+									<!-- BOTONES DE ACCION -->
 									<div class="trActions">
-										<button class="btnAlert deleteBtn" dataId="<%= data[i].id %>" dataName="<%= data[i].name %>"><i class="fi fi-sr-trash"></i></button>
+										<button class="btnAlert" id="deleteBtn" dataId="<%= data[i].id %>" dataName="<%= data[i].name %>"><i class="fi fi-sr-trash"></i></button>
 										<button class="btnPrimary"><i class="fi fi-sr-pencil"></i></button>
 									</div>
 								</td>
@@ -54,6 +53,8 @@
 		</div>
 	</div>
 	
+	<!-- MODAL PARA AÑADIR -->
+
 	<div class="modalAdd shadow" id="addBox" style="display: <%= addVisible %>;">
 		<div>
 			<h2>Agregar nueva categoria:</h2>	
@@ -79,6 +80,8 @@
 		<% } %>
 	</div>
 
+	<!-- MODAL PARA ELIMINACION -->
+
 	<div class="modalDelete shadow" id="deleteModal">
 		<div>
 			<span>¿Estas seguro que deseas eliminar <b id="deleteNameModal">Categoria</b>?</span>
@@ -90,6 +93,8 @@
 	</div>
 
 	<script>
+
+		//MUESTRA DE MODAL PARA AGREGAR
 		const addBtn = document.getElementById("addBtn")
 		const addBox = document.getElementById("addBox")
 
@@ -101,7 +106,8 @@
 			addBox.style.display = "none"
 		})
 
-		const deleteButtons = document.querySelectorAll('.deleteBtn')
+		//MUESTRA DE MODAL PARA ELIMINAR MAS OBTENCION DE LOS DATOS Y CAMBIO DE ACTION
+		const deleteButtons = document.querySelectorAll('#deleteBtn')
 		deleteButtons.forEach(btn => {
 			btn.addEventListener("click",function(){
 				const modal = document.querySelector("#deleteModal")
@@ -111,7 +117,7 @@
 				const name = btn.getAttribute("dataName")
 				
 				addBox.style.display = "none"		
-				form.action = "/delete/" + id
+				form.action = "/category/delete/" + id
 				document.getElementById("deleteNameModal").innerHTML = name
 				modal.style.display = "flex"
 			})

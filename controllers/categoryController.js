@@ -4,7 +4,7 @@ const categoryModel = require('../model/categoryModel')
 const global = require('../public/javascripts/global')
 
 module.exports = {
-	index:function(req,res){
+	index:function(req,res){ //CARGA DE RUTA
 		if(global.userId != 0){
 			categoryModel.getVisible(con,function(err, data){
 				res.render('category/index',{data: data,addVisible: "none", errors: [], values: []})
@@ -12,7 +12,7 @@ module.exports = {
 		}else{
 			res.redirect('/user')
 		}
-	},
+	}, /* INSERCION DE NUEVOS DATOS */
 	insert:function(req,res){
 		let errors = []
 		let values = []
@@ -42,5 +42,10 @@ module.exports = {
 				res.render('category/index',{data: data, addVisible: "flex", errors: errors, values: values})
 			})
 		}
+	},/* ELIMINACION DE REGISTROS (CAMBIO DE VISIBILIDAD) */
+	delete:function(req,res){
+		categoryModel.delete(con,req.params,function(){
+			res.redirect("/category")
+		})
 	}
 }

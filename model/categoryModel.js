@@ -6,5 +6,8 @@ module.exports = {
 	},
 	insert:function(con,data,fun){
 		con.query("INSERT INTO category VALUES(NULL,?,?,DEFAULT,?)",[data.name,data.description,global.userId],fun)
+	},
+	delete:function(con,data,fun){
+		con.query("UPDATE category SET visible=0 WHERE id=?",[data.id],fun)
 	}
 }
