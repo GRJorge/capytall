@@ -18,7 +18,7 @@ hr{
 	justify-content: end;
 	width: 100%;
 }
-button i{
+button i, a i{
 	position: relative;
 	top: 2px;
 }
@@ -45,6 +45,17 @@ button i{
 	flex-direction: column;
 	width: 100%;
 	margin-top: 8px;
+}
+.modalDelete{
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	padding: 16px;
+	bottom: 16px;
+	right: 16px;
+	border-radius: 4px;
 }
 @media screen and (max-width: 700px){
 	.box{

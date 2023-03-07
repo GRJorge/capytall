@@ -9,6 +9,9 @@
 	<title>Categorias</title>
 </head>
 <body>
+	<% let deleteId %>
+	<% let deleteName %>
+
 	<%- include('../navs/nav.ejs') %>
 	<div class="box">
 		<div>
@@ -35,12 +38,12 @@
 								<td>
 									<%= data[i].description %>
 									<div class="trActions">
-										<button href="" class="btnAlert"><i class="fi fi-sr-trash"></i></button>
-										<button href="" class="btnPrimary"><i class="fi fi-sr-pencil"></i></button>
+										<button class="btnAlert deleteBtn" dataId="<%= data[i].id %>" dataName="<%= data[i].name %>"><i class="fi fi-sr-trash"></i></button>
+										<button class="btnPrimary"><i class="fi fi-sr-pencil"></i></button>
 									</div>
 								</td>
 							</tr>
-						<% } -%>
+						<% } %>
 					<% } else { %>
 						<tr>
 							<td>No hay datos</td>
@@ -76,6 +79,16 @@
 		<% } %>
 	</div>
 
+	<div class="modalDelete shadow" id="deleteModal">
+		<div>
+			<span>¿Estas seguro que deseas eliminar <b id="deleteNameModal">Categoria</b>?</span>
+		</div>
+		<form class="marginTop" method="post">
+			<span class="btnSecondary" id="cancelDelete">No</span>
+			<input class="btnAlert" type="submit" value="Si">
+		</form>
+	</div>
+
 	<script>
 		const addBtn = document.getElementById("addBtn")
 		const addBox = document.getElementById("addBox")
@@ -86,6 +99,26 @@
 
 		document.getElementById("cancelAdd").addEventListener("click",function(){
 			addBox.style.display = "none"
+		})
+
+		const deleteButtons = document.querySelectorAll('.deleteBtn')
+		deleteButtons.forEach(btn => {
+			btn.addEventListener("click",function(){
+				const modal = document.querySelector("#deleteModal")
+				const form = modal.querySelector('form')
+
+				const id = btn.getAttribute("dataId")
+				const name = btn.getAttribute("dataName")
+				
+				addBox.style.display = "none"		
+				form.action = "/delete/" + id
+				document.getElementById("deleteNameModal").innerHTML = name
+				modal.style.display = "flex"
+			})
+		})
+
+		document.querySelector('#cancelDelete').addEventListener("click",function(){
+			document.querySelector('#deleteModal').style.display = "none"
 		})
 	</script>
 </body>
