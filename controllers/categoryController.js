@@ -25,6 +25,10 @@ module.exports = {
 		}else if(global.isMin(req.body.name.length, 3)){
 			errors.push("El nombre debe contener minimo tres caracteres")
 		}
+		if(global.isBlank(req.body.description)){
+			req.body.description = "Sin descripción"
+		}
+
 
 		if(errors.length == 0){
 			if(req.url == "/"){
