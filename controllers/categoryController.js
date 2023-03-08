@@ -13,7 +13,7 @@ module.exports = {
 			res.redirect('/user')
 		}
 	}, /* INSERCION DE NUEVOS DATOS */
-	insert:function(req,res){
+	editInsert:function(req,res){
 		let errors = []
 		let values = []
 
@@ -27,19 +27,31 @@ module.exports = {
 		}
 
 		if(errors.length == 0){
-			categoryModel.insert(con,req.body,function(err){
-				if(!err){
-					res.redirect('/category')
-				}else{
-					errors.push('Ya existe una categoria con ese nombre')
-					categoryModel.getVisible(con,function(err, data){
-						res.render('category/index',{titleModalAdd:"Agregar nueva categoria:",titleBtnSubmit:"Guardar",data: data, addVisible: "flex", errors: errors, values: values})
-					})
-				}
-			})
+			if(req.url == "/"){
+				categoryModel.insert(con,req.body,function(err){
+					if(!err){
+						res.redirect('/category')
+					}
+				})
+			}else{
+				categoryModel.edit(con,req.body,req.params.id,function(err){
+					if(!err){
+						res.redirect('/category')
+					}
+				})
+			}
 		}else{
 			categoryModel.getVisible(con,function(err, data){
-				res.render('category/index',{titleModalAdd:"Agregar nueva categoria:",titleBtnSubmit:"Guardar",data: data, addVisible: "flex", errors: errors, values: values})
+				let titleModalAdd
+				let titleBtnSubmit
+				if(req.url == "/"){
+					titleModalAdd = "Agregar nueva categoria:"
+					titleBtnSubmit = "Guardar"
+				}else{
+					titleModalAdd = "Editar categoria:"
+					titleBtnSubmit = "Editar"
+				}
+				res.render('category/index',{titleModalAdd:titleModalAdd,titleBtnSubmit:titleBtnSubmit,data: data, addVisible: "flex", errors: errors, values: values})
 			})
 		}
 	},/* ELIMINACION DE REGISTROS (CAMBIO DE VISIBILIDAD) */

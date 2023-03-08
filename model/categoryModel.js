@@ -9,5 +9,8 @@ module.exports = {
 	},
 	delete:function(con,data,fun){
 		con.query("UPDATE category SET visible=0 WHERE id=?",[data.id],fun)
+	},
+	edit:function(con,data,id,fun){
+		con.query('UPDATE category SET name=?, description=? WHERE id=?',[data.name,data.description,id],fun)
 	}
 }
