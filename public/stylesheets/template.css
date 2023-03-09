@@ -22,6 +22,11 @@ button i, a i{
 	position: relative;
 	top: 2px;
 }
+.seeAll{
+	display: flex;
+	justify-content: end;
+	width: 100%;
+}
 .modalAdd{
 	display: none;
 	flex-direction: column;

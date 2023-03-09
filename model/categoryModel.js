@@ -12,5 +12,8 @@ module.exports = {
 	},
 	edit:function(con,data,id,fun){
 		con.query('UPDATE category SET name=?, description=? WHERE id=?',[data.name,data.description,id],fun)
+	},
+	getIdName:function(con,fun){
+		con.query("SELECT id,name FROM category WHERE visible=1 AND userFK=?",[global.userId],fun)
 	}
 }

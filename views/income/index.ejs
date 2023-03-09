@@ -5,11 +5,78 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="/images/isoGradient.png" type="image/x-icon">
 	<link rel="stylesheet" href="/stylesheets/navs/nav.css">
+	<link rel="stylesheet" href="/stylesheets/template.css">
 
 	<title>Ingresos</title>
 </head>
 <body>
 	<%- include('../navs/nav.ejs') %>
-	<h1>Ingresos:</h1>
+	<div class="box">
+		
+		<% if (categoryData.length > 0) { -%>
+			<div>
+			<h1>Ingresos:</h1>	
+			</div>
+			<hr>
+			<!-- BOTON PARA AGREGAR NUEVO -->
+			<div class="add">
+				<button class="btnSecondary marginRight"><i class="fi fi-br-search"></i></button>
+				<button class="btnPrimary" id="addBtn"><i class="fi fi-br-plus"></i></button>	
+			</div>	
+			<% for (let i = 0; i < categoryData.length; i++) { -%>
+				<div class="tableSecondary marginVertical">
+					<table>
+						<thead>
+							<tr class="titleTable">
+								<th colspan="5"><%= categoryData[i].name %></th>
+							</tr>
+							<tr>
+								<th width="8%">Semana</th>
+								<th width="10%">Fecha</th>
+								<th width="10%">Folio</th>
+								<th>Concepto</th>
+								<th width="10%"><i class="fi fi-br-dollar"></i></th>
+							</tr>
+						</thead>
+						<tbody>
+							<% if (data.length != 0) { -%>
+								<tr>
+									<td style="text-align: center;">3</td>
+									<td>2022/06/13</td>
+									<td>30330</td>
+									<td>Lorem</td>
+									<td>
+										$4000
+										<div class="trActions">
+											<button class="btnAlert" id="deleteBtn"><i class="fi fi-br-cross"></i></button>
+											<button class="btnPrimary" id="editBtn"><i class="fi fi-sr-pencil"></i></button>
+										</div>
+									</td>
+								</tr>
+							<% } else { -%>
+								<tr>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+								</tr>
+							<% } -%>
+						</tbody>
+					</table>
+				</div>
+				<div class="seeAll marginBottom">
+					<button class="btnAlert marginHorizontal"><i class="fi fi-sr-trash"></i></button>
+					<a href="" class="btnPrimary">Ver todos</a>
+				</div>
+			<% } -%>
+		<% } else { -%>
+			<div style="text-align: center;">
+				<p>No se ha ingresado ninguna categoria</p>
+				<p>Ingresa una para continuar:</p>
+				<a href="/category" class="btnSecondary">Categorias</a>
+			</div>
+		<% } -%>
+	</div>
 </body>
 </html>

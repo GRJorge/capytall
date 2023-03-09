@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="/images/isoGradient.png" type="image/x-icon">
-	<link rel="stylesheet" href="/stylesheets/category/index.css">
+	<link rel="stylesheet" href="/stylesheets/template.css">
 	<link rel="stylesheet" href="/stylesheets/navs/nav.css">
 	
 	<title>Categorias</title>
@@ -38,7 +38,7 @@
 									<%= data[i].description %>
 									<!-- BOTONES DE ACCION -->
 									<div class="trActions">
-										<button class="btnAlert" id="deleteBtn" dataId="<%= data[i].id %>" dataName="<%= data[i].name %>"><i class="fi fi-sr-trash"></i></button>
+										<button class="btnAlert" id="deleteBtn" dataId="<%= data[i].id %>" dataName="<%= data[i].name %>"><i class="fi fi-br-cross"></i></button>
 										<button class="btnPrimary" id="editBtn" dataId="<%= data[i].id %>" dataName="<%= data[i].name %>" dataDescription="<%= data[i].description %>"><i class="fi fi-sr-pencil"></i></button>
 									</div>
 								</td>
@@ -93,56 +93,6 @@
 		</form>
 	</div>
 
-	<script>
-		const addModal = document.querySelector("#addModal")
-		const deleteModal = document.querySelector("#deleteModal")
-
-		//MUESTRA DE MODAL PARA AGREGAR
-
-		document.querySelector('#addBtn').addEventListener("click",function(){
-			addModal.querySelector('form').action = "/category"
-			addModal.querySelector('#name').value = ""
-			addModal.querySelector('#description').value = ""
-			addModal.querySelector('input[type="submit"]').value = "Guardar"
-			addModal.querySelector('h2').innerHTML = "Agregar nueva categoria:"
-			addModal.style.display = "flex"
-		})
-		//MUESTRA DE MODAL PARA EDITAR Y MODIFICACION DE ESTA
-		document.querySelectorAll("#editBtn").forEach(btn => {
-			btn.addEventListener("click",function(){
-				const id = btn.getAttribute('dataId')
-
-				addModal.querySelector('form').action = "/category/edit/" + id
-				addModal.querySelector('#name').value = btn.getAttribute('dataName')
-				addModal.querySelector('#description').value = btn.getAttribute('dataDescription')
-				addModal.querySelector('input[type="submit"]').value = "Editar"
-				addModal.querySelector('h2').innerHTML = "Editar categoria:"
-				addModal.style.display = "flex"
-			})
-		})
-
-		document.querySelector("#cancelAdd").addEventListener("click",function(){
-			addModal.style.display = "none"
-		})
-
-		//MUESTRA DE MODAL PARA ELIMINAR MAS OBTENCION DE LOS DATOS Y CAMBIO DE ACTION
-		document.querySelectorAll('#deleteBtn').forEach(btn => {
-			btn.addEventListener("click",function(){
-				const form = deleteModal.querySelector('form')
-
-				const id = btn.getAttribute("dataId")
-				const name = btn.getAttribute("dataName")
-				
-				addModal.style.display = "none"		
-				form.action = "/category/delete/" + id
-				document.getElementById("deleteNameModal").innerHTML = name
-				deleteModal.style.display = "flex"
-			})
-		})
-
-		document.querySelector('#cancelDelete').addEventListener("click",function(){
-			document.querySelector('#deleteModal').style.display = "none"
-		})
-	</script>
+	<script src="/javascripts/category.js"></script>		
 </body>
 </html>

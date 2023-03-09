@@ -130,11 +130,15 @@ body{
 .tableSecondary{
     border: solid 1px var(--secondary);
     border-radius: 4px;
-    overflow: hidden;
+    overflow: auto;
 }
 .tableSecondary table{
     border-collapse: collapse;
     width: 100%;
+}
+.tableSecondary .titleTable{
+    font-size: 18px;
+    text-align: center;
 }
 .tableSecondary thead{
     background-color: var(--secondary);
@@ -158,6 +162,9 @@ body{
 .tableSecondary .trActions{
     display: none;
     column-gap: 8px;
+    padding-left: 8px;
+    margin-left: 8px;
+    border-left: solid 1px var(--foreground);
 }
 .tableSecondary tr:hover .trActions{
     display: flex;
