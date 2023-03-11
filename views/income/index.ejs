@@ -78,5 +78,36 @@
 			</div>
 		<% } -%>
 	</div>
+
+	<!-- MODAL PARA AÑADIR Y EDITAR-->
+
+	<div class="modalAdd shadow" id="addModal" style="display: flex;">
+		<div>
+			<h2>Añadir ingreso:</h2>	
+		</div>
+		<form method="post">
+			<div class="date marginBottom">
+				<input name="day" class="textForegroundAlphaPrimary" type="number" min="1" max="31">
+				<span>/</span>
+				<input name="month" class="textForegroundAlphaPrimary" type="number" min="1" max="12">
+				<span>/</span>
+				<input name="year" class="textForegroundAlphaPrimary year" type="number" min="1900" max="3000">
+			</div>
+			<div>
+				<input name="folio" class="textForegroundAlphaPrimary" type="number" min="0" placeholder="Folio">
+			</div>
+			<div>
+				<textarea name="concepto" class="textForegroundAlphaPrimary marginVertical" id="" cols="28" rows="2" placeholder="Concepto"></textarea>
+			</div>
+			<div>
+				<label for="mount" class="dollar"><i class="fi fi-br-dollar"></i></label>
+				<input id="mount" name="mount" class="textForegroundAlphaPrimary" type="number" min="1" placeholder="Monto">
+			</div>
+			<div class="buttons marginTop">
+				<span class="btnAlert">Cancelar</span>
+				<input class="btnSecondary marginLeft" type="submit" value="Guardar">
+			</div>
+		</form>
+	</div>
 </body>
 </html>

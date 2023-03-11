@@ -31,6 +31,8 @@ body{
     border-radius: 4px;
     padding: 8px;
     outline: none;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
 }
 .textForegroundAlphaError{
     border: solid 2px var(--alert);
@@ -38,6 +40,8 @@ body{
 }
 .textForegroundAlphaPrimary:focus{
     border: solid 2px var(--primary);
+    -moz-appearance: none;
+    -webkit-appearance: none;
 }
 .textForegroundAlphaSecondary:focus{
     border: solid 2px var(--secondary);
