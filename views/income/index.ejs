@@ -87,11 +87,11 @@
 		</div>
 		<form method="post">
 			<div class="date marginBottom">
-				<input name="day" class="textForegroundAlphaPrimary" type="number" min="1" max="31">
+				<input id="day" name="day" class="textForegroundAlphaPrimary" type="number" min="1" max="31" placeholder="Dia">
 				<span>/</span>
-				<input name="month" class="textForegroundAlphaPrimary" type="number" min="1" max="12">
+				<input id="month" name="month" class="textForegroundAlphaPrimary" type="number" min="1" max="12" placeholder="Mes">
 				<span>/</span>
-				<input name="year" class="textForegroundAlphaPrimary year" type="number" min="1900" max="3000">
+				<input id="year" name="year" class="textForegroundAlphaPrimary year" type="number" min="1900" max="3000" placeholder="Año">
 			</div>
 			<div>
 				<input name="folio" class="textForegroundAlphaPrimary" type="number" min="0" placeholder="Folio">
@@ -109,5 +109,7 @@
 			</div>
 		</form>
 	</div>
+
+	<script src="/javascripts/income.js"></script>
 </body>
 </html>

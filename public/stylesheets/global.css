@@ -40,8 +40,8 @@ body{
 }
 .textForegroundAlphaPrimary:focus{
     border: solid 2px var(--primary);
-    -moz-appearance: none;
-    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
 }
 .textForegroundAlphaSecondary:focus{
     border: solid 2px var(--secondary);
