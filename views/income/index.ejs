@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<link rel="shortcut icon" href="/images/isoGradient.png" type="image/x-icon">
 	<link rel="stylesheet" href="/stylesheets/navs/nav.css">
 	<link rel="stylesheet" href="/stylesheets/template.css">
@@ -88,20 +89,25 @@
 		<form method="post">
 			<div class="date marginBottom">
 				<input id="day" name="day" class="textForegroundAlphaPrimary" type="number" min="1" max="31" placeholder="Dia">
-				<span>/</span>
-				<input id="month" name="month" class="textForegroundAlphaPrimary" type="number" min="1" max="12" placeholder="Mes">
-				<span>/</span>
+				<input id="month" name="month" class="textForegroundAlphaPrimary marginHorizontal" type="number" min="1" max="12" placeholder="Mes">
 				<input id="year" name="year" class="textForegroundAlphaPrimary year" type="number" min="1900" max="3000" placeholder="Año">
 			</div>
 			<div>
 				<input name="folio" class="textForegroundAlphaPrimary" type="number" min="0" placeholder="Folio">
 			</div>
 			<div>
-				<textarea name="concepto" class="textForegroundAlphaPrimary marginVertical" id="" cols="28" rows="2" placeholder="Concepto"></textarea>
+				<textarea name="concepto" class="textForegroundAlphaPrimary marginVertical" id="" rows="2" placeholder="Concepto"></textarea>
 			</div>
 			<div>
 				<label for="mount" class="dollar"><i class="fi fi-br-dollar"></i></label>
 				<input id="mount" name="mount" class="textForegroundAlphaPrimary" type="number" min="1" placeholder="Monto">
+			</div>
+			<div>
+				<select id="category" name="category" class="textForegroundAlphaPrimary marginTop">
+					<% for( let i = 0; i < categoryData.length; i++ ) { %>
+						<option value="<%= categoryData[i].name %>"><%= categoryData[i].name %></option>
+					<% } %>
+				</select>
 			</div>
 			<div class="buttons marginTop">
 				<span class="btnAlert">Cancelar</span>
