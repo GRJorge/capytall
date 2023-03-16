@@ -22,7 +22,7 @@
 			<!-- BOTON PARA AGREGAR NUEVO -->
 			<div class="add">
 				<button class="btnSecondary marginRight"><i class="fi fi-br-search"></i></button>
-				<button class="btnPrimary" id="addBtn"><i class="fi fi-br-plus"></i></button>	
+				<button id="addBtn" class="btnPrimary"><i class="fi fi-br-plus"></i></button>	
 			</div>	
 			<% for (let i = 0; i < categoryData.length; i++) { -%>
 				<div class="tableSecondary marginVertical">
@@ -82,7 +82,7 @@
 
 	<!-- MODAL PARA AÑADIR Y EDITAR-->
 
-	<div class="modalAdd shadow" id="addModal" style="display: flex;">
+	<div class="modalAdd shadow" id="addModal">
 		<div>
 			<h2>Añadir ingreso:</h2>	
 		</div>
@@ -110,7 +110,7 @@
 				</select>
 			</div>
 			<div class="buttons marginTop">
-				<span class="btnAlert">Cancelar</span>
+				<span id="cancelAdd" class="btnAlert">Cancelar</span>
 				<input class="btnSecondary marginLeft" type="submit" value="Guardar">
 			</div>
 		</form>
