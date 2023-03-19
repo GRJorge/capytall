@@ -13,8 +13,6 @@ module.exports = {
 		}
 	},
 	insert:function(req,res){
-		console.log(req.body);
-
 		let errors = []
 
 		const body = req.body

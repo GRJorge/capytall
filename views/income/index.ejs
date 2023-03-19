@@ -50,7 +50,7 @@
 										<td>
 											<%= incomeData[j].mount %>
 											<div class="trActions">
-												<button class="btnAlert" id="deleteBtn"><i class="fi fi-br-cross"></i></button>
+												<button dataId="<%= incomeData[j].id %>" dataFolio="<%= incomeData[j].folio %>" class="btnAlert" id="deleteBtn"><i class="fi fi-br-cross"></i></button>
 												<button class="btnPrimary" id="editBtn"><i class="fi fi-sr-pencil"></i></button>
 											</div>
 										</td>
@@ -115,6 +115,18 @@
 				<% } %>
 			</div>
 		<% } %>
+	</div>
+
+	<!-- MODAL PARA ELIMINACION -->
+
+	<div class="modalDelete shadow" id="deleteModal">
+		<div>
+			<span>¿Estas seguro que deseas eliminar el ingreso:  <b id="deleteFolioModal">2323</b>?</span>
+		</div>
+		<form class="marginTop" method="post" id="formDelete">
+			<span class="btnSecondary" id="cancelDelete">No</span>
+			<input class="btnAlert" type="submit" value="Si">
+		</form>
 	</div>
 
 	<script src="/javascripts/income.js"></script>
