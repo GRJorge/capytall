@@ -7,20 +7,7 @@ const global = require('../public/javascripts/global')
 module.exports = {
 	index:function(req,res){
 		if(global.userId != 0){
-			categoryModel.getIdName(con,function(err,categoryData){
-				if(!err){
-					incomeModel.get(con,function(err,incomeData){
-						if(!err){
-							console.log(incomeData)
-							res.render('income/index',{addVisible: 'none',categoryData: categoryData,incomeData: incomeData, errors: []})
-						}else{
-							console.log(err)
-						}
-					})
-				}else{
-					console.log(err)
-				}
-			})
+			showIndex(req,res,"none",[])
 		}else{
 			res.redirect('/user')
 		}
@@ -61,23 +48,29 @@ module.exports = {
 					res.redirect('/income')
 				}else{
 					console.log(err)
+					errors.push("El folio " + body.folio + " ya fue registrado")
+					showIndex(req,res,"flex",errors)
 				}
 			})
 		}else{
-			categoryModel.getIdName(con,function(err,categoryData){
+			showIndex(req,res,"flex",errors)
+		}
+	}
+}
+
+function showIndex(req,res,addVisible,errors){
+	categoryModel.getIdName(con,function(err,categoryData){
+		if(!err){
+			incomeModel.get(con,function(err,incomeData){
 				if(!err){
-					incomeModel.get(con,function(err,incomeData){
-						if(!err){
-							res.render('income/index',{addVisible: 'flex', categoryData: categoryData,incomeData: incomeData, errors: errors})
-							console.log(errors)
-						}else{
-							console.log(err)
-						}
-					})
+					res.render('income/index',{addVisible: addVisible, categoryData: categoryData,incomeData: incomeData, errors: errors})
+					console.log(errors)
 				}else{
 					console.log(err)
 				}
 			})
+		}else{
+			console.log(err)
 		}
-	}
+	})
 }
