@@ -81,7 +81,7 @@ DROP TABLE IF EXISTS `transaction`;
 CREATE TABLE `transaction` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` tinyint(1) NOT NULL DEFAULT 1,
-  `folio` varchar(32) DEFAULT NULL,
+  `folio` varchar(32) NOT NULL,
   `date` date NOT NULL DEFAULT curdate(),
   `concept` varchar(255) NOT NULL,
   `mount` int(11) NOT NULL,
@@ -89,7 +89,6 @@ CREATE TABLE `transaction` (
   `userFK` int(11) NOT NULL,
   `categoryFK` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `folio` (`folio`),
   KEY `userFK` (`userFK`),
   KEY `categoryFK` (`categoryFK`),
   CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`userFK`) REFERENCES `user` (`id`),
@@ -114,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-18 23:47:16
+-- Dump completed on 2023-03-19  1:25:38
