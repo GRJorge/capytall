@@ -53,6 +53,15 @@ module.exports = {
 		}else{
 			showIndex(req,res,"flex",errors)
 		}
+	},
+	delete:function(req,res){
+		incomeModel.delete(con,req.params,function(err){
+			if(!err){
+				res.redirect('/income')
+			}else{
+				console.log(err);
+			}
+		})
 	}
 }
 
