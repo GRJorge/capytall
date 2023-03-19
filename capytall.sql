@@ -15,6 +15,10 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+--
+-- Table structure for table `user`
+--
+
 DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -37,6 +41,7 @@ LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 --
 -- Table structure for table `category`
@@ -76,7 +81,7 @@ DROP TABLE IF EXISTS `transaction`;
 CREATE TABLE `transaction` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` tinyint(1) NOT NULL DEFAULT 1,
-  `folio` varchar(32) NOT NULL,
+  `folio` varchar(32) DEFAULT NULL,
   `date` date NOT NULL DEFAULT curdate(),
   `concept` varchar(255) NOT NULL,
   `mount` int(11) NOT NULL,
@@ -84,6 +89,7 @@ CREATE TABLE `transaction` (
   `userFK` int(11) NOT NULL,
   `categoryFK` int(11) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `folio` (`folio`),
   KEY `userFK` (`userFK`),
   KEY `categoryFK` (`categoryFK`),
   CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`userFK`) REFERENCES `user` (`id`),
@@ -100,12 +106,6 @@ LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `user`
---
-
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
@@ -114,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-07 17:59:35
+-- Dump completed on 2023-03-18 23:47:16
