@@ -7,17 +7,9 @@ const addModal = document.querySelector('#addModal')
 const deleteModal = document.querySelector('#deleteModal')
 
 //AGREGAR FECHA ACTUAL
-dayInput.value = date.getDate().toString().padStart(2,'0')
-monthInput.value = (date.getMonth() + 1).toString().padStart(2,'0')
+dayInput.value = date.getDate().toString()
+monthInput.value = (date.getMonth() + 1).toString()
 document.querySelector('#year').value = date.getFullYear()
-
-//AGREGAR 0 AL DIA Y MES SI LO NECESITA
-monthInput.addEventListener('input',() => {
-	monthInput.value = monthInput.value.toString().padStart(2,'0')
-})
-dayInput.addEventListener('input',() => {
-	dayInput.value = dayInput.value.toString().padStart(2,'0')
-})
 
 //MOSTRAR FORMULARIO DE NUEVO INGRESO
 

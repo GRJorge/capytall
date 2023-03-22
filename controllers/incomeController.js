@@ -39,20 +39,28 @@ module.exports = {
 		}else if(!body.mount > 0){
 			errors.push("Ingresa un monto valido")
 		}
-
-		if(errors.length == 0){
-			incomeModel.insert(con,body,function(err){
-				if(!err){
-					res.redirect('/income')
-				}else{
-					console.log(err)
+		incomeModel.getFolioByFolio(con,body.folio,function(err,data){
+			if(!err){
+				if(data.length > 0){
 					errors.push("El folio " + body.folio + " ya fue registrado")
+				}
+
+				if(errors.length == 0){
+					incomeModel.insert(con,body,function(err){
+						if(!err){
+							res.redirect('/income')
+						}else{
+							console.log(err)
+						}
+					})
+				}else{
+					console.log("CON ERRRORES:\n" + errors);
 					showIndex(req,res,"flex",errors)
 				}
-			})
-		}else{
-			showIndex(req,res,"flex",errors)
-		}
+			}else{
+				console.log(err)
+			}
+		})
 	},
 	delete:function(req,res){
 		incomeModel.delete(con,req.params,function(err){
@@ -71,7 +79,6 @@ function showIndex(req,res,addVisible,errors){
 			incomeModel.get(con,function(err,incomeData){
 				if(!err){
 					res.render('income/index',{addVisible: addVisible, categoryData: categoryData,incomeData: incomeData, errors: errors})
-					console.log(errors)
 				}else{
 					console.log(err)
 				}
