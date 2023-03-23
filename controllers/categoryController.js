@@ -63,5 +63,21 @@ module.exports = {
 		categoryModel.delete(con,req.params,function(){
 			res.redirect("/category")
 		})
+	}, //PAPELERA
+	trash:function(req,res){
+		if(global.userId != 0){
+			categoryModel.getDelete(con,function(err,data){
+				res.render('category/trash',{data: data})	
+			})
+		}else{
+			res.redirect('/user')
+		}
+	}, //RECUPERACION DE CATEGORIA
+	recovery:function(req,res){
+		categoryModel.recovery(con,req.params.id,function(err){
+			if(!err){
+				res.redirect('/category')
+			}
+		})
 	}
 }

@@ -4,6 +4,9 @@ module.exports = {
 	getVisible:function(con,fun){
 		con.query("SELECT * FROM category WHERE visible=1 AND userFK=?",[global.userId],fun)
 	},
+	getDelete:function(con,fun){
+		con.query("SELECT * FROM category WHERE visible=0 AND userFK=?",[global.userId],fun)
+	},
 	insert:function(con,data,fun){
 		con.query("INSERT INTO category VALUES(NULL,?,?,DEFAULT,?)",[data.name,data.description,global.userId],fun)
 	},
@@ -12,6 +15,9 @@ module.exports = {
 	},
 	edit:function(con,data,id,fun){
 		con.query('UPDATE category SET name=?, description=? WHERE id=?',[data.name,data.description,id],fun)
+	},
+	recovery:function(con,id,fun){
+		con.query('UPDATE category SET visible=1 WHERE id=?',[id],fun)
 	},
 	getIdName:function(con,fun){
 		con.query("SELECT id,name FROM category WHERE visible=1 AND userFK=?",[global.userId],fun)

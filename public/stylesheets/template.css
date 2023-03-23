@@ -86,12 +86,17 @@ button i, a i{
 	display: none;
 	flex-direction: column;
 	justify-content: center;
+	text-align: center;
 	align-items: center;
 	position: fixed;
 	padding: 16px;
 	bottom: 16px;
 	right: 16px;
 	border-radius: 4px;
+}
+.modalDelete .alertText{
+	font-size: 14px;
+	color: var(--alert);
 }
 @media screen and (max-width: 700px){
 	.box{

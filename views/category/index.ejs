@@ -18,7 +18,7 @@
 		<hr>
 		<!-- BOTON PARA AGREGAR NUEVO -->
 		<div class="add">
-			<button class="btnSecondary"><i class="fi fi-br-search"></i></button>
+			<a href="/category/trash" class="btnAlert"><i class="fi fi-sr-trash"></i></a>
 			<button class="btnPrimary marginLeft" id="addBtn"><i class="fi fi-br-plus"></i></button>	
 		</div>
 		<div class="tableSecondary marginTop">
@@ -86,6 +86,8 @@
 	<div class="modalDelete shadow" id="deleteModal">
 		<div>
 			<span>¿Estas seguro que deseas eliminar <b id="deleteNameModal">Categoria</b>?</span>
+			<br>
+			<span class="alertText"><i class="fi fi-br-exclamation"></i> Al eliminar la categoria ya no podras ver sus transacciones a menos que la recuperes</span>
 		</div>
 		<form class="marginTop" method="post">
 			<span class="btnSecondary" id="cancelDelete">No</span>
