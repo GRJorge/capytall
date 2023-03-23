@@ -33,7 +33,7 @@
 							</tr>
 							<tr>
 								<th width="8%">Semana</th>
-								<th width="10%">Fecha</th>
+								<th width="15%">Fecha</th>
 								<th width="10%">Folio</th>
 								<th>Concepto</th>
 								<th width="10%"><i class="fi fi-br-dollar"></i></th>
@@ -42,18 +42,12 @@
 						<tbody>
 							<% for(let j = 0; j < incomeData.length; j++) { %>
 								<% if(incomeData[j].categoryFK == categoryData[i].id){ %>
-									<tr>
+									<tr id="income" incomeId="<%= incomeData[j].id %>" incomeFolio="<%= incomeData[j].folio %>">
 										<td style="text-align: center;"><%= incomeData[j].week %></td>
 										<td><%= incomeData[j].date %></td>
 										<td><%= incomeData[j].folio %></td>
 										<td><%= incomeData[j].concept %></td>
-										<td>
-											<%= incomeData[j].mount %>
-											<div class="trActions">
-												<button dataId="<%= incomeData[j].id %>" dataFolio="<%= incomeData[j].folio %>" class="btnAlert" id="deleteBtn"><i class="fi fi-br-cross"></i></button>
-												<button class="btnPrimary" id="editBtn"><i class="fi fi-sr-pencil"></i></button>
-											</div>
-										</td>
+										<td><%= incomeData[j].mount %></td>
 									</tr>
 								<% } %>
 							<% } %>
@@ -72,6 +66,19 @@
 				<a href="/category" class="btnSecondary">Categorias</a>
 			</div>
 		<% } -%>
+	</div>
+
+	<!-- MODAL DE CONFIGURACION-->
+
+	<div id="modalConfig" class="modalConfig shadow">
+		<div class="marginBottom">
+			<span>Folio: 1000</span>
+		</div>
+		<div>
+			<button id="cancelConfig" class="btnForegroundAlphaBackground"><i class="fi fi-br-arrow-left"></i></button>
+			<button id="deleteBtn" class="btnAlert"><i class="fi fi-br-cross"></i></button>
+			<button id="editBtn" class="btnPrimary"><i class="fi fi-sr-pencil"></i></button>
+		</div>
 	</div>
 
 	<!-- MODAL PARA AÑADIR Y EDITAR-->

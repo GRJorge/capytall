@@ -3,7 +3,7 @@ const deleteModal = document.querySelector("#deleteModal")
 
 //MUESTRA DE MODAL PARA AGREGAR
 
-document.querySelector('#addBtn').addEventListener("click",function(){
+document.querySelector('#addBtn').addEventListener("click",() => {
 	addModal.querySelector('form').action = "/category"
 	addModal.querySelector('#name').value = ""
 	addModal.querySelector('#description').value = ""
@@ -11,39 +11,58 @@ document.querySelector('#addBtn').addEventListener("click",function(){
 	addModal.querySelector('h2').innerHTML = "Agregar nueva categoria:"
 	addModal.style.display = "flex"
 })
-//MUESTRA DE MODAL PARA EDITAR Y MODIFICACION DE ESTA
-document.querySelectorAll("#editBtn").forEach(btn => {
-	btn.addEventListener("click",function(){
-		const id = btn.getAttribute('dataId')
 
-		addModal.querySelector('form').action = "/category/edit/" + id
-		addModal.querySelector('#name').value = btn.getAttribute('dataName')
-		addModal.querySelector('#description').value = btn.getAttribute('dataDescription')
-		addModal.querySelector('input[type="submit"]').value = "Editar"
-		addModal.querySelector('h2').innerHTML = "Editar categoria:"
-		addModal.style.display = "flex"
-	})
-})
-
-document.querySelector("#cancelAdd").addEventListener("click",function(){
+document.querySelector("#cancelAdd").addEventListener("click",() => {
 	addModal.style.display = "none"
 })
 
-//MUESTRA DE MODAL PARA ELIMINAR MAS OBTENCION DE LOS DATOS Y CAMBIO DE ACTION
-document.querySelectorAll('#deleteBtn').forEach(btn => {
-	btn.addEventListener("click",function(){
-		const form = deleteModal.querySelector('form')
+// MODAL DE CONFIGURACION
 
-		const id = btn.getAttribute("dataId")
-		const name = btn.getAttribute("dataName")
-		
-		addModal.style.display = "none"		
-		form.action = "/category/delete/" + id
-		document.getElementById("deleteNameModal").innerHTML = name
-		deleteModal.style.display = "flex"
+var currentDataId = 0
+var currentDataName
+var currentDataDescription
+
+const modalConfig = document.querySelector('.modalConfig')
+
+document.querySelector('tbody').querySelectorAll('tr').forEach(tr => {
+	tr.addEventListener("click",() => {
+		currentDataId = tr.getAttribute('dataId')
+		currentDataName = tr.getAttribute('dataName')
+		currentDataDescription = tr.getAttribute('dataDescription')
+
+		modalConfig.style.display = "block"
+		modalConfig.querySelector('span').innerHTML = currentDataName
+
+		addModal.style.display = "none"
 	})
 })
 
-document.querySelector('#cancelDelete').addEventListener("click",function(){
+document.querySelector('#cancelConfig').addEventListener("click",() => {
+	modalConfig.style.display = "none"
+})
+
+//MUESTRA DE MODAL PARA EDITAR Y MODIFICACION DE ESTA
+document.querySelector("#editBtn").addEventListener("click",() => {
+	addModal.querySelector('form').action = "/category/edit/" + currentDataId
+	addModal.querySelector('#name').value = currentDataName
+	if(currentDataDescription != "Sin descripción"){
+		addModal.querySelector('#description').value = currentDataDescription
+	}
+	addModal.querySelector('input[type="submit"]').value = "Editar"
+	addModal.querySelector('h2').innerHTML = "Editar categoria:"
+	addModal.style.display = "flex"
+})
+
+//MUESTRA DE MODAL PARA ELIMINAR MAS OBTENCION DE LOS DATOS Y CAMBIO DE ACTION
+document.querySelector('#deleteBtn').addEventListener("click",() => {
+	const form = deleteModal.querySelector('form')
+	
+	addModal.style.display = "none"
+	form.action = "/category/delete/" + currentDataId
+	document.getElementById("deleteNameModal").innerHTML = currentDataName
+	deleteModal.style.display = "flex"
+})
+
+document.querySelector('#cancelDelete').addEventListener("click",() => {
 	document.querySelector('#deleteModal').style.display = "none"
 })

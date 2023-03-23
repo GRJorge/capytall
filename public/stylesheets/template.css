@@ -81,6 +81,19 @@ button i, a i{
 	width: 100%;
 	margin-top: 8px;
 }
+/* MODAL DE CONFIGURACION */
+
+.modalConfig{
+	display: none;
+	text-align: center;
+	position: fixed;
+	bottom: 16px;
+	right: 16px;
+	padding: 16px;
+	background-color: var(--background);
+	border-radius: 4px;
+}
+
 /* MODAL DE ELIMINACION */
 .modalDelete{
 	display: none;
@@ -93,6 +106,7 @@ button i, a i{
 	bottom: 16px;
 	right: 16px;
 	border-radius: 4px;
+	background-color: var(--background);
 }
 .modalDelete .alertText{
 	font-size: 14px;

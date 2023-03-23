@@ -32,16 +32,9 @@
 				<tbody>
 					<% if (data.length != 0) { %>
 						<% for (let i = 0; i < data.length; i++) { %>
-							<tr>
+							<tr dataId="<%= data[i].id %>" dataName="<%= data[i].name %>" dataDescription="<%= data[i].description %>">
 								<td><%= data[i].name %></td>
-								<td>
-									<%= data[i].description %>
-									<!-- BOTONES DE ACCION -->
-									<div class="trActions">
-										<button class="btnAlert" id="deleteBtn" dataId="<%= data[i].id %>" dataName="<%= data[i].name %>"><i class="fi fi-br-cross"></i></button>
-										<button class="btnPrimary" id="editBtn" dataId="<%= data[i].id %>" dataName="<%= data[i].name %>" dataDescription="<%= data[i].description %>"><i class="fi fi-sr-pencil"></i></button>
-									</div>
-								</td>
+								<td><%= data[i].description %></td>
 							</tr>
 						<% } %>
 					<% } else { %>
@@ -54,6 +47,19 @@
 		</div>
 	</div>
 	
+	<!-- MODAL DE CONFIGURACION -->
+
+	<div class="modalConfig shadow">
+		<div class="marginBottom">
+			<span>Categoria:</span>
+		</div>
+		<div>
+			<button id="cancelConfig" class="btnForegroundAlphaBackground"><i class="fi fi-br-arrow-left"></i></button>
+			<button id="deleteBtn" class="btnAlert"><i class="fi fi-br-cross"></i></button>
+			<button id="editBtn" class="btnPrimary"><i class="fi fi-sr-pencil"></i></button>
+		</div>
+	</div>
+
 	<!-- MODAL PARA AÑADIR Y EDITAR-->
 
 	<div class="modalAdd shadow" id="addModal" style="display: <%= addVisible %>;">
