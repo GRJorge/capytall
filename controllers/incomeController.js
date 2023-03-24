@@ -7,15 +7,24 @@ const global = require('../public/javascripts/global')
 module.exports = {
 	index:function(req,res){
 		if(global.userId != 0){
-			showIndex(req,res,"none",[])
+			showIndex(req,res,"none",[],[])
 		}else{
 			res.redirect('/user')
 		}
 	},
 	insert:function(req,res){
 		let errors = []
+		let values = []
 
 		const body = req.body
+
+		values.push(body.day)
+		values.push(body.month)
+		values.push(body.year)
+		values.push(body.folio)
+		values.push(body.concept)
+		values.push(body.mount)
+		values.push(body.category)
 
 		if(global.isBlank(body.day)){
 			errors.push("Inserta el día")
@@ -55,7 +64,7 @@ module.exports = {
 					})
 				}else{
 					console.log("CON ERRRORES:\n" + errors);
-					showIndex(req,res,"flex",errors)
+					showIndex(req,res,"flex",errors,values)
 				}
 			}else{
 				console.log(err)
@@ -73,12 +82,12 @@ module.exports = {
 	}
 }
 
-function showIndex(req,res,addVisible,errors){
+function showIndex(req,res,addVisible,errors,values){
 	categoryModel.getIdName(con,function(err,categoryData){
 		if(!err){
 			incomeModel.get(con,function(err,incomeData){
 				if(!err){
-					res.render('income/index',{addVisible: addVisible, categoryData: categoryData,incomeData: incomeData, errors: errors})
+					res.render('income/index',{addVisible: addVisible, categoryData: categoryData,incomeData: incomeData, errors: errors, values: values})
 				}else{
 					console.log(err)
 				}

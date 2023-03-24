@@ -89,24 +89,28 @@
 		</div>
 		<form method="post" action="/income/insert">
 			<div class="date marginBottom">
-				<input id="day" name="day" class="textForegroundAlphaPrimary" type="number" min="1" max="31" placeholder="Dia">
-				<input id="month" name="month" class="textForegroundAlphaPrimary marginHorizontal" type="number" min="1" max="12" placeholder="Mes">
-				<input id="year" name="year" class="textForegroundAlphaPrimary year" type="number" min="1900" max="3000" placeholder="Año">
+				<input id="day" name="day" class="textForegroundAlphaPrimary" type="number" min="1" max="31" placeholder="Dia" value="<%= values[0] %>">
+				<input id="month" name="month" class="textForegroundAlphaPrimary marginHorizontal" type="number" min="1" max="12" placeholder="Mes" value="<%= values[1] %>">
+				<input id="year" name="year" class="textForegroundAlphaPrimary year" type="number" min="1900" max="3000" placeholder="Año" value="<%= values[2] %>">
 			</div>
 			<div>
-				<input id="folio" name="folio" class="textForegroundAlphaPrimary" type="number" min="0" placeholder="Folio">
+				<input id="folio" name="folio" class="textForegroundAlphaPrimary" type="number" min="0" placeholder="Folio" value="<%= values[3] %>">
 			</div>
 			<div>
-				<textarea name="concept" class="textForegroundAlphaPrimary marginVertical" id="" rows="2" placeholder="Concepto"></textarea>
+				<textarea name="concept" class="textForegroundAlphaPrimary marginVertical" id="" rows="2" placeholder="Concepto"><%= values[4] %></textarea>
 			</div>
 			<div>
 				<label for="mount" class="dollar"><i class="fi fi-br-dollar"></i></label>
-				<input id="mount" name="mount" class="textForegroundAlphaPrimary" type="number" min="1" placeholder="Monto">
+				<input id="mount" name="mount" class="textForegroundAlphaPrimary" type="number" min="1" placeholder="Monto" value="<%= values[5] %>">
 			</div>
 			<div>
 				<select id="category" name="category" class="textForegroundAlphaPrimary marginTop">
 					<% for( let i = 0; i < categoryData.length; i++ ) { %>
-						<option value="<%= categoryData[i].id %>"><%= categoryData[i].name %></option>
+						<% if (values[6] == (i + 1)) { %>
+							<option selected value="<%= categoryData[i].id %>"><%= categoryData[i].name %></option>	
+						<% } else { %>
+							<option value="<%= categoryData[i].id %>"><%= categoryData[i].name %></option>
+						<% } %>
 					<% } %>
 				</select>
 			</div>
@@ -135,6 +139,16 @@
 			<input class="btnAlert" type="submit" value="Si">
 		</form>
 	</div>
+
+	<% if (values.length == 0) { %>
+		<script>
+			const date = new Date()
+			//AGREGAR FECHA ACTUAL
+			document.querySelector('#day').value = date.getDate().toString()
+			document.querySelector('#month').value = (date.getMonth() + 1).toString()
+			document.querySelector('#year').value = date.getFullYear()
+		</script>
+	<% } %>
 
 	<script src="/javascripts/income.js"></script>
 </body>

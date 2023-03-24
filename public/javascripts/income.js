@@ -1,15 +1,5 @@
-const date = new Date()
-
-const dayInput = document.querySelector('#day')
-const monthInput = document.querySelector('#month')
-
 const addModal = document.querySelector('#addModal')
 const deleteModal = document.querySelector('#deleteModal')
-
-//AGREGAR FECHA ACTUAL
-dayInput.value = date.getDate().toString()
-monthInput.value = (date.getMonth() + 1).toString()
-document.querySelector('#year').value = date.getFullYear()
 
 //MOSTRAR FORMULARIO DE NUEVO INGRESO
 
