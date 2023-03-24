@@ -4,10 +4,10 @@ const categoryController = require('../controllers/categoryController')
 
 router.get('/', categoryController.index)//RUTA PRINCIPAL
 router.get('/trash', categoryController.trash)
-router.get('/recovery/:id', categoryController.recovery)
 
 router.post('/', categoryController.editInsert) //INSERCION
 router.post('/edit/:id', categoryController.editInsert) //EDICION
 router.post('/delete/:id', categoryController.delete) //BORRADO
+router.post('/recovery/:id', categoryController.recovery) //RECUPERACION DE BORRADOS
 
 module.exports = router

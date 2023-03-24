@@ -76,7 +76,7 @@ module.exports = {
 	recovery:function(req,res){
 		categoryModel.recovery(con,req.params.id,function(err){
 			if(!err){
-				res.redirect('/category')
+				res.redirect('/category/trash')
 			}
 		})
 	}

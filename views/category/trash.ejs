@@ -30,15 +30,9 @@
 				<tbody>
                     <% if (data.length != 0) { %>
                         <% for( let i = 0; i < data.length; i++ ) { %>
-                            <tr>
+                            <tr dataId="<%= data[i].id %>" dataName="<%= data[i].name %>">
                                 <td><%= data[i].name %></td>
-                                <td>
-                                    <%= data[i].description %>
-                                    <!-- BOTONES DE ACCION -->
-                                    <div class="trActions">
-                                        <a href="/category/recovery/<%= data[i].id %>" class="btnPrimary" id="editBtn"><i class="fi fi-br-time-past"></i></a>
-                                    </div>
-                                </td>
+                                <td><%= data[i].description %></td>
                             </tr>
                         <% } %>
                     <% } else { %>
@@ -50,5 +44,17 @@
 			</table>	
 		</div>
 	</div>
+
+    <div class="modalDelete shadow" id="modalRecovery">
+		<div>
+			<span>¿Deseas recuperar <b id="recoveryName">Categoria</b>?</span>
+		</div>
+		<form class="marginTop" method="post">
+			<span class="btnSecondary" id="cancelRecovery">No</span>
+			<input class="btnAlert" type="submit" value="Si">
+		</form>
+	</div>
+
+    <script src="/javascripts/category/trash.js"></script>
 </body>
 </html>
