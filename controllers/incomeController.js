@@ -7,12 +7,12 @@ const global = require('../public/javascripts/global')
 module.exports = {
 	index:function(req,res){
 		if(global.userId != 0){
-			showIndex(req,res,"none",[],[])
+			showIndex(req,res,"none","none",[],[])
 		}else{
 			res.redirect('/user')
 		}
 	},
-	insert:function(req,res){
+	editInsert:function(req,res){
 		let errors = []
 		let values = []
 
@@ -35,8 +35,10 @@ module.exports = {
 		if(global.isBlank(body.year) || global.isMin(body.year.length,4)){
 			errors.push("Inserta el año")
 		}
-		if(global.isBlank(body.folio)){
-			errors.push("Inserta el folio")
+		if(req.url == "/insert"){
+			if(global.isBlank(body.folio)){
+				errors.push("Inserta el folio")
+			}
 		}
 		if(global.isBlank(body.concept)){
 			errors.push("Inserta un concepto")
@@ -55,16 +57,30 @@ module.exports = {
 				}
 
 				if(errors.length == 0){
-					incomeModel.insert(con,body,function(err){
-						if(!err){
-							res.redirect('/income')
-						}else{
-							console.log(err)
-						}
-					})
+					if(req.url == "/insert"){
+						incomeModel.insert(con,body,function(err){
+							if(!err){
+								res.redirect('/income')
+							}else{
+								console.log(err)
+							}
+						})
+					}else{
+						incomeModel.edit(con,body,req.params.id,function(err){
+							if(!err){
+								res.redirect('/income')
+							}else{
+								console.log(err);
+							}
+						})
+					}
 				}else{
-					console.log("CON ERRRORES:\n" + errors);
-					showIndex(req,res,"flex",errors,values)
+					if(req.url == "/insert"){
+						showIndex(req,res,"flex","none",errors,values)
+					}else{
+						showIndex(req,res,"none","flex",errors,values)
+					}
+					
 				}
 			}else{
 				console.log(err)
@@ -79,15 +95,18 @@ module.exports = {
 				console.log(err);
 			}
 		})
+	},
+	edit:function(){
+
 	}
 }
 
-function showIndex(req,res,addVisible,errors,values){
+function showIndex(req,res,addVisible,editVisible,errors,values){
 	categoryModel.getIdName(con,function(err,categoryData){
 		if(!err){
 			incomeModel.get(con,function(err,incomeData){
 				if(!err){
-					res.render('income/index',{addVisible: addVisible, categoryData: categoryData,incomeData: incomeData, errors: errors, values: values})
+					res.render('income/index',{addVisible: addVisible, editVisible: editVisible, categoryData: categoryData,incomeData: incomeData, errors: errors, values: values})
 				}else{
 					console.log(err)
 				}

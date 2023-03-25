@@ -42,9 +42,9 @@
 						<tbody>
 							<% for(let j = 0; j < incomeData.length; j++) { %>
 								<% if(incomeData[j].categoryFK == categoryData[i].id){ %>
-									<tr id="income" incomeId="<%= incomeData[j].id %>" incomeFolio="<%= incomeData[j].folio %>">
+									<tr incomeId="<%= incomeData[j].id %>" day="<%= incomeData[j].day %>" month="<%= incomeData[j].month %>" year="<%= incomeData[j].year %>" folio="<%= incomeData[j].folio %>" concept="<%= incomeData[j].concept %>" mount="<%= incomeData[j].mount %>" category="<%= incomeData[j].categoryFK %>">
 										<td style="text-align: center;"><%= incomeData[j].week %></td>
-										<td><%= incomeData[j].date %></td>
+										<td><%= incomeData[j].day %>-<%= incomeData[j].month %>-<%= incomeData[j].year %></td>
 										<td><%= incomeData[j].folio %></td>
 										<td><%= incomeData[j].concept %></td>
 										<td><%= incomeData[j].mount %></td>
@@ -88,16 +88,16 @@
 			<h2>Añadir ingreso:</h2>	
 		</div>
 		<form method="post" action="/income/insert">
-			<div class="date marginBottom">
+			<div class="date">
 				<input id="day" name="day" class="textForegroundAlphaPrimary" type="number" min="1" max="31" placeholder="Dia" value="<%= values[0] %>">
 				<input id="month" name="month" class="textForegroundAlphaPrimary marginHorizontal" type="number" min="1" max="12" placeholder="Mes" value="<%= values[1] %>">
 				<input id="year" name="year" class="textForegroundAlphaPrimary year" type="number" min="1900" max="3000" placeholder="Año" value="<%= values[2] %>">
 			</div>
 			<div>
-				<input id="folio" name="folio" class="textForegroundAlphaPrimary" type="number" min="0" placeholder="Folio" value="<%= values[3] %>">
+				<input id="folio" name="folio" class="textForegroundAlphaPrimary marginTop type="number" min="0" placeholder="Folio" value="<%= values[3] %>">
 			</div>
 			<div>
-				<textarea name="concept" class="textForegroundAlphaPrimary marginVertical" id="" rows="2" placeholder="Concepto"><%= values[4] %></textarea>
+				<textarea id="concept" name="concept" class="textForegroundAlphaPrimary marginVertical" rows="2" placeholder="Concepto"><%= values[4] %></textarea>
 			</div>
 			<div>
 				<label for="mount" class="dollar"><i class="fi fi-br-dollar"></i></label>
@@ -117,6 +117,50 @@
 			<div class="buttons marginTop">
 				<span id="cancelAdd" class="btnAlert">Cancelar</span>
 				<input class="btnSecondary marginLeft" type="submit" value="Guardar">
+			</div>
+		</form>
+		<% if(errors.length != 0){ %>
+			<div class="errorBox">
+				<% for (let i = 0; i < errors.length; i++) { %>
+					<span class="alert"><%= errors[i] %></span>
+				<% } %>
+			</div>
+		<% } %>
+	</div>
+
+
+
+	<div class="modalAdd shadow" id="editModal" style="display: <%= editVisible %>;">
+		<div>
+			<h2>Editar ingreso:</h2>	
+		</div>
+		<form method="post">
+			<div class="date">
+				<input id="editDay" name="day" class="textForegroundAlphaPrimary" type="number" min="1" max="31" placeholder="Dia" value="<%= values[0] %>">
+				<input id="editMonth" name="month" class="textForegroundAlphaPrimary marginHorizontal" type="number" min="1" max="12" placeholder="Mes" value="<%= values[1] %>">
+				<input id="editYear" name="year" class="textForegroundAlphaPrimary year" type="number" min="1900" max="3000" placeholder="Año" value="<%= values[2] %>">
+			</div>
+			<div>
+				<textarea id="editConcept" name="concept" class="textForegroundAlphaPrimary marginVertical" rows="2" placeholder="Concepto"><%= values[4] %></textarea>
+			</div>
+			<div>
+				<label for="editMount" class="dollar"><i class="fi fi-br-dollar"></i></label>
+				<input id="editMount" name="mount" class="textForegroundAlphaPrimary" type="number" min="1" placeholder="Monto" value="<%= values[5] %>">
+			</div>
+			<div>
+				<select id="editCategory" name="category" class="textForegroundAlphaPrimary marginTop">
+					<% for( let i = 0; i < categoryData.length; i++ ) { %>
+						<% if (values[6] == (i + 1)) { %>
+							<option selected value="<%= categoryData[i].id %>"><%= categoryData[i].name %></option>	
+						<% } else { %>
+							<option value="<%= categoryData[i].id %>"><%= categoryData[i].name %></option>
+						<% } %>
+					<% } %>
+				</select>
+			</div>
+			<div class="buttons marginTop">
+				<span id="cancelAdd" class="btnAlert">Cancelar</span>
+				<input class="btnSecondary marginLeft" type="submit" value="Editar">
 			</div>
 		</form>
 		<% if(errors.length != 0){ %>
