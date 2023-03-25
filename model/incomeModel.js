@@ -12,8 +12,5 @@ module.exports = {
 	},
 	delete:function(con,data,fun){
 		con.query('UPDATE transaction SET visible=0 WHERE id=? AND type=0 AND userFK=?',[data.id,global.userId],fun)
-	},
-	edit:function(con,data,id,fun){
-		con.query('UPDATE transaction SET date=?, concept=?, mount=?, categoryFK=? WHERE id=? AND visible=1 AND userFK=?',[data.year + "-" + data.month + "-" + data.day, data.concept, data.mount, data.category, id, global.userId],fun)
 	}
 }
