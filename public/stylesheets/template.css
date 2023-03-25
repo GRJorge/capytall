@@ -39,13 +39,15 @@ button i, a i{
 	background-color: var(--background);
 	border-radius: 4px;
 }
-.modalAdd form div{
+.modalAdd hr{
+	width: 100%;
+}
+.modalAdd .date,
+.modalAdd .buttons{
 	display: flex;
 }
-.modalAdd .date{
-	display: flex;
-	flex-direction: row;
-	align-items: center;
+.modalAdd .date label{
+	font-size: 14px;
 }
 .modalAdd .date input{
 	width: 26px;
@@ -69,7 +71,7 @@ button i, a i{
 	padding: 8px 10px;
 	padding-bottom: 10px;
 	border-radius: 4px;
-	margin-right: 6px;
+	margin-right: 8px;
 }
 .modalAdd .dollar i{
 	position: relative;

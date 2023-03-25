@@ -21,7 +21,8 @@
 			<hr>
 			<!-- BOTON PARA AGREGAR NUEVO -->
 			<div class="add">
-				<button class="btnSecondary marginRight"><i class="fi fi-br-search"></i></button>
+				<button class="btnAlert"><i class="fi fi-sr-trash"></i></button>
+				<button class="btnSecondary marginHorizontal"><i class="fi fi-br-search"></i></button>
 				<button id="addBtn" class="btnPrimary"><i class="fi fi-br-plus"></i></button>	
 			</div>	
 			<% for (let i = 0; i < categoryData.length; i++) { -%>
@@ -55,7 +56,6 @@
 					</table>
 				</div>
 				<div class="seeAll marginBottom">
-					<button class="btnAlert marginHorizontal"><i class="fi fi-sr-trash"></i></button>
 					<a href="" class="btnPrimary">Ver todos</a>
 				</div>
 			<% } -%>
@@ -68,30 +68,31 @@
 		<% } -%>
 	</div>
 
-	<!-- MODAL DE CONFIGURACION-->
-
-	<div id="modalConfig" class="modalConfig shadow">
-		<div class="marginBottom">
-			<span>Folio: 1000</span>
-		</div>
-		<div>
-			<button id="cancelConfig" class="btnForegroundAlphaBackground"><i class="fi fi-br-arrow-left"></i></button>
-			<button id="deleteBtn" class="btnAlert"><i class="fi fi-br-cross"></i></button>
-			<button id="editBtn" class="btnPrimary"><i class="fi fi-sr-pencil"></i></button>
-		</div>
-	</div>
-
 	<!-- MODAL PARA AÑADIR -->
 
 	<div class="modalAdd shadow" id="addModal" style="display: <%= addVisible %>;">
-		<div>
-			<h2>Añadir ingreso:</h2>	
+		<div class="header">
+			<h2>Añadir ingreso:</h2>
+			<hr>
+			<br>
 		</div>
 		<form method="post" action="/income/insert">
 			<div class="date">
-				<input id="day" name="day" class="textForegroundAlphaPrimary" type="number" min="1" max="31" placeholder="Dia" value="<%= values[0] %>">
-				<input id="month" name="month" class="textForegroundAlphaPrimary marginHorizontal" type="number" min="1" max="12" placeholder="Mes" value="<%= values[1] %>">
-				<input id="year" name="year" class="textForegroundAlphaPrimary year" type="number" min="1900" max="3000" placeholder="Año" value="<%= values[2] %>">
+				<div>
+					<label for="day">Dia</label>
+					<br>
+					<input id="day" name="day" class="textForegroundAlphaPrimary" type="number" min="1" max="31" placeholder="Dia" value="<%= values[0] %>">
+				</div>
+				<div class="marginHorizontal
+					<label for="month">Mes</label>
+					<br>
+					<input id="month" name="month" class="textForegroundAlphaPrimary" type="number" min="1" max="12" placeholder="Mes" value="<%= values[1] %>">
+				</div>
+				<div>
+					<label for="year">Año</label>
+					<br>
+					<input id="year" name="year" class="textForegroundAlphaPrimary year" type="number" min="1900" max="3000" placeholder="Año" value="<%= values[2] %>">
+				</div>
 			</div>
 			<div>
 				<input id="folio" name="folio" class="textForegroundAlphaPrimary marginTop type="number" min="0" placeholder="Folio" value="<%= values[3] %>">
@@ -99,7 +100,7 @@
 			<div>
 				<textarea id="concept" name="concept" class="textForegroundAlphaPrimary marginVertical" rows="2" placeholder="Concepto"><%= values[4] %></textarea>
 			</div>
-			<div>
+			<div class="buttons">
 				<label for="mount" class="dollar"><i class="fi fi-br-dollar"></i></label>
 				<input id="mount" name="mount" class="textForegroundAlphaPrimary" type="number" min="1" placeholder="Monto" value="<%= values[5] %>">
 			</div>
@@ -115,8 +116,8 @@
 				</select>
 			</div>
 			<div class="buttons marginTop">
+				<input class="btnSecondary marginRight" type="submit" value="Guardar">
 				<span id="cancelAdd" class="btnAlert">Cancelar</span>
-				<input class="btnSecondary marginLeft" type="submit" value="Guardar">
 			</div>
 		</form>
 		<% if(errors.length != 0){ %>
