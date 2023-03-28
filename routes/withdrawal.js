@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/',function(req,res){
-    res.send("Retiros")
-})
+const withdrawalController = require('../controllers/withdrawalController')
+
+router.get('/', withdrawalController.index)
 
 module.exports = router
