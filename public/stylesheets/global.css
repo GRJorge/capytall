@@ -53,6 +53,18 @@ option{
 .textForegroundAlphaSecondary:focus{
     border: solid 2px var(--secondary);
 }
+
+/* BOTONES REDONDOS */
+.btnRoundedPrimary,
+.btnRoundedAlert{
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    padding: 8px 10px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
 /* BOTONES */
 .btnPrimary,
 .btnSecondary,
@@ -66,11 +78,13 @@ option{
     font-size: 13px;
 
 }
-.btnPrimary{
+.btnPrimary,
+.btnRoundedPrimary{
     background-color: var(--primary);
     color: var(--foreground);
 }
-.btnPrimary:hover{
+.btnPrimary:hover,
+.btnRoundedPrimary:hover{
     background-color: var(--secondary);
     color: var(--background);
 }
@@ -82,11 +96,13 @@ option{
     background-color: var(--primary);
     color: var(--foreground);
 }
-.btnAlert{
+.btnAlert,
+.btnRoundedAlert{
     background-color: var(--alert);
     color: var(--background);
 }
-.btnAlert:hover{
+.btnAlert:hover,
+.btnRoundedAlert:hover{
     background-color: var(--secondary);
     color: var(--background);
 }
@@ -163,7 +179,6 @@ option{
     border-bottom: solid 1px var(--foreground);
 }
 .tableSecondary tbody tr:hover{
-    background-color: var(--primary);
     cursor: pointer;
 }
 .tableSecondary tbody tr:last-child td{

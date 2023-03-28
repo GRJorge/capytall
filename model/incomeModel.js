@@ -10,7 +10,7 @@ module.exports = {
 	insert:function(con,data,fun){
 		con.query('INSERT INTO transaction VALUES(NULL,0,?,?,?,?,1,?,?)',[data.folio, data.year + "-" + data.month + "-" + data.day, data.concept, data.mount, global.userId, data.category],fun)
 	},
-	delete:function(con,data,fun){
-		con.query('UPDATE transaction SET visible=0 WHERE id=? AND type=0 AND userFK=?',[data.id,global.userId],fun)
+	delete:function(con,id,fun){
+		con.query('UPDATE transaction SET visible=0 WHERE id=? AND type=0 AND userFK=?',[id,global.userId],fun)
 	}
 }

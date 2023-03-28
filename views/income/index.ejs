@@ -16,18 +16,17 @@
 		
 		<% if (categoryData.length > 0) { -%>
 			<div>
-			<h1>Ingresos:</h1>	
+				<h1>Ingresos:</h1>	
 			</div>
 			<hr>
 			<!-- BOTON PARA AGREGAR NUEVO -->
 			<div class="add">
 				<button class="btnAlert"><i class="fi fi-sr-trash"></i></button>
-				<button class="btnSecondary marginHorizontal"><i class="fi fi-br-search"></i></button>
-				<button id="addBtn" class="btnPrimary"><i class="fi fi-br-plus"></i></button>	
+				<button class="btnSecondary marginLeft"><i class="fi fi-br-search"></i></button>
 			</div>	
 			<% for (let i = 0; i < categoryData.length; i++) { -%>
 				<div class="tableSecondary marginVertical">
-					<table>
+					<table id="<%= categoryData[i].id %>">
 						<thead>
 							<tr class="titleTable">
 								<th colspan="5"><%= categoryData[i].name %></th>
@@ -43,7 +42,7 @@
 						<tbody>
 							<% for(let j = 0; j < incomeData.length; j++) { %>
 								<% if(incomeData[j].categoryFK == categoryData[i].id){ %>
-									<tr incomeId="<%= incomeData[j].id %>" day="<%= incomeData[j].day %>" month="<%= incomeData[j].month %>" year="<%= incomeData[j].year %>" folio="<%= incomeData[j].folio %>" concept="<%= incomeData[j].concept %>" mount="<%= incomeData[j].mount %>" category="<%= incomeData[j].categoryFK %>">
+									<tr incomeId="<%= incomeData[j].id %>" folio="<%= incomeData[j].folio %>" table="<%= categoryData[i].id %>">
 										<td style="text-align: center;"><%= incomeData[j].week %></td>
 										<td><%= incomeData[j].day %>-<%= incomeData[j].month %>-<%= incomeData[j].year %></td>
 										<td><%= incomeData[j].folio %></td>
@@ -83,8 +82,8 @@
 					<br>
 					<input id="day" name="day" class="textForegroundAlphaPrimary" type="number" min="1" max="31" placeholder="Dia" value="<%= values[0] %>">
 				</div>
-				<div class="marginHorizontal
-					<label for="month">Mes</label>
+				<div class="marginHorizontal">
+					<label for="day">Dia</label>
 					<br>
 					<input id="month" name="month" class="textForegroundAlphaPrimary" type="number" min="1" max="12" placeholder="Mes" value="<%= values[1] %>">
 				</div>
@@ -139,6 +138,11 @@
 			<span class="btnSecondary" id="cancelDelete">No</span>
 			<input class="btnAlert" type="submit" value="Si">
 		</form>
+	</div>
+
+	<div id="actions" class="actions">
+		<button id="addBtn" class="btnRoundedPrimary"><i class="fi fi-br-plus"></i></button>
+		<button id="deleteBtn" class="btnRoundedAlert"><i class="fi fi-br-cross"></i></button>
 	</div>
 
 	<% if (values.length == 0) { %>

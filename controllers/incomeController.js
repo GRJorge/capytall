@@ -57,7 +57,7 @@ module.exports = {
 				if(errors.length == 0){
 					incomeModel.insert(con,body,function(err){
 						if(!err){
-							res.redirect('/income')
+							res.redirect('/income#' + body.category)
 						}else{
 							console.log(err)
 						}
@@ -71,9 +71,9 @@ module.exports = {
 		})
 	},
 	delete:function(req,res){
-		incomeModel.delete(con,req.params,function(err){
+		incomeModel.delete(con,req.params.id,function(err){
 			if(!err){
-				res.redirect('/income')
+				res.redirect('/income#' + req.params.table)
 			}else{
 				console.log(err);
 			}
