@@ -4,9 +4,158 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="/images/isoGradient.png" type="image/x-icon">
+	<link rel="stylesheet" href="/stylesheets/navs/nav.css">
+	<link rel="stylesheet" href="/stylesheets/template.css">
+
     <title>Retiros</title>
 </head>
 <body>
-    
+    <%- include('../navs/nav.ejs') %>
+
+    <div class="box">
+		<% if (categoryData.length > 0) { -%>
+			<div>
+				<h1>Retiros:</h1>	
+			</div>
+			<hr>
+			<!-- BOTON PARA AGREGAR NUEVO -->
+			<div class="add">
+				<button class="btnAlert"><i class="fi fi-sr-trash"></i></button>
+				<button class="btnSecondary marginLeft"><i class="fi fi-br-search"></i></button>
+			</div>	
+			<% for (let i = 0; i < categoryData.length; i++) { -%>
+				<div class="tableSecondary marginVertical">
+					<table id="<%= categoryData[i].id %>">
+						<thead>
+							<tr class="titleTable">
+								<th colspan="5"><%= categoryData[i].name %></th>
+							</tr>
+							<tr>
+								<th width="8%">Semana</th>
+								<th width="15%">Fecha</th>
+								<th width="10%">Folio</th>
+								<th>Concepto</th>
+								<th width="10%"><i class="fi fi-br-dollar"></i></th>
+							</tr>
+						</thead>
+						<tbody>
+							<% for(let j = 0; j < withdrawalData.length; j++) { %>
+								<% if(withdrawalData[j].categoryFK == categoryData[i].id){ %>
+									<tr incomeId="<%= withdrawalData[j].id %>" folio="<%= withdrawalData[j].folio %>" table="<%= categoryData[i].id %>">
+										<td style="text-align: center;"><%= withdrawalData[j].week %></td>
+										<td><%= withdrawalData[j].day %>-<%= withdrawalData[j].month %>-<%= withdrawalData[j].year %></td>
+										<td><%= withdrawalData[j].folio %></td>
+										<td><%= withdrawalData[j].concept %></td>
+										<td><%= withdrawalData[j].mount %></td>
+									</tr>
+								<% } %>
+							<% } %>
+						</tbody>
+					</table>
+				</div>
+				<div class="seeAll marginBottom">
+					<a href="" class="btnPrimary">Ver todos</a>
+				</div>
+			<% } -%>
+		<% } else { -%>
+			<div style="text-align: center;">
+				<p>No se ha ingresado ninguna categoria</p>
+				<p>Ingresa una para continuar:</p>
+				<a href="/category" class="btnSecondary">Categorias</a>
+			</div>
+		<% } -%>
+	</div>
+
+	<!-- MODAL PARA AÑADIR -->
+
+	<div class="modalAdd shadow" id="addModal" style="display: <%= addVisible %>;">
+		<div class="header">
+			<h2>Añadir retiro:</h2>
+			<hr>
+			<br>
+		</div>
+		<form method="post" action="/withdrawal/insert">
+			<div class="date">
+				<div>
+					<label for="day">Dia</label>
+					<br>
+					<input id="day" name="day" class="textForegroundAlphaPrimary" type="number" min="1" max="31" placeholder="Dia" value="<%= values[0] %>">
+				</div>
+				<div class="marginHorizontal">
+					<label for="day">Dia</label>
+					<br>
+					<input id="month" name="month" class="textForegroundAlphaPrimary" type="number" min="1" max="12" placeholder="Mes" value="<%= values[1] %>">
+				</div>
+				<div>
+					<label for="year">Año</label>
+					<br>
+					<input id="year" name="year" class="textForegroundAlphaPrimary year" type="number" min="1900" max="3000" placeholder="Año" value="<%= values[2] %>">
+				</div>
+			</div>
+			<div>
+				<input id="folio" name="folio" class="textForegroundAlphaPrimary marginTop type="number" min="0" placeholder="Folio" value="<%= values[3] %>">
+			</div>
+			<div>
+				<textarea id="concept" name="concept" class="textForegroundAlphaPrimary marginVertical" rows="2" placeholder="Concepto"><%= values[4] %></textarea>
+			</div>
+			<div class="buttons">
+				<label for="mount" class="dollar"><i class="fi fi-br-dollar"></i></label>
+				<input id="mount" name="mount" class="textForegroundAlphaPrimary" type="number" min="1" placeholder="Monto" value="<%= values[5] %>">
+			</div>
+			<div>
+				<select id="category" name="category" class="textForegroundAlphaPrimary marginTop">
+					<% for( let i = 0; i < categoryData.length; i++ ) { %>
+						<% if (values[6] == (i + 1)) { %>
+							<option selected value="<%= categoryData[i].id %>"><%= categoryData[i].name %></option>	
+						<% } else { %>
+							<option value="<%= categoryData[i].id %>"><%= categoryData[i].name %></option>
+						<% } %>
+					<% } %>
+				</select>
+			</div>
+			<div class="buttons marginTop">
+				<input class="btnSecondary marginRight" type="submit" value="Guardar">
+				<span id="cancelAdd" class="btnAlert">Cancelar</span>
+			</div>
+		</form>
+		<% if(errors.length != 0){ %>
+			<div class="errorBox">
+				<% for (let i = 0; i < errors.length; i++) { %>
+					<span class="alert"><%= errors[i] %></span>
+				<% } %>
+			</div>
+		<% } %>
+	</div>
+
+	<!-- MODAL PARA ELIMINACION -->
+
+	<div class="modalDelete shadow" id="deleteModal">
+		<div>
+			<span>¿Estas seguro que deseas eliminar el retiro:  <b id="deleteFolioModal">2323</b>?</span>
+		</div>
+		<form class="marginTop" method="post" id="formDelete">
+			<span class="btnSecondary" id="cancelDelete">No</span>
+			<input class="btnAlert" type="submit" value="Si">
+		</form>
+	</div>
+
+	<div id="actions" class="actions">
+		<button id="addBtn" class="btnRoundedPrimary"><i class="fi fi-br-plus"></i></button>
+		<button id="deleteBtn" class="btnRoundedAlert"><i class="fi fi-br-cross"></i></button>
+	</div>
+
+	<% if (values.length == 0) { %>
+		<script>
+			const date = new Date()
+			//AGREGAR FECHA ACTUAL
+			document.querySelector('#day').value = date.getDate().toString()
+			document.querySelector('#month').value = (date.getMonth() + 1).toString()
+			document.querySelector('#year').value = date.getFullYear()
+		</script>
+	<% } %>
+
+    <script src="javascripts/withdrawal.js"></script>
 </body>
 </html>

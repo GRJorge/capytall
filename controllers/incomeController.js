@@ -1,5 +1,5 @@
 const con = require('../config/connection')
-const incomeModel = require('../model/incomeModel')
+const transactionModel = require('../model/transactionModel')
 const categoryModel = require('../model/categoryModel')
 
 const global = require('../public/javascripts/global')
@@ -48,14 +48,14 @@ module.exports = {
 		}else if(!body.mount > 0){
 			errors.push("Ingresa un monto valido")
 		}
-		incomeModel.getFolioByFolio(con,body.folio,function(err,data){
+		transactionModel.getFolioByFolio(con,body.folio,function(err,data){
 			if(!err){
 				if(data.length > 0){
 					errors.push("El folio " + body.folio + " ya fue registrado")
 				}
 
 				if(errors.length == 0){
-					incomeModel.insert(con,body,function(err){
+					transactionModel.insert(con,0,body,function(err){
 						if(!err){
 							res.redirect('/income#' + body.category)
 						}else{
@@ -71,7 +71,7 @@ module.exports = {
 		})
 	},
 	delete:function(req,res){
-		incomeModel.delete(con,req.params.id,function(err){
+		transactionModel.delete(con,0,req.params.id,function(err){
 			if(!err){
 				res.redirect('/income#' + req.params.table)
 			}else{
@@ -79,15 +79,12 @@ module.exports = {
 			}
 		})
 	},
-	edit:function(){
-
-	}
 }
 
 function showIndex(req,res,addVisible,errors,values){
 	categoryModel.getIdName(con,function(err,categoryData){
 		if(!err){
-			incomeModel.get(con,function(err,incomeData){
+			transactionModel.get(con,0,function(err,incomeData){
 				if(!err){
 					res.render('income/index',{addVisible: addVisible, categoryData: categoryData,incomeData: incomeData, errors: errors, values: values})
 				}else{
