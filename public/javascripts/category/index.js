@@ -1,5 +1,6 @@
-const addModal = document.querySelector("#addModal")
-const deleteModal = document.querySelector("#deleteModal")
+const addModal = document.querySelector('#addModal')
+const deleteModal = document.querySelector('#deleteModal')
+const actionsButtons = document.querySelector('#actions')
 
 //MUESTRA DE MODAL PARA AGREGAR
 
@@ -9,11 +10,11 @@ document.querySelector('#addBtn').addEventListener("click",() => {
 	addModal.querySelector('#description').value = ""
 	addModal.querySelector('input[type="submit"]').value = "Guardar"
 	addModal.querySelector('h2').innerHTML = "Agregar nueva categoria:"
-	addModal.style.display = "flex"
+	visibleModals('flex','none','none')
 })
 
 document.querySelector("#cancelAdd").addEventListener("click",() => {
-	addModal.style.display = "none"
+	visibleModals('none','none','flex')
 })
 
 // MODAL DE CONFIGURACION
@@ -26,19 +27,24 @@ const modalConfig = document.querySelector('.modalConfig')
 
 document.querySelector('tbody').querySelectorAll('tr').forEach(tr => {
 	tr.addEventListener("click",() => {
-		currentDataId = tr.getAttribute('dataId')
-		currentDataName = tr.getAttribute('dataName')
-		currentDataDescription = tr.getAttribute('dataDescription')
+		if(tr.style.backgroundColor != 'rgb(140, 63, 166)'){
+			document.querySelector('tbody').querySelectorAll('tr').forEach(tr2 => {
+				tr2.style.backgroundColor = '#373740'
+			})
+			tr.style.backgroundColor = '#8C3FA6'
+			currentDataId = tr.getAttribute('dataId')
+			currentDataName = tr.getAttribute('dataName')
+			currentDataDescription = tr.getAttribute('dataDescription')
+			document.querySelector('#deleteBtn').style.display = 'block'
+			document.querySelector('#editBtn').style.display = 'block'
+		}else{
+			tr.style.backgroundColor = 'inherit'
+			document.querySelector('#deleteBtn').style.display = 'none'
+			document.querySelector('#editBtn').style.display = 'none'
+		}
 
-		modalConfig.style.display = "block"
-		modalConfig.querySelector('span').innerHTML = currentDataName
-
-		addModal.style.display = "none"
+		visibleModals('none','none','flex')
 	})
-})
-
-document.querySelector('#cancelConfig').addEventListener("click",() => {
-	modalConfig.style.display = "none"
 })
 
 //MUESTRA DE MODAL PARA EDITAR Y MODIFICACION DE ESTA
@@ -50,19 +56,24 @@ document.querySelector("#editBtn").addEventListener("click",() => {
 	}
 	addModal.querySelector('input[type="submit"]').value = "Editar"
 	addModal.querySelector('h2').innerHTML = "Editar categoria:"
-	addModal.style.display = "flex"
+	visibleModals('flex','none','none')
 })
 
 //MUESTRA DE MODAL PARA ELIMINAR MAS OBTENCION DE LOS DATOS Y CAMBIO DE ACTION
 document.querySelector('#deleteBtn').addEventListener("click",() => {
 	const form = deleteModal.querySelector('form')
-	
-	addModal.style.display = "none"
+
 	form.action = "/category/delete/" + currentDataId
 	document.getElementById("deleteNameModal").innerHTML = currentDataName
-	deleteModal.style.display = "flex"
+	visibleModals('none','flex','none')
 })
 
 document.querySelector('#cancelDelete').addEventListener("click",() => {
-	document.querySelector('#deleteModal').style.display = "none"
+	visibleModals('none','none','flex')
 })
+
+function visibleModals(add,deleteV,actions){
+	addModal.style.display = add
+	deleteModal.style.display = deleteV
+	actionsButtons.style.display = actions
+}

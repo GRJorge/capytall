@@ -19,7 +19,6 @@
 		<!-- BOTON PARA AGREGAR NUEVO -->
 		<div class="add">
 			<a href="/category/trash" class="btnAlert"><i class="fi fi-sr-trash"></i></a>
-			<button class="btnPrimary marginLeft" id="addBtn"><i class="fi fi-br-plus"></i></button>	
 		</div>
 		<div class="tableSecondary marginTop">
 			<table>
@@ -44,19 +43,6 @@
 					<% } %>
 				</tbody>
 			</table>	
-		</div>
-	</div>
-	
-	<!-- MODAL DE CONFIGURACION -->
-
-	<div class="modalConfig shadow">
-		<div class="marginBottom">
-			<span>Categoria:</span>
-		</div>
-		<div>
-			<button id="cancelConfig" class="btnForegroundAlphaBackground"><i class="fi fi-br-arrow-left"></i></button>
-			<button id="deleteBtn" class="btnAlert"><i class="fi fi-br-cross"></i></button>
-			<button id="editBtn" class="btnPrimary"><i class="fi fi-sr-pencil"></i></button>
 		</div>
 	</div>
 
@@ -99,6 +85,12 @@
 			<span class="btnSecondary" id="cancelDelete">No</span>
 			<input class="btnAlert" type="submit" value="Si">
 		</form>
+	</div>
+
+	<div id="actions" class="actions">
+		<button id="addBtn" class="btnRoundedPrimary"><i class="fi fi-br-plus"></i></button>
+		<button id="editBtn" class="btnRoundedSecondary"><i class="fi fi-sr-pencil"></i></button>
+		<button id="deleteBtn" class="btnRoundedAlert"><i class="fi fi-br-cross"></i></button>
 	</div>
 
 	<script src="/javascripts/category/index.js"></script>		

@@ -56,6 +56,7 @@ option{
 
 /* BOTONES REDONDOS */
 .btnRoundedPrimary,
+.btnRoundedSecondary,
 .btnRoundedAlert{
     cursor: pointer;
     border: none;
@@ -88,11 +89,13 @@ option{
     background-color: var(--secondary);
     color: var(--background);
 }
-.btnSecondary{
+.btnSecondary,
+.btnRoundedSecondary{
     background-color: var(--secondary);
     color: var(--background);
 }
-.btnSecondary:hover{
+.btnSecondary:hover,
+.btnRoundedSecondary:hover{
     background-color: var(--primary);
     color: var(--foreground);
 }
