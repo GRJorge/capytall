@@ -46,11 +46,16 @@
 
     userMenuBtn.addEventListener("click",function(){
         if(userMenuActive){
-            userMenu.style.display = "none"
+            userMenu.classList.remove('fadeIn')
+            userMenu.classList.add('fadeOut')
+            setTimeout(() => {
+                userMenu.style.display = "none"
+            },100)
             userMenuActive = false
         }else{
             userMenu.style.display = "flex"
             userMenuActive = true
+            userMenu.classList.add('fadeIn')
             if(sections.getAttribute("style").indexOf("top:") == -1){
                 sections.style.display = "none"
                 responsiveActive = false

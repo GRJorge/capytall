@@ -21,6 +21,10 @@
     position: relative;
     top: 2px;
     height: 38px;
+    transition: all 0.3s ease-out;
+}
+.logo img:hover{
+    transform: scale(1.12);
 }
 .config{
     display: flex;
@@ -62,6 +66,9 @@
     margin: 4px 0;
     width: 50%;
     font-size: 16px;
+}
+#userMenuBtn:active{
+    
 }
 @media screen and (min-width:1100px) {
     .userMenu div{

@@ -3,6 +3,7 @@
 	flex-direction: column;
 	width: 80%;
 	margin: auto;
+	animation: fadeIn ease-out 0.3s;
 }
 h1, h2{
 	text-align: center;
@@ -136,7 +137,55 @@ button i, a i{
 .actions #addBtn{
 	font-size: 28px;
 	padding: 14px 18px;
+	z-index: 2;
 }
+
+.showFirstBtn{
+	animation: showFirstBtn 0.2s ease-out;
+}
+.hiddenFirstBtn{
+	animation: hiddenFirstBtn 0.2s ease-in;
+}
+.showSecondBtn{
+	animation: showSecondBtn 0.2s ease-out;
+}
+.hiddenSecondBtn{
+	animation: hiddenSecondBtn 0.2s ease-in;
+}
+
+@keyframes showFirstBtn {
+	0%{
+		transform: translateY(150%);
+	}
+	100%{
+		transform: translateY(0%);
+	}
+}
+@keyframes hiddenFirstBtn {
+	0%{
+		transform: translateY(0%);
+	}
+	100%{
+		transform: translateY(150%);
+	}
+}
+@keyframes showSecondBtn {
+	0%{
+		transform: translateY(300%);
+	}
+	100%{
+		transform: translateY(0%);
+	}
+}
+@keyframes hiddenSecondBtn {
+	0%{
+		transform: translateY(0%);
+	}
+	100%{
+		transform: translateY(300%);
+	}
+}
+
 @media screen and (max-width: 700px){
 	.box{
 		width: 90%;

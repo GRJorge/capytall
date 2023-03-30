@@ -27,6 +27,8 @@ const modalConfig = document.querySelector('.modalConfig')
 
 document.querySelector('tbody').querySelectorAll('tr').forEach(tr => {
 	tr.addEventListener("click",() => {
+		let deleteBtn = document.querySelector('#deleteBtn')
+		let editBtn = document.querySelector('#editBtn')
 		if(tr.style.backgroundColor != 'rgb(140, 63, 166)'){
 			document.querySelector('tbody').querySelectorAll('tr').forEach(tr2 => {
 				tr2.style.backgroundColor = '#373740'
@@ -35,12 +37,23 @@ document.querySelector('tbody').querySelectorAll('tr').forEach(tr => {
 			currentDataId = tr.getAttribute('dataId')
 			currentDataName = tr.getAttribute('dataName')
 			currentDataDescription = tr.getAttribute('dataDescription')
-			document.querySelector('#deleteBtn').style.display = 'block'
-			document.querySelector('#editBtn').style.display = 'block'
+			deleteBtn.classList.remove('hiddenSecondBtn')
+			deleteBtn.classList.add('showSecondBtn')
+			editBtn.classList.remove('hiddenFirstBtn')
+			editBtn.classList.add('showFirstBtn')
+			deleteBtn.style.display = 'block'
+			editBtn.style.display = 'block'
 		}else{
 			tr.style.backgroundColor = 'inherit'
-			document.querySelector('#deleteBtn').style.display = 'none'
-			document.querySelector('#editBtn').style.display = 'none'
+			
+			deleteBtn.classList.remove('showSecondBtn')
+			deleteBtn.classList.add('hiddenSecondBtn')
+			editBtn.classList.remove('showFirstBtn')
+			editBtn.classList.add('hiddenFirstBtn')
+			setTimeout(() => {
+				deleteBtn.style.display = 'none'
+				editBtn.style.display = 'none'
+			},200)
 		}
 
 		visibleModals('none','none','flex')
@@ -73,7 +86,22 @@ document.querySelector('#cancelDelete').addEventListener("click",() => {
 })
 
 function visibleModals(add,deleteV,actions){
-	addModal.style.display = add
-	deleteModal.style.display = deleteV
-	actionsButtons.style.display = actions
+	if(add == "flex"){
+		addModal.classList.add('fadeIn')
+	}else if(addModal.style.display == "flex" && add == "none"){
+		addModal.classList.remove('fadeIn')
+		addModal.classList.add('fadeOut')
+	}
+	if(deleteV == "flex"){
+		deleteModal.classList.add('fadeIn')
+	}else if(deleteModal.style.display == "flex" && deleteV == "none"){
+		deleteModal.classList.remove('fadeIn')
+		deleteModal.classList.add('fadeOut')
+	}
+
+	setTimeout(() => {
+		addModal.style.display = add
+		deleteModal.style.display = deleteV
+		actionsButtons.style.display = actions
+	},200)
 }

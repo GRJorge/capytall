@@ -17,6 +17,7 @@ var currentTable
 tables.forEach(tbody => {
 	tbody.querySelectorAll('tr').forEach(tr => {
 		tr.addEventListener('click',() => {
+			let deleteBtn = document.querySelector('#deleteBtn')
 			if(tr.style.backgroundColor != 'rgb(140, 63, 166)'){
 				tables.forEach(tbody2 => {
 					tbody2.querySelectorAll('tr').forEach(tr2 => {
@@ -27,10 +28,16 @@ tables.forEach(tbody => {
 				currentId = tr.getAttribute('incomeId')
 				currentFolio = tr.getAttribute('folio')
 				currentTable = tr.getAttribute('table')
-				document.querySelector('#deleteBtn').style.display = 'block'
+				deleteBtn.style.display = 'block'
+				deleteBtn.classList.remove('hiddenFirstBtn')
+				deleteBtn.classList.add('showFirstBtn')
 			}else{
 				tr.style.backgroundColor = 'inherit'
-				document.querySelector('#deleteBtn').style.display = 'none'
+				deleteBtn.classList.remove('showFirstBtn')
+				deleteBtn.classList.add('hiddenFirstBtn')
+				setTimeout(() => {
+					deleteBtn.style.display = 'none'
+				},200)
 			}
 		})
 	})
@@ -55,8 +62,23 @@ function visibleModals(add,deleteV,actions){
 	const addModal = document.querySelector('#addModal')
 	const deleteModal = document.querySelector('#deleteModal')
 	const actionsButtons = document.querySelector('#actions')
+	
+	if(add == "flex"){
+		addModal.classList.add('fadeIn')
+	}else if(addModal.style.display == "flex" && add == "none"){
+		addModal.classList.remove('fadeIn')
+		addModal.classList.add('fadeOut')
+	}
+	if(deleteV == "flex"){
+		deleteModal.classList.add('fadeIn')
+	}else if(deleteModal.style.display == "flex" && deleteV == "none"){
+		deleteModal.classList.remove('fadeIn')
+		deleteModal.classList.add('fadeOut')
+	}
 
-	addModal.style.display = add
-	deleteModal.style.display = deleteV
-	actionsButtons.style.display = actions
+	setTimeout(() => {
+		addModal.style.display = add
+		deleteModal.style.display = deleteV
+		actionsButtons.style.display = actions
+	},200)
 }
