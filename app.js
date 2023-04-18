@@ -9,8 +9,7 @@ var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 var homeRouter = require('./routes/home');
 var categoryRouter = require('./routes/category');
-var incomeRouter = require('./routes/income')
-var withdrawalRouter = require('./routes/withdrawal')
+var transactionRouter = require('./routes/transaction');
 
 var app = express();
 
@@ -30,8 +29,7 @@ app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/home', homeRouter);
 app.use('/category', categoryRouter);
-app.use('/income', incomeRouter)
-app.use('/withdrawal', withdrawalRouter)
+app.use('/transaction', transactionRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

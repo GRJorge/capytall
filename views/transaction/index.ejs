@@ -8,7 +8,13 @@
 	<link rel="stylesheet" href="/stylesheets/navs/nav.css">
 	<link rel="stylesheet" href="/stylesheets/template.css">
 
-	<title>Ingresos</title>
+	<title>
+		<% if (type == 'income') { %>
+			<%= 'Ingresos' %>
+		<% } else { %>
+			<%= 'Retiros' %>
+		<% } %>
+	</title>
 </head>
 <body>
 	<%- include('../navs/nav.ejs') %>
@@ -16,7 +22,13 @@
 		
 		<% if (categoryData.length > 0) { -%>
 			<div>
-				<h1>Ingresos:</h1>	
+				<h1>
+					<% if (type == 'income') { %>
+						<%= 'Ingresos:' %>
+					<% } else { %>
+						<%= 'Retiros:' %>
+					<% } %>
+				</h1>
 			</div>
 			<hr>
 			<% for (let i = 0; i < categoryData.length; i++) { -%>
@@ -36,14 +48,14 @@
 								</tr>
 							</thead>
 							<tbody>
-								<% for(let j = 0; j < incomeData.length; j++) { %>
-									<% if(incomeData[j].categoryFK == categoryData[i].id){ %>
-										<tr incomeId="<%= incomeData[j].id %>" folio="<%= incomeData[j].folio %>" table="<%= categoryData[i].id %>">
-											<td style="text-align: center;"><%= incomeData[j].week %></td>
-											<td><%= incomeData[j].day %>-<%= incomeData[j].month %>-<%= incomeData[j].year %></td>
-											<td><%= incomeData[j].folio %></td>
-											<td><%= incomeData[j].concept %></td>
-											<td id="mount">$<%= incomeData[j].mount %></td>
+								<% for(let j = 0; j < transactionData.length; j++) { %>
+									<% if(transactionData[j].categoryFK == categoryData[i].id){ %>
+										<tr incomeId="<%= transactionData[j].id %>" folio="<%= transactionData[j].folio %>" table="<%= categoryData[i].id %>">
+											<td style="text-align: center;"><%= transactionData[j].week %></td>
+											<td><%= transactionData[j].day %>-<%= transactionData[j].month %>-<%= transactionData[j].year %></td>
+											<td><%= transactionData[j].folio %></td>
+											<td><%= transactionData[j].concept %></td>
+											<td id="mount">$<%= transactionData[j].mount %></td>
 										</tr>
 									<% } %>
 								<% } %>
@@ -78,7 +90,7 @@
 			<hr>
 			<br>
 		</div>
-		<form method="post" action="/income/insert">
+		<form method="post" action="/transaction/<%= type %>/insert">
 			<div class="date">
 				<div>
 					<label for="day">Dia</label>
@@ -137,7 +149,7 @@
 		<div>
 			<span>¿Estas seguro que deseas eliminar el ingreso:  <b id="deleteFolioModal">2323</b>?</span>
 		</div>
-		<form class="marginTop" method="post" id="formDelete">
+		<form class="marginTop" method="post" id="formDelete" action="/transaction/<%= type %>/delete/">
 			<span class="btnSecondary" id="cancelDelete">No</span>
 			<input class="btnAlert" type="submit" value="Si">
 		</form>
@@ -158,6 +170,6 @@
 		</script>
 	<% } %>
 
-	<script src="/javascripts/income.js"></script>
+	<script src="/javascripts/transaction.js"></script>
 </body>
 </html>

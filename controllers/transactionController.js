@@ -5,14 +5,14 @@ const categoryModel = require('../model/categoryModel')
 const global = require('../public/javascripts/global')
 
 module.exports = {
-    index:function(req,res){
-        if(global.userId != 0){
-            showIndex(req,res,'none',[],[])
-        }else{
-            res.redirect('/user')
-        }
-    },
-    insert:function(req,res){
+	index:function(req,res){
+		if(global.userId != 0){
+			showIndex(req,res,"none",[],[])
+		}else{
+			res.redirect('/user')
+		}
+	},
+	insert:function(req,res){
 		let errors = []
 		let values = []
 
@@ -55,9 +55,9 @@ module.exports = {
 				}
 
 				if(errors.length == 0){
-					transactionModel.insert(con,1,body,function(err){
+					transactionModel.insert(con,getType(req),body,function(err){
 						if(!err){
-							res.redirect('/withdrawal#' + body.category)
+							res.redirect('/transaction/' + req.params.type + '#' + body.category)
 						}else{
 							console.log(err)
 						}
@@ -71,21 +71,38 @@ module.exports = {
 		})
 	},
 	delete:function(req,res){
-		transactionModel.delete(con,1,req.params.id,function(err){
+		transactionModel.delete(con,getType(req),req.params.id,function(err){
 			if(!err){
-				res.redirect('/withdrawal#' + req.params.table)
+				res.redirect('/transaction/' + req.params.type + '#' + req.params.table)
 			}else{
-				console.log(err);
+				console.log(err);url == '/income'
 			}
 		})
-	}
+	},
 }
 
 function showIndex(req,res,addVisible,errors,values){
-    categoryModel.getVisible(con,function(err,categoryData){
-        transactionModel.get(con,1,function(err,withdrawalData){
-            res.render('withdrawal/index',{addVisible: addVisible, categoryData: categoryData, withdrawalData: withdrawalData,errors:errors,values:values})        
-        })
-    })
-    
+	categoryModel.getIdName(con,function(err,categoryData){
+		if(!err){
+			transactionModel.get(con,getType(req),function(err,transactionData){
+				if(!err){
+					res.render('transaction/index',{addVisible: addVisible, categoryData: categoryData,transactionData: transactionData, errors: errors, values: values, type: req.params.type})
+				}else{
+					console.log(err)
+				}
+			})
+		}else{
+			console.log(err)
+		}
+	})
+}
+
+function getType(req){
+	let type
+	if(req.params.type == 'income'){
+		type = 0
+	}else{
+		type = 1
+	}
+	return type
 }
