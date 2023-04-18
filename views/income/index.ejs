@@ -19,43 +19,46 @@
 				<h1>Ingresos:</h1>	
 			</div>
 			<hr>
-			<!-- BOTON PARA AGREGAR NUEVO -->
-			<div class="add">
-				<button class="btnAlert"><i class="fi fi-sr-trash"></i></button>
-				<button class="btnSecondary marginLeft"><i class="fi fi-br-search"></i></button>
-			</div>	
 			<% for (let i = 0; i < categoryData.length; i++) { -%>
-				<div class="tableSecondary marginVertical">
-					<table id="<%= categoryData[i].id %>">
-						<thead>
-							<tr class="titleTable">
-								<th colspan="5"><%= categoryData[i].name %></th>
-							</tr>
-							<tr>
-								<th width="8%">Semana</th>
-								<th width="15%">Fecha</th>
-								<th width="10%">Folio</th>
-								<th>Concepto</th>
-								<th width="10%"><i class="fi fi-br-dollar"></i></th>
-							</tr>
-						</thead>
-						<tbody>
-							<% for(let j = 0; j < incomeData.length; j++) { %>
-								<% if(incomeData[j].categoryFK == categoryData[i].id){ %>
-									<tr incomeId="<%= incomeData[j].id %>" folio="<%= incomeData[j].folio %>" table="<%= categoryData[i].id %>">
-										<td style="text-align: center;"><%= incomeData[j].week %></td>
-										<td><%= incomeData[j].day %>-<%= incomeData[j].month %>-<%= incomeData[j].year %></td>
-										<td><%= incomeData[j].folio %></td>
-										<td><%= incomeData[j].concept %></td>
-										<td><%= incomeData[j].mount %></td>
-									</tr>
+				<div id="table">
+					<div class="tableSecondary marginVertical">
+						<table id="<%= categoryData[i].id %>">
+							<thead>
+								<tr class="titleTable">
+									<th colspan="5"><%= categoryData[i].name %></th>
+								</tr>
+								<tr>
+									<th width="8%">Semana</th>
+									<th width="15%">Fecha</th>
+									<th width="10%">Folio</th>
+									<th>Concepto</th>
+									<th width="10%"><i class="fi fi-br-dollar"></i></th>
+								</tr>
+							</thead>
+							<tbody>
+								<% for(let j = 0; j < incomeData.length; j++) { %>
+									<% if(incomeData[j].categoryFK == categoryData[i].id){ %>
+										<tr incomeId="<%= incomeData[j].id %>" folio="<%= incomeData[j].folio %>" table="<%= categoryData[i].id %>">
+											<td style="text-align: center;"><%= incomeData[j].week %></td>
+											<td><%= incomeData[j].day %>-<%= incomeData[j].month %>-<%= incomeData[j].year %></td>
+											<td><%= incomeData[j].folio %></td>
+											<td><%= incomeData[j].concept %></td>
+											<td id="mount">$<%= incomeData[j].mount %></td>
+										</tr>
+									<% } %>
 								<% } %>
-							<% } %>
-						</tbody>
-					</table>
-				</div>
-				<div class="seeAll marginBottom">
-					<a href="" class="btnPrimary">Ver todos</a>
+							</tbody>
+						</table>
+					</div>
+					<div class="toolTable marginBottom">
+						<div>
+							<a href="" class="btnPrimary">Ver todos</a>
+							<button class="btnAlert"><i class="fi fi-sr-trash"></i></button>
+						</div>
+						<div class="total marginLeft">
+							<span id="total">Total: $99999999</span>
+						</div>
+					</div>
 				</div>
 			<% } -%>
 		<% } else { -%>

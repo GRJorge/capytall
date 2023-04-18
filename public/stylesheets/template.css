@@ -13,20 +13,31 @@ hr{
 	width: calc(100% - 4px);
 	color: var(--foreground);
 }
-.add{
-	display: flex;
-	align-items: flex-end;
-	justify-content: end;
-	width: 100%;
-}
 button i, a i{
 	position: relative;
 	top: 2px;
 }
-.seeAll{
+.toolTable{
 	display: flex;
-	justify-content: end;
-	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	border: solid 2px var(--primary);
+	border-radius: 4px;
+}
+.toolTable div:first-child{
+	margin: 4px;
+}
+.toolTable .total{
+	background-color: var(--primary);
+	align-self: stretch;
+	padding: 0 16px;
+	font-size: 18px;
+}
+.toolTable .total span{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
 }
 /* MODAL DE AGREGAR*/
 .modalAdd{

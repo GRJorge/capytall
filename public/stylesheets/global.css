@@ -163,11 +163,12 @@ option{
 }
 /* TABLAS */
 .tableSecondary{
-    border: solid 1px var(--secondary);
+    border: solid 2px var(--secondary);
     border-radius: 4px;
     overflow: auto;
 }
 .tableSecondary table{
+    overflow: hidden;
     border-collapse: collapse;
     width: 100%;
 }
@@ -194,9 +195,6 @@ option{
 }
 .tableSecondary tbody tr:last-child td{
     border-bottom: none;
-}
-.tableSecondary tr:hover .trActions{
-    display: flex;
 }
 /* ALERTAS */
 .alert{

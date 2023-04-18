@@ -56,6 +56,16 @@ document.querySelector('#cancelDelete').addEventListener("click",() => {
 	visibleModals('none','none','flex')
 })
 
+// SUMAS DEL MONTO
+
+document.querySelectorAll('#table').forEach(table => {
+	var total = 0
+	table.querySelectorAll('#mount').forEach(mount => {
+		total += parseFloat(mount.textContent.replace('$',''))
+	})
+	table.querySelector('#total').innerHTML = 'Total: $' + total
+})
+
 //---------------//
 
 function visibleModals(add,deleteV,actions){
