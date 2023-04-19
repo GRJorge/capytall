@@ -79,12 +79,15 @@ module.exports = {
 			}
 		})
 	},
+	seeAll:function(req,res){
+		res.render('transaction/seeAll',{addVisible: 'none', categoryId: req.params.id,categoryName: req.params.name,transactionData:[],errors:[],values:[],type: getType(req)})
+	}
 }
 
 function showIndex(req,res,addVisible,errors,values){
 	categoryModel.getIdName(con,function(err,categoryData){
 		if(!err){
-			transactionModel.get(con,getType(req),function(err,transactionData){
+			transactionModel.getActualMonth(con,getType(req),function(err,transactionData){
 				if(!err){
 					res.render('transaction/index',{addVisible: addVisible, categoryData: categoryData,transactionData: transactionData, errors: errors, values: values, type: req.params.type})
 				}else{

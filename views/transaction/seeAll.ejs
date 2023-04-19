@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon" href="/images/isoGradient.png" type="image/x-icon">
+	<link rel="stylesheet" href="/stylesheets/navs/nav.css">
+	<link rel="stylesheet" href="/stylesheets/template.css">
+
+	<title><%= categoryName %></title>
+</head>
+<body>
+	<%- include('../navs/nav.ejs') %>
+	<div class="box">
+        <div>
+            <h1><%= categoryName %>:</h1>
+        </div>
+        <hr>
+        <div id="table">
+            <div class="tableSecondary marginVertical">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="8%">Semana</th>
+                            <th width="15%">Fecha</th>
+                            <th width="10%">Folio</th>
+                            <th>Concepto</th>
+                            <th width="10%"><i class="fi fi-br-dollar"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(let j = 0; j < transactionData.length; j++) { %>
+                            <tr incomeId="<%= transactionData[j].id %>" folio="<%= transactionData[j].folio %>" table="<%= categoryData[i].id %>">
+                                <td style="text-align: center;"><%= transactionData[j].week %></td>
+                                <td><%= transactionData[j].day %>-<%= transactionData[j].month %>-<%= transactionData[j].year %></td>
+                                <td><%= transactionData[j].folio %></td>
+                                <td><%= transactionData[j].concept %></td>
+                                <td id="mount">$<%= transactionData[j].mount %></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="toolTable marginBottom">
+                <div>
+                    <button class="btnAlert"><i class="fi fi-sr-trash"></i></button>
+                </div>
+                <div class="total marginLeft">
+                    <span id="total">Total: $99999999</span>
+                </div>
+            </div>
+        </div>
+	</div>
+
+	<!-- MODAL PARA ELIMINACION -->
+
+	<div class="modalDelete shadow" id="deleteModal">
+		<div>
+			<span>¿Estas seguro que deseas eliminar el ingreso:  <b id="deleteFolioModal">2323</b>?</span>
+		</div>
+		<form class="marginTop" method="post" id="formDelete" action="/transaction/<%= type %>/delete/">
+			<span class="btnSecondary" id="cancelDelete">No</span>
+			<input class="btnAlert" type="submit" value="Si">
+		</form>
+	</div>
+    
+	<script src="/javascripts/transaction.js"></script>
+</body>
+</html>

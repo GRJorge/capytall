@@ -1,7 +1,7 @@
 const global = require('../public/javascripts/global')
 
 module.exports = {
-	get:function(con,type,fun){
+	getActualMonth:function(con,type,fun){
 		con.query('SELECT id, folio, WEEK(date) AS week, DAY(date) AS day, MONTH(date) AS month, YEAR(date) AS year, concept, mount, categoryFK FROM transaction WHERE type=? AND visible=1 AND userFK=? AND MONTH(date)=MONTH(NOW())',[type,global.userId],fun)
 	},
 	getFolioByFolio:function(con,data,fun){
