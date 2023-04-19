@@ -80,7 +80,13 @@ module.exports = {
 		})
 	},
 	seeAll:function(req,res){
-		res.render('transaction/seeAll',{addVisible: 'none', categoryId: req.params.id,categoryName: req.params.name,transactionData:[],errors:[],values:[],type: getType(req)})
+		transactionModel.getByCategory(con,getType(req),req.params.id,function(err,transactionData){
+			if(!err){
+				res.render('transaction/seeAll',{addVisible: 'none', categoryId: req.params.id,categoryName: req.params.name,transactionData:transactionData,type: getType(req)})
+			}else{
+				console.log(err);
+			}
+		})
 	}
 }
 
