@@ -75,14 +75,14 @@ module.exports = {
 			if(!err){
 				res.redirect('/transaction/' + req.params.type + '#' + req.params.table)
 			}else{
-				console.log(err);url == '/income'
+				console.log(err)
 			}
 		})
 	},
 	seeAll:function(req,res){
 		transactionModel.getByCategory(con,getType(req),req.params.id,function(err,transactionData){
 			if(!err){
-				res.render('transaction/seeAll',{addVisible: 'none', categoryId: req.params.id,categoryName: req.params.name,transactionData:transactionData,type: getType(req)})
+				res.render('transaction/seeAll',{addVisible: 'none', categoryId: req.params.id,categoryName: req.params.name,transactionData:transactionData,type: req.params.type})
 			}else{
 				console.log(err);
 			}
