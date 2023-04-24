@@ -33,6 +33,7 @@
 			<hr>
 			<% for (let i = 0; i < categoryData.length; i++) { -%>
 				<div id="table">
+					<% numData = 0 %>
 					<div class="tableSecondary marginVertical">
 						<table id="<%= categoryData[i].id %>">
 							<thead>
@@ -50,7 +51,8 @@
 							<tbody>
 								<% for(let j = 0; j < transactionData.length; j++) { %>
 									<% if(transactionData[j].categoryFK == categoryData[i].id){ %>
-										<tr incomeId="<%= transactionData[j].id %>" folio="<%= transactionData[j].folio %>" table="<%= categoryData[i].id %>">
+										<% numData += 1 %>
+										<tr id="row" incomeId="<%= transactionData[j].id %>" folio="<%= transactionData[j].folio %>" table="<%= categoryData[i].id %>">
 											<td style="text-align: center;"><%= transactionData[j].week %></td>
 											<td><%= transactionData[j].day %>-<%= transactionData[j].month %>-<%= transactionData[j].year %></td>
 											<td><%= transactionData[j].folio %></td>
@@ -59,18 +61,26 @@
 										</tr>
 									<% } %>
 								<% } %>
+								<% if (numData == 0) { %>
+									<tr>
+										<td>-</td>
+										<td>-</td>
+										<td>-</td>
+										<td>-</td>
+										<td>-</td>
+									</tr>
+								<% } %>
 							</tbody>
 						</table>
 					</div>
-					<div class="toolTable marginBottom">
-						<div>
+					<% if (numData > 0) { %>
+						<div class="toolTable marginBottom">
 							<a href="/transaction/<%= type %>/seeAll/<%= categoryData[i].id %>,<%= categoryData[i].name %>" class="btnPrimary">Ver todos</a>
-							<button class="btnAlert"><i class="fi fi-sr-trash"></i></button>
+							<div class="total marginLeft">
+								<span id="total">Total: $99999999</span>
+							</div>
 						</div>
-						<div class="total marginLeft">
-							<span id="total">Total: $99999999</span>
-						</div>
-					</div>
+					<% } %>
 				</div>
 			<% } -%>
 		<% } else { -%>

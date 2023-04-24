@@ -28,23 +28,22 @@
 					<tbody>
 						<% if (data.length != 0) { %>
 							<% for (let i = 0; i < data.length; i++) { %>
-								<tr dataId="<%= data[i].id %>" dataName="<%= data[i].name %>" dataDescription="<%= data[i].description %>">
+								<tr id="row" dataId="<%= data[i].id %>" dataName="<%= data[i].name %>" dataDescription="<%= data[i].description %>">
 									<td><%= data[i].name %></td>
 									<td><%= data[i].description %></td>
 								</tr>
 							<% } %>
 						<% } else { %>
 							<tr>
-								<td>No hay datos</td>
+								<td>-</td>
+								<td>-</td>
 							</tr>
 						<% } %>
 					</tbody>
 				</table>
 			</div>
 			<div class="toolTable marginTop">
-				<div>
-					<button class="btnAlert"><i class="fi fi-sr-trash"></i></button>
-				</div>
+				<a href="category/trash" class="btnAlert"><i class="fi fi-sr-trash"></i></a>
 			</div>	
 		</div>
 	</div>

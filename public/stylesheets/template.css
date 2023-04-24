@@ -19,25 +19,22 @@ button i, a i{
 }
 .toolTable{
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	height: 100%;
 	border: solid 2px var(--primary);
 	border-radius: 4px;
 }
-.toolTable div:first-child{
+.toolTable a:first-child{
 	margin: 4px;
 }
 .toolTable .total{
-	background-color: var(--primary);
-	align-self: stretch;
-	padding: 0 16px;
-	font-size: 18px;
-}
-.toolTable .total span{
-	display: inline-flex;
-	justify-content: center;
+	display: flex;
 	align-items: center;
-	height: 100%;
+	padding: 8px;
+	font-size: 18px;
+	margin-left: auto;
+	align-self: stretch;
+	background-color: var(--primary);
 }
 /* MODAL DE AGREGAR*/
 .modalAdd{

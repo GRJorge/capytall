@@ -15,12 +15,12 @@ var currentFolio
 var currentTable
 
 tables.forEach(tbody => {
-	tbody.querySelectorAll('tr').forEach(tr => {
+	tbody.querySelectorAll('#row').forEach(tr => {
 		tr.addEventListener('click',() => {
 			let deleteBtn = document.querySelector('#deleteBtn')
 			if(tr.style.backgroundColor != 'rgb(140, 63, 166)'){
 				tables.forEach(tbody2 => {
-					tbody2.querySelectorAll('tr').forEach(tr2 => {
+					tbody2.querySelectorAll('#row').forEach(tr2 => {
 						tr2.style.backgroundColor = '#373740'
 					})
 				})

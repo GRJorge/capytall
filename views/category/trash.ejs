@@ -15,34 +15,34 @@
     <%- include('../navs/nav.ejs') %>
 
     <div class="box">
-		<div>
-			<h1>Categorias eliminadas:</h1>	
-		</div>
-		<hr>
-		<div class="tableSecondary marginTop">
-			<table>
-				<thead>
-					<tr>
-						<th width="30%">Nombre</th>
-						<th>Descripción</th>
-					</tr>
-				</thead>
-				<tbody>
-                    <% if (data.length != 0) { %>
-                        <% for( let i = 0; i < data.length; i++ ) { %>
-                            <tr dataId="<%= data[i].id %>" dataName="<%= data[i].name %>">
-                                <td><%= data[i].name %></td>
-                                <td><%= data[i].description %></td>
-                            </tr>
-                        <% } %>
-                    <% } else { %>
-                        <tr>
-                            <td>No hay datos</td>
-                        </tr>
-                    <% } %>
-				</tbody>
-			</table>	
-		</div>
+		<% if (data.length != 0) { %>
+			<div>
+				<h1>Categorias eliminadas:</h1>	
+			</div>
+			<hr>
+			<div class="tableSecondary marginTop">
+				<table>
+					<thead>
+						<tr>
+							<th width="30%">Nombre</th>
+							<th>Descripción</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% for( let i = 0; i < data.length; i++ ) { %>
+							<tr id="row" dataId="<%= data[i].id %>" dataName="<%= data[i].name %>">
+								<td><%= data[i].name %></td>
+								<td><%= data[i].description %></td>
+							</tr>
+						<% } %>
+					</tbody>
+				</table>	
+			</div>
+		<% } else { %>
+			<div>
+				<h1>No hay categorias eliminadas</h1>
+			</div>
+		<% } %>
 	</div>
 
     <div class="modalDelete shadow" id="modalRecovery">
