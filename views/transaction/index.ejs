@@ -19,9 +19,8 @@
 <body>
 	<%- include('../navs/nav.ejs') %>
 	<div class="box">
-		
 		<% if (categoryData.length > 0) { -%>
-			<div>
+			<div class="title">
 				<h1>
 					<% if (type == 'income') { %>
 						<%= 'Ingresos:' %>
@@ -29,6 +28,7 @@
 						<%= 'Retiros:' %>
 					<% } %>
 				</h1>
+				<a href="/transaction/<%= type %>/trash" class="btnAlert"><i class="fi fi-sr-trash"></i></a>
 			</div>
 			<hr>
 			<% for (let i = 0; i < categoryData.length; i++) { -%>

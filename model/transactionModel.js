@@ -10,6 +10,9 @@ module.exports = {
 	getFolioByFolio:function(con,data,fun){
 		con.query('SELECT folio FROM transaction WHERE folio=? AND visible=1 AND userFK=?',[data,global.userId],fun)	
 	},
+	getInvisibleByType:function(con,type,fun){
+		con.query('SELECT folio, transaction.id AS id, WEEK(date) AS week, CONCAT(DAY(date),"/",MONTH(date),"/",YEAR(date)) AS date, concept, mount,category.name AS category FROM transaction INNER JOIN category WHERE categoryFK=category.id AND type=? AND transaction.visible=0 AND transaction.userFK=?',[type,global.userId],fun)
+	},
 	insert:function(con,type,data,fun){
 		con.query('INSERT INTO transaction VALUES(NULL,?,?,?,?,?,1,?,?)',[type,data.folio, data.year + "-" + data.month + "-" + data.day, data.concept, data.mount, global.userId, data.category],fun)
 	},

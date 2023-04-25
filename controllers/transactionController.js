@@ -57,7 +57,7 @@ module.exports = {
 				if(errors.length == 0){
 					transactionModel.insert(con,getType(req),body,function(err){
 						if(!err){
-							res.redirect('/transaction/' + req.params.type + '#' + body.category)
+							res.redirect('/transaction/see/' + req.params.type + '#' + body.category)
 						}else{
 							console.log(err)
 						}
@@ -73,20 +73,34 @@ module.exports = {
 	delete:function(req,res){
 		transactionModel.delete(con,getType(req),req.params.id,function(err){
 			if(!err){
-				res.redirect('/transaction/' + req.params.type + '#' + req.params.table)
+				res.redirect('/transaction/see/' + req.params.type + '#' + req.params.table)
 			}else{
 				console.log(err)
 			}
 		})
 	},
 	seeAll:function(req,res){
-		transactionModel.getByCategory(con,getType(req),req.params.id,function(err,transactionData){
-			if(!err){
-				res.render('transaction/seeAll',{addVisible: 'none', categoryId: req.params.id,categoryName: req.params.name,transactionData:transactionData,type: req.params.type})
-			}else{
-				console.log(err);
-			}
-		})
+		if(global.userId != 0){
+			transactionModel.getByCategory(con,getType(req),req.params.id,function(err,transactionData){
+				if(!err){
+					res.render('transaction/seeAll',{addVisible: 'none', categoryId: req.params.id,categoryName: req.params.name,transactionData:transactionData,type: req.params.type})
+				}else{
+					console.log(err);
+				}
+			})
+		}else{
+			res.redirect('/user')
+		}
+	},
+	trash:function(req,res){
+		if(global.userId != 0){
+			transactionModel.getInvisibleByType(con,getType(req),function(err,data){
+				res.render('transaction/trash',{data: data})
+				console.log(data);
+			})
+		}else{
+			res.redirect('/user')
+		}
 	}
 }
 
