@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="/images/isoGradient.png" type="image/x-icon">
     <link rel="stylesheet" href="/stylesheets/navs/nav.css">
 	<link rel="stylesheet" href="/stylesheets/template.css">
 
@@ -12,40 +14,73 @@
 <body>
     <%- include('../navs/nav.ejs') %>
     <div class="box">
-        <div class="title">
-            <h1>Categoria eliminados</h1>
-        </div>
-        <hr>
-        <div class="table">
-            <div>
-                <div class="tableSecondary marginVertical">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th width="8%">Semana</th>
-                                <th width="15%">Fecha</th>
-                                <th width="10%">Folio</th>
-                                <th>Concepto</th>
-                                <th width="15%">Categoria</th>
-                                <th width="10%"><i class="fi fi-br-dollar"></i></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% for( let i = 0; i < data.length; i++ ) { %>
+        <% if (data.length > 0) { %>
+            <div class="title">
+                <h1>
+                    <% if (type == 'income') { %>
+                        <%= 'Ingresos' %>
+                    <% } else { %>
+                        <%= 'Retiros' %>
+                    <% } %>
+                     eliminados:
+                </h1>
+            </div>
+            <hr>
+            <div class="table">
+                <div>
+                    <div class="tableSecondary marginVertical">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td><%= data[i].week %></td>
-                                    <td><%= data[i].date %></td>
-                                    <td><%= data[i].folio %></td>
-                                    <td><%= data[i].concept %></td>
-                                    <td><%= data[i].category %></td>
-                                    <td><%= data[i].mount %></td>
+                                    <th width="8%">Semana</th>
+                                    <th width="15%">Fecha</th>
+                                    <th width="10%">Folio</th>
+                                    <th>Concepto</th>
+                                    <th width="15%">Categoria</th>
+                                    <th width="10%"><i class="fi fi-br-dollar"></i></th>
                                 </tr>
-                            <% } %>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <% for( let i = 0; i < data.length; i++ ) { %>
+                                    <tr id="row" dataId="<%= data[i].id %>" dataFolio="<%= data[i].folio %>">
+                                        <td><%= data[i].week %></td>
+                                        <td><%= data[i].date %></td>
+                                        <td><%= data[i].folio %></td>
+                                        <td><%= data[i].concept %></td>
+                                        <td><%= data[i].category %></td>
+                                        <td><%= data[i].mount %></td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
+        <% } else { %>
+            <div>
+                <h1>
+                    No hay 
+                    <% if (type == 'income') { %>
+                        <%= 'ingresos' %>
+                    <% } else { %>
+                        <%= 'retiros' %>
+                    <% } %>
+                     eliminados
+                </h1>
+            </div>
+        <% } %>
     </div>
+
+    <div class="modalDelete shadow" id="modalRecovery" type="<%= type %>">
+		<div>
+			<span>¿Deseas recuperar la transaccion con el folio <b id="recoveryName">Texto</b>?</span>
+		</div>
+		<form class="marginTop" method="post">
+			<span class="btnSecondary" id="cancelRecovery">No</span>
+			<input class="btnAlert" type="submit" value="Si">
+		</form>
+	</div>
+
+    <script src="/javascripts/trash.js"></script>
 </body>
 </html>

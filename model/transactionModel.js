@@ -18,5 +18,8 @@ module.exports = {
 	},
 	delete:function(con,type,id,fun){
 		con.query('UPDATE transaction SET visible=0 WHERE id=? AND type=? AND userFK=?',[id,type,global.userId],fun)
+	},
+	recovery:function(con,id,fun){
+		con.query('UPDATE transaction SET visible=1 WHERE id=? AND userFK=?',[id,global.userId],fun)
 	}
 }

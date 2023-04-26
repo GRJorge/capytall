@@ -9,8 +9,18 @@ tbody.querySelectorAll('#row').forEach(tr => {
                 tr2.style.backgroundColor = '#373740'
             })
             tr.style.backgroundColor = '#8C3FA6'
-            modalRecovery.querySelector('#recoveryName').innerHTML = tr.getAttribute('dataName')
-            modalRecovery.querySelector('form').action = "/category/recovery/" + tr.getAttribute('dataId')
+
+            let recoveryName = modalRecovery.querySelector('#recoveryName')
+            let recoveryFormAction = modalRecovery.querySelector('form')
+
+            if(window.location.href.includes('transaction')){
+                recoveryName.innerHTML = tr.getAttribute('dataFolio')
+                recoveryFormAction.action = "/transaction/" + modalRecovery.getAttribute('type') +"/recovery/" + tr.getAttribute('dataId')
+            }else{
+                recoveryName.innerHTML = tr.getAttribute('dataName')
+                recoveryFormAction.action = "/category/recovery/" + tr.getAttribute('dataId')
+            }
+            
             
             modalRecovery.classList.remove('fadeOut')
             modalRecovery.classList.add('fadeIn')

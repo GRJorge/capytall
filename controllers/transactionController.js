@@ -95,12 +95,21 @@ module.exports = {
 	trash:function(req,res){
 		if(global.userId != 0){
 			transactionModel.getInvisibleByType(con,getType(req),function(err,data){
-				res.render('transaction/trash',{data: data})
+				res.render('transaction/trash',{data: data,type: req.params.type})
 				console.log(data);
 			})
 		}else{
 			res.redirect('/user')
 		}
+	},
+	recovery:function(req,res){
+		transactionModel.recovery(con,req.params.id,function(err){
+			if(!err){
+				res.redirect('/transaction/' + req.params.type + "/trash")
+			}else{
+				console.log(err)
+			}
+		})
 	}
 }
 
