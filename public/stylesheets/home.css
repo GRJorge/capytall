@@ -1,0 +1,23 @@
+@import url("../stylesheets/global.css");
+
+.box{
+    width: 80%;
+    margin: 16px auto;
+}
+.statistics{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.statistics div{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-radius: 4px;
+    flex: 1;
+}
+.statistics div span:first-child{
+    font-size: 26px;
+}

@@ -5,10 +5,27 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="/images/isoGradient.png" type="image/x-icon">
 	<link rel="stylesheet" href="stylesheets/navs/nav.css">
+	<link rel="stylesheet" href="stylesheets/home.css">
 
 	<title>Menu principal</title>
 </head>
 <body>
 	<%- include('../navs/nav.ejs') %>
+	<div class="box">
+		<div class="statistics">
+			<div class="shadow">
+				<span><%= statisticsData[0].incomeCount %></span>
+				<span>Ingresos registrados</span>
+			</div>
+			<div class="shadow sexo">
+				<span><%= statisticsData[0].withdrawalCount %></span>
+				<span>Retiros registrados</span>
+			</div>
+			<div class="shadow">
+				<span>$<%= statisticsData[0].generalTotal %></span>
+				<span>Total de dinero manejado</span>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
