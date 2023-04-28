@@ -4,6 +4,9 @@
     width: 80%;
     margin: 16px auto;
 }
+.tableSecondary tbody tr:hover{
+    cursor: default;
+}
 .statistics,
 .tables{
     display: flex;

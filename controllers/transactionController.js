@@ -96,7 +96,6 @@ module.exports = {
 		if(global.userId != 0){
 			transactionModel.getInvisibleByType(con,getType(req),function(err,data){
 				res.render('transaction/trash',{data: data,type: req.params.type})
-				console.log(data);
 			})
 		}else{
 			res.redirect('/user')
