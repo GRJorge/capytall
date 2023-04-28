@@ -29,6 +29,9 @@ option{
     appearance: none;
     background-color: var(--background);
 }
+hr{
+    color: var(--foreground);
+}
 
 .shadow{
     box-shadow: 0px 0px 6px #000;

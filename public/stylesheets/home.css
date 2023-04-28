@@ -4,7 +4,8 @@
     width: 80%;
     margin: 16px auto;
 }
-.statistics{
+.statistics,
+.tables{
     display: flex;
     flex-direction: row;
     gap: 16px;
@@ -20,4 +21,10 @@
 }
 .statistics div span:first-child{
     font-size: 26px;
+}
+.tables .titleTable{
+    font-size: 20px;
+}
+.tables > div{
+    flex: 1;
 }

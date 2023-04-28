@@ -11,7 +11,6 @@ h1, h2{
 }
 hr{
 	width: calc(100% - 4px);
-	color: var(--foreground);
 }
 button i, a i{
 	position: relative;
