@@ -31,3 +31,22 @@
 .tables > div{
     flex: 1;
 }
+.totals{
+    display: flex;
+	align-items: center;
+	border: solid 2px var(--primary);
+	border-radius: 4px;
+    margin-top: 16px;
+}
+.totals a{
+    margin: 4px;
+}
+.totals .total{
+    display: flex;
+	align-items: center;
+	padding: 8px;
+	font-size: 18px;
+	margin-left: auto;
+	align-self: stretch;
+	background-color: var(--primary);
+}

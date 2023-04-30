@@ -12,6 +12,7 @@
 <body>
 	<%- include('../navs/nav.ejs') %>
 	<div class="box">
+		<!-- ESTADISTICAS --> 
 		<div class="statistics">
 			<div class="shadow">
 				<span><%= statisticsData[0].incomeCount %></span>
@@ -26,9 +27,9 @@
 				<span>Total de dinero manejado</span>
 			</div>
 		</div>
-
+		<!-- TABLAS --> 
 		<div class="tables marginTop">
-			<div>
+			<div id="table">
 				<div class="tableSecondary marginTop">
 					<table>
 						<thead>
@@ -44,18 +45,24 @@
 						<tbody>
 							<% for( let i = 0; i < transactionData.length; i++ ) { %>
 								<% if (transactionData[i].type == 0) { %>
-									<tr>
+									<tr mount>
 										<td><%= transactionData[i].folio %></td>
 										<td><%= transactionData[i].concept %></td>
-										<td><%= transactionData[i].mount %></td>
+										<td id="mount">$<%= transactionData[i].mount %></td>
 									</tr>
 								<% } %>
 							<% } %>
 						</tbody>
 					</table>
 				</div>
+				<div class="totals">
+					<a href="" class="btnPrimary">Ver todos</a>
+					<div class="total marginLeft">
+						<span id="total">Total: $999999</span>
+					</div>
+				</div>
 			</div>
-			<div>
+			<div id="table">
 				<div class="tableSecondary marginTop">
 					<table>
 						<thead>
@@ -74,15 +81,23 @@
 									<tr>
 										<td><%= transactionData[i].folio %></td>
 										<td><%= transactionData[i].concept %></td>
-										<td><%= transactionData[i].mount %></td>
+										<td id="mount">$<%= transactionData[i].mount %></td>
 									</tr>
 								<% } %>
 							<% } %>
 						</tbody>
 					</table>
 				</div>
+				<div class="totals">
+					<a href="" class="btnPrimary">Ver todos</a>
+					<div class="total marginLeft">
+						<span id="total">Total: $99999999</span>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+
+	<script src="javascripts/home.js"></script>
 </body>
 </html>

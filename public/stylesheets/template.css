@@ -28,7 +28,7 @@ button i, a i{
 	border: solid 2px var(--primary);
 	border-radius: 4px;
 }
-.toolTable a:first-child{
+.toolTable a{
 	margin: 4px;
 }
 .toolTable .total{
