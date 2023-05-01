@@ -30,7 +30,7 @@
                     </thead>
                     <tbody>
                         <% for(let j = 0; j < transactionData.length; j++) { %>
-                            <tr incomeId="<%= transactionData[j].id %>" folio="<%= transactionData[j].folio %>">
+                            <tr transactionId="<%= transactionData[j].id %>" folio="<%= transactionData[j].folio %>">
                                 <td style="text-align: center;"><%= transactionData[j].week %></td>
                                 <td><%= transactionData[j].day %>-<%= transactionData[j].month %>-<%= transactionData[j].year %></td>
                                 <td><%= transactionData[j].folio %></td>

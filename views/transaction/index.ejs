@@ -62,24 +62,22 @@
 								<% } %>
 								<% if (numData == 0) { %>
 									<tr>
-										<td>-</td>
-										<td>-</td>
-										<td>-</td>
-										<td>-</td>
-										<td>-</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
 									</tr>
 								<% } %>
 							</tbody>
 						</table>
 					</div>
-					<% if (numData > 0) { %>
-						<div class="toolTable marginBottom">
-							<a href="/transaction/<%= type %>/seeAll/<%= categoryData[i].id %>,<%= categoryData[i].name %>" class="btnPrimary">Ver todos</a>
-							<div class="total marginLeft">
-								<span id="total">Total: $99999999</span>
-							</div>
+					<div class="toolTable marginBottom">
+						<a href="/transaction/<%= type %>/seeAll/<%= categoryData[i].id %>,<%= categoryData[i].name %>" class="btnPrimary">Ver todos</a>
+						<div class="total marginLeft">
+							<span id="total">Total: $99999999</span>
 						</div>
-					<% } %>
+					</div>
 				</div>
 			<% } -%>
 		<% } else { -%>
