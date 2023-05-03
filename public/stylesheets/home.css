@@ -13,6 +13,10 @@
     flex-direction: row;
     gap: 16px;
     flex-wrap: wrap;
+    align-items: stretch;
+}
+.statistics{
+    margin-bottom: 16px;
 }
 .statistics div{
     text-align: center;
@@ -30,8 +34,12 @@
 }
 .tables > div{
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-.totals{
+.totals,
+.balance{
     display: flex;
 	align-items: center;
 	border: solid 2px var(--primary);
@@ -49,4 +57,14 @@
 	margin-left: auto;
 	align-self: stretch;
 	background-color: var(--primary);
+}
+.balance{
+    justify-content: center;
+    font-size: 18px;
+    border-color: var(--secondary);
+}
+.balance span{
+    background-color: var(--secondary);
+    padding: 8px;
+    color: var(--background);
 }
