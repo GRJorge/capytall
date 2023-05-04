@@ -1,0 +1,40 @@
+@import url("../stylesheets/global.css");
+
+.box{
+    width: 80%;
+    margin: auto;
+}
+.box div{
+    margin-top: 16px;
+}
+.box div:first-child{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.box .search span{
+    font-size: 14px;
+}
+.box .search * {
+    flex: 1;
+}
+.box .search input{
+    flex: 4;
+}
+@media screen and (min-width: 1200px) {
+    .box .search input{
+        flex: 6;
+    }   
+}
+@media screen and (max-width: 700px) {
+    .box{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 570px) {
+    .box .search input{
+        flex: 3;
+    }   
+}
