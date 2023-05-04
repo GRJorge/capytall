@@ -21,6 +21,9 @@ button i, a i{
 	justify-content: space-between;
 	align-items: center;
 }
+.date{
+	font-size: 16px;
+}
 .toolTable{
 	display: flex;
 	align-items: center;

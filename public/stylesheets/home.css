@@ -4,16 +4,17 @@
     width: 80%;
     margin: 16px auto;
 }
+.date{
+    font-size: 14px;
+}
 .tableSecondary tbody tr:hover{
     cursor: default;
 }
-.statistics,
-.tables{
+.statistics{
     display: flex;
     flex-direction: row;
     gap: 16px;
     flex-wrap: wrap;
-    align-items: stretch;
 }
 .statistics{
     margin-bottom: 16px;
@@ -28,6 +29,11 @@
 }
 .statistics div span:first-child{
     font-size: 26px;
+}
+.tables{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
 }
 .tables .titleTable{
     font-size: 20px;
@@ -67,4 +73,20 @@
     background-color: var(--secondary);
     padding: 8px;
     color: var(--background);
+    text-align: center;
+}
+@media screen and (max-width: 700px) {
+    .box{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 600px){
+    .tables{
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 350px) {
+    .balance span{
+        width: 100%;
+    }
 }
