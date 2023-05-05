@@ -13,52 +13,51 @@
 </head>
 <body>
     <%- include('../navs/nav.ejs') %>
-
+    
     <div class="box">
-        <div class="search">
-            <span class="textForegroundAlphaPrimary">Buscar por:</span>
-            <select id="searchBy" class="textForegroundAlphaPrimary">
-                <option value="1">Concepto</option>
-                <option value="2">Folio</option>
-                <option value="3">Monto</option>
-            </select>
-            <input id="searchText" class="textForegroundAlphaPrimary" type="text" placeholder="Escribe lo que deseas buscar">
-        </div>
-        <div>
-            <div class="tableSecondary">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>3</th>
-                            <th>3</th>
-                            <th>3</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Messi</td>
-                            <td>Siu 2</td>
-                            <td>Siu 3</td>
-                        </tr>
-                        <tr>
-                            <td>Ronaldo</td>
-                            <td>Siu 2</td>
-                            <td>Siu 3</td>
-                        </tr>
-                        <tr>
-                            <td>Ronaldinho</td>
-                            <td>Siu 2</td>
-                            <td>Siu 3</td>
-                        </tr>
-                        <tr>
-                            <td>Mbappe</td>
-                            <td>Siu 2</td>
-                            <td>Siu 3</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <% if(data.length > 0){ %>
+            <div class="search">
+                <span class="textForegroundAlphaPrimary">Buscar:</span>
+                <input id="searchText" class="textForegroundAlphaPrimary" type="text" placeholder="Escribe lo que deseas buscar">
             </div>
-        </div>
+            <div>
+                <div class="tableSecondary">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Folio</th>
+                                <th>Concepto</th>
+                                <th>Categoria</th>
+                                <th>Tipo</th>
+                                <th>Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for( let i = 0; i < data.length; i++ ) { %>
+                                <tr>
+                                    <td><%= data[i].date %></td>
+                                    <td><%= data[i].folio %></td>
+                                    <td><%= data[i].concept %></td>
+                                    <td><%= data[i].category %></td>
+                                    <td><% if (data[i].type == 0) { %>
+                                            <%= "Ingreso" %>
+                                        <% } else { %>
+                                            <%= "Retiro" %>
+                                        <% } %>
+                                    </td>
+                                    <td>$<%= data[i].mount %></td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <% } else { %>
+            <div>
+                <h1>No hay registros guardados</h1>
+            </div>
+        <% } %>
     </div>
 
     <script src="javascripts/search.js"></script>

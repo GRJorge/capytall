@@ -1,5 +1,7 @@
 @import url("../stylesheets/global.css");
-
+h1{
+    font-size: 24px;
+}
 .box{
     width: 80%;
     margin: auto;
@@ -16,6 +18,7 @@
 }
 .box .search span{
     font-size: 14px;
+    text-align: center;
 }
 .box .search * {
     flex: 1;
