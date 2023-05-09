@@ -1,15 +1,17 @@
 @import url("../stylesheets/global.css");
+
 h1{
     font-size: 24px;
 }
 .box{
     width: 80%;
     margin: auto;
+    animation: fadeIn ease-out 0.3s;
 }
 .box div{
     margin-top: 16px;
 }
-.box div:first-child{
+.box .search{
     display: flex;
     justify-content: center;
     align-items: stretch;

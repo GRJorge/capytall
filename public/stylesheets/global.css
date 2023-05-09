@@ -187,17 +187,11 @@ hr{
 .tableSecondary td,th{
     padding: 10px;
 }
-.tableSecondary td{
-    border-bottom: solid 1px var(--foreground);
-}
 .tableSecondary tbody tr{
     transition: all 0.2s ease-out;
 }
 .tableSecondary tbody tr:hover{
     cursor: pointer;
-}
-.tableSecondary tbody tr:last-child td{
-    border-bottom: none;
 }
 /* ALERTAS */
 .alert{
