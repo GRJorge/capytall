@@ -96,6 +96,10 @@ document.querySelector('#cancelDelete').addEventListener("click",() => {
 
 //MUESTRA DE MODAL DE PDF
 document.querySelector('#createPdf').addEventListener('click',() => {
+	const date = new Date
+
+	pdfModal.querySelector('form').action = '/category/pdf/' + currentDataId + "," + currentDataName
+	pdfModal.querySelector('#from').action = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay()
 	document.querySelector('#pdfNameModal').innerHTML = currentDataName
 	visibleModals('none','none','flex','none')	
 })

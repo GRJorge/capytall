@@ -88,9 +88,9 @@
 
 	<!-- MODAL PARA CREACION DE PDF'S -->
 
-	<div class="modalPdf shadow" id="modalPdf">
-		<div>Balance para <b id="pdfNameModal">Categoria</b><hr></div>
-		<form method="post" action="">
+	<div class="modalPdf shadow" id="modalPdf" style="display: <%= pdfVisible %>">
+		<div>Balance para <b id="pdfNameModal"><%= titleModalPdf %></b><hr></div>
+		<form method="post">
 			<div>
 				<label for="to">Desde:</label>
 				<br>
@@ -106,6 +106,13 @@
 				<span id="cancelPdf" class="btnAlert">Cancelar</span>
 			</div>
 		</form>
+		<% if (errorsPdf.length > 0) { %>
+			<div class="errorBox">
+				<% for( let i = 0; i < errorsPdf.length; i++ ) { %>
+					<span class="alert"><%= errorsPdf[i] %></span>
+				<% } %>
+			</div>
+		<% } %>
 	</div>
 
 	<div id="actions" class="actions">

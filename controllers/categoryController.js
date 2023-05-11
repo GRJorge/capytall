@@ -6,9 +6,7 @@ const global = require('../public/javascripts/global')
 module.exports = {
 	index:function(req,res){ //CARGA DE RUTA
 		if(global.userId != 0){
-			categoryModel.getVisible(con,function(err, data){
-				res.render('category/index',{titleModalAdd:"",titleBtnSubmit:"",data: data,addVisible: "none", errors: [], values: []})
-			})
+			showIndex(res,"","","none",[],[],"","none",[])
 		}else{
 			res.redirect('/user')
 		}
@@ -45,18 +43,16 @@ module.exports = {
 				})
 			}
 		}else{
-			categoryModel.getVisible(con,function(err, data){
-				let titleModalAdd
-				let titleBtnSubmit
-				if(req.url == "/"){
-					titleModalAdd = "Agregar nueva categoria:"
-					titleBtnSubmit = "Guardar"
-				}else{
-					titleModalAdd = "Editar categoria:"
-					titleBtnSubmit = "Editar"
-				}
-				res.render('category/index',{titleModalAdd:titleModalAdd,titleBtnSubmit:titleBtnSubmit,data: data, addVisible: "flex", errors: errors, values: values})
-			})
+			let titleModalAdd
+			let titleBtnSubmit
+			if(req.url == "/"){
+				titleModalAdd = "Agregar nueva categoria:"
+				titleBtnSubmit = "Guardar"
+			}else{
+				titleModalAdd = "Editar categoria:"
+				titleBtnSubmit = "Editar"
+			}
+			showIndex(res,titleModalAdd,titleBtnSubmit,"flex",errors,values,"","none",[])
 		}
 	},/* ELIMINACION DE REGISTROS (CAMBIO DE VISIBILIDAD) */
 	delete:function(req,res){
@@ -79,5 +75,33 @@ module.exports = {
 				res.redirect('/category/trash')
 			}
 		})
+	},
+	pdf:function(req,res){
+		let errors = []
+
+		const body = req.body
+
+		if(global.isBlank(body.to)){
+			errors.push('Ingresa la fecha inicial')
+		}
+		if(global.isBlank(body.from)){
+			errors.push('Ingresa la fecha final')
+		}
+
+		if(errors.length == 0){
+
+		}else{
+			showIndex(res,"","","none",[],[],req.params.name,"flex",errors)
+		}
 	}
+}
+
+function showIndex(res,titleModalAdd,titleBtnSubmit,addVisible,errors,values,titleModalPdf,pdfVisible,errorsPdf){
+	categoryModel.getVisible(con,function(err, data){
+		if(!err){
+			res.render('category/index',{titleModalAdd:titleModalAdd,titleBtnSubmit:titleBtnSubmit,data: data,addVisible: addVisible, errors: errors, values: values, titleModalPdf: titleModalPdf, pdfVisible: pdfVisible,errorsPdf: errorsPdf})
+		}else{
+			console.log(err);
+		}
+	})
 }
