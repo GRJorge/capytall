@@ -86,8 +86,31 @@
 		</form>
 	</div>
 
+	<!-- MODAL PARA CREACION DE PDF'S -->
+
+	<div class="modalPdf shadow" id="modalPdf">
+		<div>Balance para <b id="pdfNameModal">Categoria</b><hr></div>
+		<form method="post" action="">
+			<div>
+				<label for="to">Desde:</label>
+				<br>
+				<input type="date" name="to" id="to" class="textForegroundAlphaPrimary">
+			</div>
+			<div>
+				<label for="from">Hasta:</label>
+				<br>
+				<input type="date" name="from" id="from" class="textForegroundAlphaPrimary">
+			</div>
+			<div>
+				<input type="submit" class="btnSecondary" value="Generar">
+				<span id="cancelPdf" class="btnAlert">Cancelar</span>
+			</div>
+		</form>
+	</div>
+
 	<div id="actions" class="actions">
 		<button id="addBtn" class="btnRoundedPrimary"><i class="fi fi-br-plus"></i></button>
+		<button id="createPdf" class="btnRoundedSecondary"><i class="fi fi-sr-file-pdf"></i></button>
 		<button id="editBtn" class="btnRoundedSecondary"><i class="fi fi-sr-pencil"></i></button>
 		<button id="deleteBtn" class="btnRoundedAlert"><i class="fi fi-br-cross"></i></button>
 	</div>
