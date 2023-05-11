@@ -9,3 +9,4 @@ Software para el control de ingresos y retiros de dinero a nivel empresarial o p
 - [Body Parser](https://www.npmjs.com/package/body-parser)
 - [Nodemon](https://www.npmjs.com/package/nodemon)
 - [Nodemailer](https://nodemailer.com/about/)
+- [PDFKit](https://pdfkit.org/)
