@@ -1,6 +1,7 @@
 const con = require('../config/connection')
 const PDFDocument = require('pdfkit-table')
 const categoryModel = require('../model/categoryModel')
+const transactionModel = require('../model/transactionModel')
 
 const global = require('../public/javascripts/global')
 
@@ -90,44 +91,79 @@ module.exports = {
 		}
 
 		if(errors.length == 0){
-			const doc = new PDFDocument();
-			const date = new Date()
-
-			res.attachment('output.pdf');
-			doc.pipe(res);
+			transactionModel.getFromPdf(con,req.body.to,req.body.from,req.params.id,function(err,data){
+				if(!err){
+					console.log(data);
+					if(data.length > 0){
+						transactionModel.getTotalFromPdf(con,req.body.to,req.body.from,req.params.id,function(err,totals){
+							if(!err){
+								const doc = new PDFDocument();
+								const date = new Date()
 			
-			doc.image('public/images/isoDark.png', {
-				fit: [60, 60],  // Tamaño de la imagen
-				align: 'left',  // Alineación de la imagen
-			},26);
-			doc.fontSize(18).text('Balance para: ' + req.params.name, {
-				align: "right"
-			},40);
-			doc.fontSize(10).text('Impreso el: ' + date.getDate().toString().padStart(2,'0') + "/" + (date.getMonth()+1).toString().padStart(2,'0') + "/" + date.getFullYear(),{
-				align: "right"
-			});
-			doc.fontSize(10).text('Usuario: Jorge Garcia Rodriguez',{
-				align: "right",
-			});
+								res.attachment('output.pdf');
+								doc.pipe(res);
+								
+								doc.image('public/images/isoDark.png', {
+									fit: [60, 60],  // Tamaño de la imagen
+									align: 'left',  // Alineación de la imagen
+								},26);
+								doc.fontSize(18).text('Balance para: ' + req.params.name, {
+									align: "right"
+								},40);
+								doc.fontSize(10).text('Impreso el: ' + date.getDate().toString().padStart(2,'0') + "/" + (date.getMonth()+1).toString().padStart(2,'0') + "/" + date.getFullYear(),{
+									align: "right"
+								});
+								doc.fontSize(10).text('Usuario: Jorge Garcia Rodriguez',{
+									align: "right",
+								});
+			
+								const table = {
+									title: "Del " + req.body.to.replace(/-/g,'/') + " al " + req.body.from.replace(/-/g,'/'),
+									headers: ['Fecha', 'Folio', 'Concepto','Monto'],
+									rows: []
+								};
+								
+								data.forEach(row => {
+									table.rows.push([row.date,row.folio,row.concept,row.mount])
+								})
 
-			const table = {
-				title: "Del " + req.body.to.replace(/-/g,'/') + " al " + req.body.from.replace(/-/g,'/'),
-				headers: ['Fecha', 'Folio', 'Concepto','Monto'],
-				rows: [['Juan Tenoria Alabare alabare alabareeeeeeeee', '30', 'México'],
-				['Maria', '25', 'Argentina'],
-				['Pedro', '40', 'Colombia']]
-			};
+								doc.table(table,{
+									prepareHeader: () => doc.font('Helvetica'),
+									prepareRow: (row, i) => doc.font('Helvetica').fontSize(10),
+									align: 'center',
+									startPage: 1,
+									margin: { top: 50 },
+									y: 110
+								})
 
-			doc.table(table,{
-				prepareHeader: () => doc.font('Helvetica'),
-				prepareRow: (row, i) => doc.font('Helvetica').fontSize(10),
-				align: 'center',
-				startPage: 1,
-				margin: { top: 50 },
-				y: 110
+								const tableTotals = {
+									headers: ['', 'Total'],
+									rows: [['Ingresos:',totals[0].incomeTotal],
+									['Retiros:',totals[0].withdrawalTotal],
+									['Total:',(totals[0].incomeTotal - totals[0].withdrawalTotal)]]
+								};
+								
+								doc.table(tableTotals,{
+									prepareHeader: () => doc.font('Helvetica'),
+									prepareRow: (row, i) => doc.font('Helvetica').fontSize(10),
+									align: 'center',
+									startPage: 1,
+									margin: { top: 50 },
+									x:300
+								})
+
+								doc.end();
+							}else{
+								console.log(err);
+							}
+						})
+					}else{
+						showIndex(res,"","","none",[],[],req.params.name,"flex",["No hay datos entre esas fechas"])		
+					}
+				}else{
+					console.log(err);
+				}
 			})
-			
-			doc.end();
 		}else{
 			showIndex(res,"","","none",[],[],req.params.name,"flex",errors)
 		}

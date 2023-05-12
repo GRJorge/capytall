@@ -21,5 +21,11 @@ module.exports = {
 	},
 	recovery:function(con,id,fun){
 		con.query('UPDATE transaction SET visible=1 WHERE id=? AND userFK=?',[id,global.userId],fun)
+	},
+	getFromPdf:function(con,to,from,category,fun){
+		con.query('SELECT CONCAT(DAY(date),"/",MONTH(date),"/",YEAR(date)) AS date, folio, concept, CONCAT(CASE WHEN type = 0 THEN "+" ELSE "-" END,mount) AS mount FROM transaction WHERE date>=? AND date<=? AND visible=1 AND userFK=? AND categoryFK=? ORDER BY date ASC',[to,from,global.userId,category],fun)
+	},
+	getTotalFromPdf:function(con,to,from,category,fun){
+		con.query('SELECT SUM(CASE WHEN type=0 THEN mount END) AS incomeTotal, SUM(CASE WHEN type=1 THEN mount END) AS withdrawalTotal FROM transaction WHERE date BETWEEN ? AND ? AND visible=1 AND userFK=? AND categoryFK=?',[to,from,global.userId,category],fun)
 	}
 }

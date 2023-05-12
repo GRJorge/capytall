@@ -3,6 +3,14 @@ const deleteModal = document.querySelector('#deleteModal')
 const pdfModal = document.querySelector('#modalPdf')
 const actionsButtons = document.querySelector('#actions')
 
+const date = new Date()
+const actualDate = date.getFullYear() + '-' + (date.getMonth()+1).toString().padStart(2,'0') + '-' + date.getDate().toString().padStart(2,'0')
+
+pdfModal.querySelector('#to').max = actualDate
+pdfModal.querySelector('#to').value = date.getFullYear() + '-' + (date.getMonth()+1).toString().padStart(2,'0') + '-01'
+pdfModal.querySelector('#from').max = actualDate
+pdfModal.querySelector('#from').value = actualDate
+
 //MUESTRA DE MODAL PARA AGREGAR
 
 document.querySelector('#addBtn').addEventListener("click",() => {
@@ -96,10 +104,7 @@ document.querySelector('#cancelDelete').addEventListener("click",() => {
 
 //MUESTRA DE MODAL DE PDF
 document.querySelector('#createPdf').addEventListener('click',() => {
-	const date = new Date
-
 	pdfModal.querySelector('form').action = '/category/pdf/' + currentDataId + "," + currentDataName
-	pdfModal.querySelector('#from').action = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay()
 	document.querySelector('#pdfNameModal').innerHTML = currentDataName
 	visibleModals('none','none','flex','none')	
 })
